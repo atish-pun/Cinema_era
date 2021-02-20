@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AccountLogin"
+    android:orientation="vertical"
+    android:background="@drawable/accountbackground"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="49dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="31dp"
+            android:layout_marginTop="57dp"
+            android:background="@drawable/cinemasingleicon" />
+
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="33dp"
+            android:fontFamily="serif"
+            android:text="Welcome to"
+            android:textColor="#000000"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/cinema"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="33dp"
+            android:layout_marginTop="-7dp"
+            android:fontFamily="serif"
+            android:text="Cinema Era"
+            android:textStyle="bold"
+            android:textColor="@color/login"
+            android:textSize="30dp" />
+        <TextView
+            android:id="@+id/logintext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="serif"
+            android:layout_marginTop="30dp"
+            android:textStyle="bold"
+            android:text="Login to your account"
+            android:textColor="@color/login"
+            android:textSize="20dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:focusableInTouchMode="true"
+            android:layout_gravity="center"
+            android:focusable="true"
+            app:hintTextColor="@color/colorPrimaryDark">
+
+            <EditText
+                android:id="@+id/editEmailAddress"
+                android:layout_width="240dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/cinema"
+                android:background="@drawable/account"
+                android:drawableLeft="@drawable/ic_email"
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_gravity="center"
+            android:focusable="true"
+            app:hintTextColor="@color/colorPrimaryDark"
+            android:focusableInTouchMode="true">
+            <EditText
+                android:id="@+id/editPassword"
+                android:background="@drawable/account"
+                android:layout_width="240dp"
+                android:layout_height="40dp"
+                android:drawableLeft="@drawable/ic_lock"
+                android:hint="Password"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="69dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/login"
+            android:text="Forgot password?"
+            android:textSize="13dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button_login"
+            android:layout_width="190dp"
+            android:layout_height="44dp"
+            android:textSize="16dp"
+            android:layout_marginTop="40dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:textColor="@color/action_menu_color"
+            android:background="@drawable/account"
+            android:layout_gravity="center"
+            android:fontFamily="serif"
+            android:text="Log in"
+            android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="3dp"
+        android:layout_gravity="center"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#CBCDCD"
+            android:text="Not a member?"
+            android:textSize="12dp"/>
+
+        <TextView
+            android:id="@+id/signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sign up"
+            android:textStyle="bold"
+            android:layout_marginStart="3dp"
+            android:textColor="@color/login"
+            android:textSize="13dp" />
+    </LinearLayout>
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/buttom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/navigation_menu"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="603dp"
+        app:itemIconTint="@color/action_menu_color"
+        app:itemTextColor="@color/action_menu_color"
+        app:itemIconSize="24dp"
+        android:background="@drawable/nav_portion">
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+</RelativeLayout>

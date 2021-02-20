@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#C92525</color>
+    <color name="colorPrimaryDark">#1C1B1B</color>
+    <color name="colorAccent">#9E7A7A</color>
+    <color name="action_menu_color">#96979b</color>
+    <color name="edit_portion">#3c4043</color>
+    <color name="Texttop">#707C7C</color>
+    <color name="filmname">#6A6767</color>
+    <color name="login">#102A2E</color>
+    <color name="film_detailsTXT">#A8A4A4</color>
+    <color name="viewline">#ABA8A4A4</color>
+</resources>

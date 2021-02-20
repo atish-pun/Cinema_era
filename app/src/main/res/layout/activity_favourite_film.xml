@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".FavouriteFilm">
+
+    <ImageView
+        android:id="@+id/FavouriteIcon"
+        android:layout_width="170dp"
+        android:layout_height="281dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/favourite_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.62"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/FirstFavouriteText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/FavouriteIcon"
+        android:fontFamily="serif"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:text="To keep track off the movies you want"
+        android:textColor="@color/filmname" />
+
+    <TextView
+        android:id="@+id/SecondFavouriteText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:layout_below="@+id/FirstFavouriteText"
+        android:layout_centerHorizontal="true"
+        android:text="watch, just tap the favourite icon"
+        android:textColor="@color/filmname" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favourite_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_above="@+id/buttom_nav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/buttom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/navigation_menu"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="603dp"
+        app:itemIconTint="@color/action_menu_color"
+        app:itemTextColor="@color/action_menu_color"
+        app:itemIconSize="24dp"
+        android:background="@drawable/nav_portion">
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+</RelativeLayout>
