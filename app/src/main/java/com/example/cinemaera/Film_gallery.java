@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,8 +24,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import static com.example.cinemaera.R.drawable.account;
 
@@ -36,7 +47,7 @@ public class Film_gallery extends AppCompatActivity {
     SeekBar seekBar;
     float ratingValue;
     Boolean fullscreen = false;
-    String temp, Film_name,MoviePoster,Trailer_videos;
+    String temp, Film_name,MoviePoster,Trailer_videos,Movie_id;
     ConstraintLayout videoConstraint;
 
     @Override
@@ -66,6 +77,7 @@ public class Film_gallery extends AppCompatActivity {
         fav = findViewById(R.id.favourite);
         MoviePoster = getIntent().getStringExtra("Film images");
         Film_name = getIntent().getStringExtra("Film names");
+        Movie_id = getIntent().getStringExtra("movie_id");
         filmTxt.setText(Film_name);
         Picasso.get().load(MoviePoster).into(filmImg);
         Picasso.get().load(MoviePoster).into(trailer_img);
@@ -300,55 +312,78 @@ public class Film_gallery extends AppCompatActivity {
         }
 
     public void FavouriteBtn(View view) {
-        final String casting, directors, dates, times, languages, overviews;
-        casting = String.valueOf(cast.getText());
-        directors = String.valueOf(director.getText());
-        dates = String.valueOf(releaseDate.getText());
-        times = String.valueOf(runtime.getText());
-        languages = String.valueOf(language.getText());
-        overviews = String.valueOf(overview.getText());
-        Handler handler = new Handler();
-        handler.post(new Runnable() {
+        if(Util.FAVOURITE_TOKEN == null || Util.FAVOURITE_TOKEN.equals("")) Util.GenerateFavouriteToken(this);
+        String url = getString(R.string.server_api_url) + "add-to-cart.php?pid=" + Movie_id + "&otoken=" + Util.FAVOURITE_TOKEN + "&uid=" + Util.SESSION_USERID;
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
-            public void run() {
-                String[] field = new String[9];
-                field[0] = "Movie_name";
-                field[1] = "Movie_poster";
-                field[2] = "Trailer_videos";
-                field[3] = "Cast";
-                field[4] = "Director";
-                field[5] = "Release_date";
-                field[6] = "Run_time";
-                field[7] = "Language";
-                field[8] = "Overview";
-
-                //Creating array for data
-                String[] data = new String[9];
-                data[0] = Film_name;
-                data[1] = MoviePoster;
-                data[2] = Trailer_videos;
-                data[3] = casting;
-                data[4] = directors;
-                data[5] = dates;
-                data[6] = times;
-                data[7] = languages;
-                data[8] = overviews;
-
-                PutData putData = new PutData("http://192.168.100.129:8080/ERA/Favourite.php", "POST", field, data);
-                if (putData.startPut()) {
-                    if (putData.onComplete()) {
-                        String result = putData.getResult();
-                        if (result.equals("Successfully added to Favourite")) {
-                            Toast.makeText(getApplicationContext(), Film_name + " added to Favourite List", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                        }
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    if (object.getInt("status") == 200) {
+                        Toast.makeText(Film_gallery.this, object.getString("content"), Toast.LENGTH_SHORT).show();
                     }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(Film_gallery.this, error.toString(), Toast.LENGTH_SHORT).show();
+            }
         });
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        queue.add(stringRequest);
     }
-}
+//        final String casting, directors, dates, times, languages, overviews;
+//        casting = String.valueOf(cast.getText());
+//        directors = String.valueOf(director.getText());
+//        dates = String.valueOf(releaseDate.getText());
+//        times = String.valueOf(runtime.getText());
+//        languages = String.valueOf(language.getText());
+//        overviews = String.valueOf(overview.getText());
+//        Handler handler = new Handler();
+//        handler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                String[] field = new String[9];
+//                field[0] = "Movie_name";
+//                field[1] = "Movie_poster";
+//                field[2] = "Trailer_videos";
+//                field[3] = "Cast";
+//                field[4] = "Director";
+//                field[5] = "Release_date";
+//                field[6] = "Run_time";
+//                field[7] = "Language";
+//                field[8] = "Overview";
+//
+//                //Creating array for data
+//                String[] data = new String[9];
+//                data[0] = Film_name;
+//                data[1] = MoviePoster;
+//                data[2] = Trailer_videos;
+//                data[3] = casting;
+//                data[4] = directors;
+//                data[5] = dates;
+//                data[6] = times;
+//                data[7] = languages;
+//                data[8] = overviews;
+//
+//                PutData putData = new PutData("http://192.168.100.129:8080/ERA/Favourite.php", "POST", field, data);
+//                if (putData.startPut()) {
+//                    if (putData.onComplete()) {
+//                        String result = putData.getResult();
+//                        if (result.equals("Successfully added to Favourite")) {
+//                            Toast.makeText(getApplicationContext(), Film_name + " added to Favourite List", Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                }
+//            }
+//        });
+    }
 
 
 

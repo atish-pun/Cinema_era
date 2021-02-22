@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 class Film {
+    private String id;
     private String film_image ;
     private String film_name;
     private String trailer_videos;
@@ -15,7 +16,8 @@ class Film {
     private String language;
     private String overview;
 
-    public Film(String film_image, String film_name, String trailer_videos, String cast, String director, String date, String time, String language, String overview) {
+    public Film(String id, String film_image, String film_name, String trailer_videos, String cast, String director, String date, String time, String language, String overview) {
+        this.id = id;
         this.film_image = film_image;
         this.film_name = film_name;
         this.trailer_videos = trailer_videos;
@@ -26,6 +28,14 @@ class Film {
         this.language = language;
         this.overview = overview;
 
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFilm_image() {
@@ -98,5 +108,129 @@ class Film {
 
     public void setOverview(String overview) {
         this.overview = overview;
+    }
+
+    public static class FavouriteInfo {
+        public String id, token, movies_id, account_id, A_name, A_poster, Trailer_videos, Cast, Director, Release_date, Run_time, Language, Overview;
+
+        public FavouriteInfo(String id, String token, String movies_id, String account_id, String a_name, String a_poster, String trailer_videos, String cast, String director, String release_date, String run_time, String language, String overview) {
+            this.id = id;
+            this.token = token;
+            this.movies_id = movies_id;
+            this.account_id = account_id;
+            this.A_name = a_name;
+            this.A_poster = a_poster;
+            this.Trailer_videos = trailer_videos;
+            this.Cast = cast;
+            this.Director = director;
+            this.Release_date = release_date;
+            this.Run_time = run_time;
+            this.Language = language;
+            this.Overview = overview;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getToken() {
+            return token;
+        }
+
+        public void setToken(String token) {
+            this.token = token;
+        }
+
+        public String getMovies_id() {
+            return movies_id;
+        }
+
+        public void setMovies_id(String movies_id) {
+            this.movies_id = movies_id;
+        }
+
+        public String getAccount_id() {
+            return account_id;
+        }
+
+        public void setAccount_id(String account_id) {
+            this.account_id = account_id;
+        }
+
+        public String getA_name() {
+            return A_name;
+        }
+
+        public void setA_name(String a_name) {
+            A_name = a_name;
+        }
+
+        public String getA_poster() {
+            return A_poster;
+        }
+
+        public void setA_poster(String a_poster) {
+            A_poster = a_poster;
+        }
+
+        public String getTrailer_videos() {
+            return Trailer_videos;
+        }
+
+        public void setTrailer_videos(String trailer_videos) {
+            Trailer_videos = trailer_videos;
+        }
+
+        public String getCast() {
+            return Cast;
+        }
+
+        public void setCast(String cast) {
+            Cast = cast;
+        }
+
+        public String getDirector() {
+            return Director;
+        }
+
+        public void setDirector(String director) {
+            Director = director;
+        }
+
+        public String getRelease_date() {
+            return Release_date;
+        }
+
+        public void setRelease_date(String release_date) {
+            Release_date = release_date;
+        }
+
+        public String getRun_time() {
+            return Run_time;
+        }
+
+        public void setRun_time(String run_time) {
+            Run_time = run_time;
+        }
+
+        public String getLanguage() {
+            return Language;
+        }
+
+        public void setLanguage(String language) {
+            Language = language;
+        }
+
+        public String getOverview() {
+            return Overview;
+        }
+
+        public void setOverview(String overview) {
+            Overview = overview;
+        }
     }
 }

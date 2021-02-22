@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ProfileUser"></activity>
         <activity android:name=".AccountSignup" />
         <activity android:name=".AccountLogin" />
         <activity
@@ -24,8 +25,9 @@
             android:name=".HorrorViewAllFilm"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBarViewAllFilm" />
-        <activity android:name=".FavouriteFilm"
-            android:theme="@style/AppTheme.NoActionBarViewAllFilm"/>
+        <activity
+            android:name=".FavouriteFilm"
+            android:theme="@style/AppTheme.NoActionBarViewAllFilm" />
         <activity android:name=".Film_gallery" />
         <activity android:name=".Search_activity" />
         <activity
@@ -33,12 +35,11 @@
             android:theme="@style/AppTheme.NoActionBarSplashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBarMain"/>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
