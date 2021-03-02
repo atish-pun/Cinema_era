@@ -39,19 +39,19 @@
         android:layout_centerHorizontal="true"
         android:text="watch, just tap the favourite icon"
         android:textColor="@color/filmname" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/favourite_recycle"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/RefreshFavourite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_above="@+id/buttom_nav"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_above="@+id/buttom_nav">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/favourite_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/buttom_nav"

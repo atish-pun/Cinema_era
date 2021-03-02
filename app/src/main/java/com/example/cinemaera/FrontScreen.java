@@ -27,7 +27,7 @@ public class FrontScreen extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent intent = new Intent(FrontScreen.this, MainActivity.class);
+                Intent intent = new Intent(FrontScreen.this, AccountLogin.class);
                 startActivity(intent);
                 finish();
             }

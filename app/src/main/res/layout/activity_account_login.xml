@@ -148,21 +148,4 @@
             android:textSize="13dp" />
     </LinearLayout>
     </LinearLayout>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/buttom_nav"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/navigation_menu"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="25dp"
-        tools:layout_editor_absoluteY="603dp"
-        app:itemIconTint="@color/action_menu_color"
-        app:itemTextColor="@color/action_menu_color"
-        app:itemIconSize="24dp"
-        android:background="@drawable/nav_portion">
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-
 </RelativeLayout>

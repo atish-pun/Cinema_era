@@ -22,6 +22,7 @@ import android.widget.VideoView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -32,23 +33,26 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
-import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static com.example.cinemaera.R.drawable.account;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Film_gallery extends AppCompatActivity {
     ImageView filmImg,trailer_img,gradientImg, backTrailer;
     VideoView trailer_video;
-    TextView filmTxt, reviewTest, startTime, endTime, cast, director, releaseDate, runtime, language,overview;
+    TextView filmTxt, reviewDisplay, startTime, endTime, cast, director, releaseDate, runtime, language,overview;
     Button frontTrailerPlay, innerTrailerPlay,fav;
     SeekBar seekBar;
     float ratingValue;
     Boolean fullscreen = false;
     String temp, Film_name,MoviePoster,Trailer_videos,Movie_id;
     ConstraintLayout videoConstraint;
+    List<Film.ReviewInfo> reviewInfo = new ArrayList<>();
+    LinearLayoutManager linearLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +62,6 @@ public class Film_gallery extends AppCompatActivity {
         filmImg = findViewById(R.id.inner_Fimg);
         trailer_video = findViewById(R.id.trailer_video);
         filmTxt = findViewById(R.id.inner_Fname);
-        reviewTest = findViewById(R.id.reviewoutput);
         seekBar = findViewById(R.id.seekBar);
         trailer_img = findViewById(R.id.trailer_img);
         gradientImg = findViewById(R.id.gradientimg);
@@ -89,9 +92,11 @@ public class Film_gallery extends AppCompatActivity {
         runtime.setText(getIntent().getStringExtra("Run time"));
         language.setText(getIntent().getStringExtra("Language"));
         overview.setText(getIntent().getStringExtra("Overview"));
+        linearLayoutManager = new LinearLayoutManager(Film_gallery.this,LinearLayoutManager.VERTICAL,false);
         setHandler();
         InitSeekBar();
         TrailerVideoCLick();
+        ExtractReviews();
 //        FullScreen();
 
     }
@@ -299,8 +304,32 @@ public class Film_gallery extends AppCompatActivity {
             submit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    String ReviewOutput;
                     temp = ratevalue.getText().toString();
-                    reviewTest.setText("your rating is " + temp + review_txt.getText());
+                    ReviewOutput = "your rating is " + temp + review_txt.getText();
+                    if(Util.FAVOURITE_TOKEN == null || Util.FAVOURITE_TOKEN.equals("")) Util.GenerateFavouriteToken(Film_gallery.this);
+                    String url = getString(R.string.server_api_url) + "add-reviews.php?uid=" + Util.SESSION_USERID + "&pid=" + Movie_id +"&otoken=" + Util.FAVOURITE_TOKEN + "&reviews=" + ReviewOutput;
+                    RequestQueue queue = Volley.newRequestQueue(Film_gallery.this);
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject object = new JSONObject(response);
+                                if (object.getInt("status") == 200) {
+                                    Toast.makeText(Film_gallery.this, object.getString("content"), Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(Film_gallery.this, error.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                    queue.add(stringRequest);
                     review_txt.setText("");
                     ratebar.setRating(0);
                     ratevalue.setText("");
@@ -310,6 +339,43 @@ public class Film_gallery extends AppCompatActivity {
             });
             alertDialog.show();
         }
+    public  void ExtractReviews(){
+        String url = getString(R.string.server_api_url) + "review-list.php?Movies_id="+ Movie_id;
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray jsonArray = jsonObject.getJSONArray("content");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject obj = jsonArray.getJSONObject(i);
+                        String reviews = obj.getString("reviews");
+                        String fullName = obj.getString("fullName");
+                        Film.ReviewInfo reviewInfo1 = new Film.ReviewInfo(reviews, fullName);
+                        reviewInfo.add(reviewInfo1);
+                        Review_adapter review_adapter = new Review_adapter(Film_gallery.this, reviewInfo);
+                        RecyclerView reviewRecycler = findViewById(R.id.ReviewRecycler);
+                        reviewRecycler.setAdapter(review_adapter);
+                        reviewRecycler.setLayoutManager(linearLayoutManager);
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        },
+            new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(Film_gallery.this, error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        queue.add(stringRequest);
+
+    }
 
     public void FavouriteBtn(View view) {
         if(Util.FAVOURITE_TOKEN == null || Util.FAVOURITE_TOKEN.equals("")) Util.GenerateFavouriteToken(this);

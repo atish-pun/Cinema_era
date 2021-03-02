@@ -37,13 +37,14 @@ public class HorrorViewAllFilm extends AppCompatActivity {
     }
     public void ViewExtract() {
         RequestQueue queue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://192.168.100.129:8080/ERA/MoviesDetails.php", null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://192.168.100.129:8080/ERA/api/home.php", null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    JSONArray jsonArray = response.getJSONArray("horror");
+                    JSONArray jsonArray = response.getJSONArray("Horror_movies");
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String Fid = jsonObject.getString("id");
                         String Fimg = jsonObject.getString("film image");
                         String Fname = jsonObject.getString("film name");
                         String Tvideos = jsonObject.getString("trailer videos");
@@ -53,7 +54,7 @@ public class HorrorViewAllFilm extends AppCompatActivity {
                         String Run_time = jsonObject.getString("Run_time");
                         String Language = jsonObject.getString("Language");
                         String Overview = jsonObject.getString("Overview");
-                        Film actionMovies = new Film(Fimg, Fname, Tvideos, Cast, Director, Release_date, Run_time, Language, Overview);
+                        Film actionMovies = new Film(Fid,Fimg, Fname, Tvideos, Cast, Director, Release_date, Run_time, Language, Overview);
                         viewFilms.add(actionMovies);
                         ViewAllFilmAdapter viewAdapter = new ViewAllFilmAdapter(HorrorViewAllFilm.this,viewFilms);
                         ViewRecycler.setAdapter(viewAdapter);

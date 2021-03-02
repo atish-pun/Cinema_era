@@ -112,12 +112,8 @@ class Film {
 
     public static class FavouriteInfo {
         public String id, token, movies_id, account_id, A_name, A_poster, Trailer_videos, Cast, Director, Release_date, Run_time, Language, Overview;
-
-        public FavouriteInfo(String id, String token, String movies_id, String account_id, String a_name, String a_poster, String trailer_videos, String cast, String director, String release_date, String run_time, String language, String overview) {
+        public FavouriteInfo(String id, String a_name, String a_poster, String trailer_videos, String cast, String director, String release_date, String run_time, String language, String overview) {
             this.id = id;
-            this.token = token;
-            this.movies_id = movies_id;
-            this.account_id = account_id;
             this.A_name = a_name;
             this.A_poster = a_poster;
             this.Trailer_videos = trailer_videos;
@@ -231,6 +227,55 @@ class Film {
 
         public void setOverview(String overview) {
             Overview = overview;
+        }
+    }
+
+    public static class FavReview{
+        public String review, fullName;
+
+        public FavReview(String review, String fullName) {
+            this.review = review;
+            this.fullName = fullName;
+        }
+
+        public String getReview() {
+            return review;
+        }
+
+        public void setReview(String review) {
+            this.review = review;
+        }
+
+        public String getFullName() {
+            return fullName;
+        }
+
+        public void setFullName(String fullName) {
+            this.fullName = fullName;
+        }
+    }
+
+    public static class ReviewInfo {
+        public String movies_id, reviews, userName;
+
+        public ReviewInfo(  String reviews, String userName) {
+            this.reviews = reviews;
+            this.userName = userName;
+        }
+        public String getReviews() {
+            return reviews;
+        }
+
+        public void setReviews(String reviews) {
+            this.reviews = reviews;
+        }
+
+        public String getUserName() {
+            return userName;
+        }
+
+        public void setUserName(String userName) {
+            this.userName = userName;
         }
     }
 }

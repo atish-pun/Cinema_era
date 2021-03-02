@@ -34,6 +34,8 @@ import java.util.List;
 class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.ViewHolder> {
     Context ctx;
     List<Film.FavouriteInfo> favourite = new ArrayList<>();
+    List<Film.FavReview> favReviews = new ArrayList<>();
+
 
     public FavouriteAdapter(Context ctx, List<Film.FavouriteInfo> favourite) {
         this.ctx = ctx;
@@ -65,6 +67,8 @@ class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.ViewHolder>
                 gallery.putExtra("Run time",favourite.get(position).getRun_time());
                 gallery.putExtra("Language",favourite.get(position).getLanguage());
                 gallery.putExtra("Overview",favourite.get(position).getOverview());
+                gallery.putExtra("Review",favReviews.get(position).getReview());
+                gallery.putExtra("FullName",favReviews.get(position).getFullName());
                 gallery.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 ctx.startActivity(gallery);
             }

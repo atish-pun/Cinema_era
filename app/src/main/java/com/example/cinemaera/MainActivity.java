@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                         finish();
                         break;
                     case R.id.account_bar:
-                        Intent intent1 = new Intent(MainActivity.this,AccountLogin.class);
+                        Intent intent1 = new Intent(MainActivity.this,ProfileUser.class);
                         startActivity(intent1);
                         overridePendingTransition(0,0);
                         finish();
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void FilmExtract(){
         RequestQueue queue = Volley.newRequestQueue(this);
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://192.168.100.129:8080/ERA/MoviesDetails.php", null, new Response.Listener<JSONObject>() {
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://192.168.100.129:8080/ERA/api/home.php", null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 filmCategoryNames.add(new FilmCategoryName(1,"Action movies",films));
@@ -99,9 +99,10 @@ public class MainActivity extends AppCompatActivity {
                 setMain_recyclerView(filmCategoryNames);
 
                     try {
-                        JSONArray jsonArray = response.getJSONArray("action");
+                        JSONArray jsonArray = response.getJSONArray("Action_movies");
                         for (int i = 0; i < response.length(); i++) {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            String Fid = jsonObject.getString("id");
                             String Fimg = jsonObject.getString("film image");
                             String Fname = jsonObject.getString("film name");
                             String Tvideos = jsonObject.getString("trailer videos");
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                             String Run_time = jsonObject.getString("Run_time");
                             String Language = jsonObject.getString("Language");
                             String Overview = jsonObject.getString("Overview");
-                            Film category1 = new Film(Fimg,Fname,Tvideos,Cast, Director,Release_date,Run_time,Language,Overview);
+                            Film category1 = new Film(Fid,Fimg,Fname,Tvideos,Cast, Director,Release_date,Run_time,Language,Overview);
                             films.add(category1);
 
                         }
@@ -119,9 +120,10 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 try {
-                    JSONArray jsonArray = response.getJSONArray("love");
+                    JSONArray jsonArray = response.getJSONArray("Love_movies");
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String Fid = jsonObject.getString("id");
                         String Fimg = jsonObject.getString("film image");
                         String Fname = jsonObject.getString("film name");
                         String Cast = jsonObject.getString("Cast");
@@ -130,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                         String Run_time = jsonObject.getString("Run_time");
                         String Language = jsonObject.getString("Language");
                         String Overview = jsonObject.getString("Overview");
-                        Film category2 = new Film(Fimg,Fname,"faf",Cast,Director,Release_date,Run_time,Language,Overview);
+                        Film category2 = new Film(Fid,Fimg,Fname,"faf",Cast,Director,Release_date,Run_time,Language,Overview);
                         film2.add(category2);
 
                     }
@@ -138,9 +140,10 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 try {
-                    JSONArray jsonArray = response.getJSONArray("horror");
+                    JSONArray jsonArray = response.getJSONArray("Horror_movies");
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String Fid = jsonObject.getString("id");
                         String Fimg = jsonObject.getString("film image");
                         String Fname = jsonObject.getString("film name");
                         String Cast = jsonObject.getString("Cast");
@@ -149,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                         String Run_time = jsonObject.getString("Run_time");
                         String Language = jsonObject.getString("Language");
                         String Overview = jsonObject.getString("Overview");
-                        Film category3 = new Film(Fimg,Fname,"fdaff",Cast,Director,Release_date,Run_time,Language,Overview);
+                        Film category3 = new Film(Fid,Fimg,Fname,"fdaff",Cast,Director,Release_date,Run_time,Language,Overview);
                         film3.add(category3);
 
                     }
