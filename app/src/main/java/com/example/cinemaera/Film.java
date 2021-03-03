@@ -112,9 +112,11 @@ class Film {
 
     public static class FavouriteInfo {
         public String id, A_name, A_poster, Trailer_videos, Cast, Director, Release_date, Run_time, Language, Overview;
+        public int movies_id;
 
-        public FavouriteInfo(String id, String a_name, String a_poster, String trailer_videos, String cast, String director, String release_date, String run_time, String language, String overview) {
+        public FavouriteInfo(String id, int movies_id, String a_name, String a_poster, String trailer_videos, String cast, String director, String release_date, String run_time, String language, String overview) {
             this.id = id;
+            this.movies_id = movies_id;
             this.A_name = a_name;
             this.A_poster = a_poster;
             this.Trailer_videos = trailer_videos;
@@ -132,6 +134,12 @@ class Film {
 
         public void setId(String id) {
             this.id = id;
+        }
+        public int getMovies_id(){
+            return movies_id;
+        }
+        public  void setMovies_id(int movies_id){
+            this.movies_id = movies_id;
         }
 
         public String getA_name() {
@@ -204,31 +212,6 @@ class Film {
 
         public void setOverview(String overview) {
             Overview = overview;
-        }
-    }
-
-    public static class FavReview{
-        public String review, fullName;
-
-        public FavReview(String review, String fullName) {
-            this.review = review;
-            this.fullName = fullName;
-        }
-
-        public String getReview() {
-            return review;
-        }
-
-        public void setReview(String review) {
-            this.review = review;
-        }
-
-        public String getFullName() {
-            return fullName;
-        }
-
-        public void setFullName(String fullName) {
-            this.fullName = fullName;
         }
     }
 

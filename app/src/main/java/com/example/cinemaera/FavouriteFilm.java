@@ -41,7 +41,6 @@ public class FavouriteFilm extends AppCompatActivity {
     RecyclerView favourite_recycle;
     FavouriteAdapter favouriteAdapter;
     List<Film.FavouriteInfo> favourite = new ArrayList<>();
-    List<Film.FavReview> favReviews = new ArrayList<>();
     ImageView FavouriteIcon;
     TextView FirstFavouriteText, SecondFavouriteText;
     SwipeRefreshLayout swipeRefreshLayout;
@@ -59,7 +58,6 @@ public class FavouriteFilm extends AppCompatActivity {
         favourite_recycle.setLayoutManager(linearLayoutManager);
         Navigation();
         ExtractFavouriteMovies();
-        ExtractReviews();
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -129,6 +127,7 @@ public class FavouriteFilm extends AppCompatActivity {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject obj = jsonArray.getJSONObject(i);
                             String id = obj.getString("id");
+                            int movies_id = obj.getInt("movies_id");
                             String A_name = obj.getString("A_name");
                             String A_poster = obj.getString("A_poster");
                             String Trailer_videos = obj.getString("Trailer_videos");
@@ -138,7 +137,7 @@ public class FavouriteFilm extends AppCompatActivity {
                             String Run_time = obj.getString("Run_time");
                             String Language = obj.getString("Language");
                             String Overview = obj.getString("Overview");
-                            Film.FavouriteInfo favouriteInfo = new Film.FavouriteInfo(id,A_name, A_poster,Trailer_videos,Cast,Director,Release_date,Run_time,Language,Overview);
+                            Film.FavouriteInfo favouriteInfo = new Film.FavouriteInfo(id,movies_id,A_name, A_poster,Trailer_videos,Cast,Director,Release_date,Run_time,Language,Overview);
                             favourite.add(favouriteInfo);
                             favouriteAdapter = new FavouriteAdapter(FavouriteFilm.this, favourite);
                             favourite_recycle.setAdapter(favouriteAdapter);
@@ -165,39 +164,39 @@ public class FavouriteFilm extends AppCompatActivity {
         queue.add(stringRequest);
 
     }
-    public  void ExtractReviews(){
-        String url = getString(R.string.server_api_url) + "API_reviewFav";
-        RequestQueue queue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    JSONArray jsonArray = jsonObject.getJSONArray("content");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject obj = jsonArray.getJSONObject(i);
-                        String reviews = obj.getString("reviews");
-                        String fullName = obj.getString("fullName");
-                        Film.FavReview favReview = new Film.FavReview(reviews,fullName);
-                        favReviews.add(favReview);
-
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(FavouriteFilm.this, error.toString(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        queue.add(stringRequest);
-
-    }
+//    public  void ExtractReviews(){
+//        String url = getString(R.string.server_api_url) + "API_reviewFav";
+//        RequestQueue queue = Volley.newRequestQueue(this);
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                try {
+//                    JSONObject jsonObject = new JSONObject(response);
+//                    JSONArray jsonArray = jsonObject.getJSONArray("content");
+//                    for (int i = 0; i < jsonArray.length(); i++) {
+//                        JSONObject obj = jsonArray.getJSONObject(i);
+//                        String reviews = obj.getString("reviews");
+//                        String fullName = obj.getString("fullName");
+//                        Film.FavReview favReview = new Film.FavReview(reviews,fullName);
+//                        favReviews.add(favReview);
+//
+//                    }
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Toast.makeText(FavouriteFilm.this, error.toString(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//        stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+//        queue.add(stringRequest);
+//
+//    }
 //        RequestQueue queue = Volley.newRequestQueue(this);
 //        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, "http://192.168.100.129:8080/ERA/FavouriteDisplay.php", null, new Response.Listener<JSONArray>() {
 //            @Override

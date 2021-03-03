@@ -51,7 +51,7 @@ class Adapter_film extends RecyclerView.Adapter<Adapter_film.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Intent gallery = new Intent(ctx ,Film_gallery.class);
-                gallery.putExtra("movie_id",films.get(position).getId());
+                gallery.putExtra("movies_id",films.get(position).getId());
                 gallery.putExtra("Film images",films.get(position).getFilm_image());
                 gallery.putExtra("Film names",films.get(position).getFilm_name());
                 gallery.putExtra("Trailer video",films.get(position).getTrailer_videos());

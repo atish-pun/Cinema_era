@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -57,6 +58,7 @@ public class Film_gallery extends AppCompatActivity {
     ConstraintLayout videoConstraint;
     List<Film.ReviewInfo> reviewInfo = new ArrayList<>();
     LinearLayoutManager linearLayoutManager;
+    SwipeRefreshLayout FilmGalleryRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,9 +84,10 @@ public class Film_gallery extends AppCompatActivity {
         language = findViewById(R.id.languageTxt);
         overview = findViewById(R.id.OverviewTxt);
         fav = findViewById(R.id.favourite);
+        FilmGalleryRefresh = findViewById(R.id.FilmGalleryRefresh);
         MoviePoster = getIntent().getStringExtra("Film images");
         Film_name = getIntent().getStringExtra("Film names");
-        Movie_id = getIntent().getStringExtra("movie_id");
+        Movie_id = getIntent().getStringExtra("movies_id");
         filmTxt.setText(Film_name);
         Picasso.get().load(MoviePoster).into(filmImg);
         Picasso.get().load(MoviePoster).into(trailer_img);
@@ -101,6 +104,13 @@ public class Film_gallery extends AppCompatActivity {
         InitSeekBar();
         TrailerVideoCLick();
         ExtractReviews();
+        FilmGalleryRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ExtractReviews();
+                FilmGalleryRefresh.setRefreshing(false);
+            }
+        });
 //        FullScreen();
 
     }
@@ -351,6 +361,7 @@ public class Film_gallery extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
+                    reviewInfo.clear();
                     JSONArray jsonArray = jsonObject.getJSONArray("content");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject obj = jsonArray.getJSONObject(i);
