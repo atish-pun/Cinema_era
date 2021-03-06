@@ -87,7 +87,7 @@ public class Film_gallery extends AppCompatActivity {
         filmTxt.setText(Film_name);
         Picasso.get().load(MoviePoster).into(filmImg);
         Picasso.get().load(MoviePoster).into(trailer_img);
-        Price.setText("Rs " + Costs);
+        Price.setText("Price: Rs " + Costs);
         Trailer_videos = getIntent().getStringExtra("Trailer video");
         trailer_video.setVideoURI(Uri.parse(Trailer_videos));
         cast.setText(getIntent().getStringExtra("Cast"));
@@ -316,12 +316,11 @@ public class Film_gallery extends AppCompatActivity {
             submit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String RatingOutput, ReviewOutput;
-                    TotalRatings = ratevalue.getText().toString();
-                    RatingOutput = TotalRatings;
+                    String ReviewOutput;
+                    TotalRatings = "Rated: " + ratevalue.getText().toString();
                     ReviewOutput = review_txt.getText().toString();
                     if(Util.FAVOURITE_TOKEN == null || Util.FAVOURITE_TOKEN.equals("")) Util.GenerateFavouriteToken(Film_gallery.this);
-                    String url = getString(R.string.server_api_url) + "add-reviews.php?uid=" + Util.SESSION_USERID + "&pid=" + Movie_id +"&otoken=" + Util.FAVOURITE_TOKEN + "&RatedValue=" + RatingOutput + "&reviews=" + ReviewOutput;
+                    String url = getString(R.string.server_api_url) + "add-reviews.php?uid=" + Util.SESSION_USERID + "&pid=" + Movie_id +"&otoken=" + Util.FAVOURITE_TOKEN + "&reviews=" + ReviewOutput + "&ratedValue=" + TotalRatings;
                     RequestQueue queue = Volley.newRequestQueue(Film_gallery.this);
                     StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                         @Override

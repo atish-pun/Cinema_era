@@ -52,7 +52,7 @@ public class ActionViewAllFilm extends AppCompatActivity {
                         JSONArray jsonArray = response.getJSONArray("Action_movies");
                         for (int i = 0; i < response.length(); i++) {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
-                            int Fid = jsonObject.getInt("id");
+                            String Fid = jsonObject.getString("id");
                             String Fimg = jsonObject.getString("film image");
                             String Fname = jsonObject.getString("film name");
                             String Price = jsonObject.getString("Price");

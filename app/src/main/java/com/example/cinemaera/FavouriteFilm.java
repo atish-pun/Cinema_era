@@ -121,8 +121,8 @@ public class FavouriteFilm extends AppCompatActivity {
                         JSONArray jsonArray = object.getJSONArray("content");
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject obj = jsonArray.getJSONObject(i);
-                            int id = obj.getInt("id");
-                            int movies_id = obj.getInt("movies_id");
+                            String id = obj.getString("id");
+                            String movies_id = obj.getString("movies_id");
                             String A_name = obj.getString("A_name");
                             String Price = obj.getString("Price");
                             String A_poster = obj.getString("A_poster");

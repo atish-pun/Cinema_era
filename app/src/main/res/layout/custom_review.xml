@@ -10,25 +10,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
+        android:orientation="horizontal">
         <TextView
             android:id="@+id/Username"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="Username"
             android:textStyle="bold"
             android:fontFamily="serif"
             android:textColor="@color/Texttop"
             android:textSize="15.7sp"
-            android:layout_width="0dp" />
+            android:layout_width="wrap_content" />
         <TextView
             android:id="@+id/Rates"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_marginLeft="6dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="rate"
-            android:textStyle="bold"
             android:fontFamily="serif"
             android:textColor="@color/Texttop"
             android:textSize="15.7sp" />
