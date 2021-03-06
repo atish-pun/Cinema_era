@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                             int Fid = jsonObject.getInt("id");
                             String Fimg = jsonObject.getString("film image");
                             String Fname = jsonObject.getString("film name");
-                            int Price = jsonObject.getInt("Price");
+                            String Price = jsonObject.getString("Price");
                             String Tvideos = jsonObject.getString("trailer videos");
                             String Cast = jsonObject.getString("Cast");
                             String Director = jsonObject.getString("Director");
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                         int Fid = jsonObject.getInt("id");
                         String Fimg = jsonObject.getString("film image");
                         String Fname = jsonObject.getString("film name");
-                        int Price = jsonObject.getInt("Price");
+                        String Price = jsonObject.getString("Price");
                         String Cast = jsonObject.getString("Cast");
                         String Director = jsonObject.getString("Director");
                         String Release_date = jsonObject.getString("Release_date");
@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                         int Fid = jsonObject.getInt("id");
                         String Fimg = jsonObject.getString("film image");
                         String Fname = jsonObject.getString("film name");
-                        int Price = jsonObject.getInt("Price");
+                        String Price = jsonObject.getString("Price");
                         String Cast = jsonObject.getString("Cast");
                         String Director = jsonObject.getString("Director");
                         String Release_date = jsonObject.getString("Release_date");

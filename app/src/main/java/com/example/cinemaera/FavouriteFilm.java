@@ -124,7 +124,7 @@ public class FavouriteFilm extends AppCompatActivity {
                             int id = obj.getInt("id");
                             int movies_id = obj.getInt("movies_id");
                             String A_name = obj.getString("A_name");
-                            int Price = obj.getInt("Price");
+                            String Price = obj.getString("Price");
                             String A_poster = obj.getString("A_poster");
                             String Trailer_videos = obj.getString("Trailer_videos");
                             String Cast = obj.getString("Cast");

@@ -43,13 +43,12 @@ import java.util.List;
 public class Film_gallery extends AppCompatActivity {
     ImageView filmImg,trailer_img,gradientImg, backTrailer;
     VideoView trailer_video;
-    TextView filmTxt, reviewDisplay, startTime, endTime, cast, director, releaseDate, runtime, language,overview,Price;
+    TextView filmTxt, startTime, endTime, cast, director, releaseDate, runtime, language,overview,Price;
     Button frontTrailerPlay, innerTrailerPlay,fav;
     SeekBar seekBar;
     float ratingValue;
     Boolean fullscreen = false;
-    String TotalRatings, Film_name,MoviePoster,Trailer_videos,Movie_id;
-    long Costs;
+    String TotalRatings, Film_name,MoviePoster,Trailer_videos,Movie_id, Costs;
     ConstraintLayout videoConstraint;
     List<Film.ReviewInfo> reviewInfo = new ArrayList<>();
     LinearLayoutManager linearLayoutManager;
@@ -84,7 +83,7 @@ public class Film_gallery extends AppCompatActivity {
         MoviePoster = getIntent().getStringExtra("Film images");
         Film_name = getIntent().getStringExtra("Film names");
         Movie_id = getIntent().getStringExtra("movies_id");
-        Costs = getIntent().getIntExtra("Price",0);
+        Costs = getIntent().getStringExtra("Price");
         filmTxt.setText(Film_name);
         Picasso.get().load(MoviePoster).into(filmImg);
         Picasso.get().load(MoviePoster).into(trailer_img);

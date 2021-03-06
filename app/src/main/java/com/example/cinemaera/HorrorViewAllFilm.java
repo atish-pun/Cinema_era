@@ -47,7 +47,7 @@ public class HorrorViewAllFilm extends AppCompatActivity {
                         int Fid = jsonObject.getInt("id");
                         String Fimg = jsonObject.getString("film image");
                         String Fname = jsonObject.getString("film name");
-                        int Price = jsonObject.getInt("Price");
+                        String Price = jsonObject.getString("Price");
                         String Tvideos = jsonObject.getString("trailer videos");
                         String Cast = jsonObject.getString("Cast");
                         String Director = jsonObject.getString("Director");

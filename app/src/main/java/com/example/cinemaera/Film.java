@@ -7,7 +7,7 @@ import android.widget.TextView;
 class Film {
     private int id;
     private String film_image;
-    private int Price;
+    private String Price;
     private String film_name;
     private String trailer_videos;
     private String cast;
@@ -17,7 +17,7 @@ class Film {
     private String language;
     private String overview;
 
-    public Film(int id, String film_image, String film_name, int Price, String trailer_videos, String cast, String director, String date, String time, String language, String overview) {
+    public Film(int id, String film_image, String film_name, String Price, String trailer_videos, String cast, String director, String date, String time, String language, String overview) {
         this.id = id;
         this.film_image = film_image;
         this.Price = Price;
@@ -48,9 +48,9 @@ class Film {
         this.film_image = film_image;
     }
 
-    public int getPrice(){return Price;}
+    public String getPrice(){return Price;}
 
-    public void setPrice(int Price){ this.Price = Price; }
+    public void setPrice(String Price){ this.Price = Price; }
 
     public String getFilm_name() {
         return film_name;
@@ -117,10 +117,10 @@ class Film {
     }
 
     public static class FavouriteInfo {
-        public String A_name, A_poster, Trailer_videos, Cast, Director, Release_date, Run_time, Language, Overview;
-        public int movies_id, id, Price;
+        public String A_name, Price, A_poster, Trailer_videos, Cast, Director, Release_date, Run_time, Language, Overview;
+        public int movies_id, id;
 
-        public FavouriteInfo(int id, int movies_id, String a_name, int Price, String a_poster, String trailer_videos, String cast, String director, String release_date, String run_time, String language, String overview) {
+        public FavouriteInfo(int id, int movies_id, String a_name, String Price, String a_poster, String trailer_videos, String cast, String director, String release_date, String run_time, String language, String overview) {
             this.id = id;
             this.movies_id = movies_id;
             this.A_name = a_name;
@@ -159,11 +159,11 @@ class Film {
             A_name = a_name;
         }
 
-        public int getPrice() {
+        public String getPrice() {
             return Price;
         }
 
-        public void setPrice(int price) {
+        public void setPrice(String price) {
             Price = price;
         }
 
