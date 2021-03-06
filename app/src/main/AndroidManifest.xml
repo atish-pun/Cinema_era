@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ProfileUser"></activity>
+        <activity android:name=".ProfileUser"/>
         <activity android:name=".AccountSignup" />
         <activity android:name=".AccountLogin" />
         <activity

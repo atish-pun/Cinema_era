@@ -5,8 +5,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 class Film {
-    private String id;
-    private String film_image ;
+    private int id;
+    private String film_image;
+    private int Price;
     private String film_name;
     private String trailer_videos;
     private String cast;
@@ -16,9 +17,10 @@ class Film {
     private String language;
     private String overview;
 
-    public Film(String id, String film_image, String film_name, String trailer_videos, String cast, String director, String date, String time, String language, String overview) {
+    public Film(int id, String film_image, String film_name, int Price, String trailer_videos, String cast, String director, String date, String time, String language, String overview) {
         this.id = id;
         this.film_image = film_image;
+        this.Price = Price;
         this.film_name = film_name;
         this.trailer_videos = trailer_videos;
         this.cast = cast;
@@ -30,11 +32,11 @@ class Film {
 
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -45,6 +47,10 @@ class Film {
     public void setFilm_image(String film_image) {
         this.film_image = film_image;
     }
+
+    public int getPrice(){return Price;}
+
+    public void setPrice(int Price){ this.Price = Price; }
 
     public String getFilm_name() {
         return film_name;
@@ -111,13 +117,14 @@ class Film {
     }
 
     public static class FavouriteInfo {
-        public String id, A_name, A_poster, Trailer_videos, Cast, Director, Release_date, Run_time, Language, Overview;
-        public int movies_id;
+        public String A_name, A_poster, Trailer_videos, Cast, Director, Release_date, Run_time, Language, Overview;
+        public int movies_id, id, Price;
 
-        public FavouriteInfo(String id, int movies_id, String a_name, String a_poster, String trailer_videos, String cast, String director, String release_date, String run_time, String language, String overview) {
+        public FavouriteInfo(int id, int movies_id, String a_name, int Price, String a_poster, String trailer_videos, String cast, String director, String release_date, String run_time, String language, String overview) {
             this.id = id;
             this.movies_id = movies_id;
             this.A_name = a_name;
+            this.Price = Price;
             this.A_poster = a_poster;
             this.Trailer_videos = trailer_videos;
             this.Cast = cast;
@@ -128,16 +135,18 @@ class Film {
             this.Overview = overview;
         }
 
-        public String getId() {
+        public int getId() {
             return id;
         }
 
-        public void setId(String id) {
+        public void setId(int id) {
             this.id = id;
         }
+
         public int getMovies_id(){
             return movies_id;
         }
+
         public  void setMovies_id(int movies_id){
             this.movies_id = movies_id;
         }
@@ -148,6 +157,14 @@ class Film {
 
         public void setA_name(String a_name) {
             A_name = a_name;
+        }
+
+        public int getPrice() {
+            return Price;
+        }
+
+        public void setPrice(int price) {
+            Price = price;
         }
 
         public String getA_poster() {
@@ -216,10 +233,11 @@ class Film {
     }
 
     public static class ReviewInfo {
-        public String movies_id, reviews, userName;
+        public String reviews, RatedValue, userName;
 
-        public ReviewInfo(  String reviews, String userName) {
+        public ReviewInfo(  String reviews, String RatedValue, String userName) {
             this.reviews = reviews;
+            this.RatedValue = RatedValue;
             this.userName = userName;
         }
         public String getReviews() {
@@ -236,6 +254,14 @@ class Film {
 
         public void setUserName(String userName) {
             this.userName = userName;
+        }
+
+        public String getRatedValue() {
+            return RatedValue;
+        }
+
+        public void setRatedValue(String ratedValue) {
+            RatedValue = ratedValue;
         }
     }
 }

@@ -1,34 +1,29 @@
 package com.example.cinemaera;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -126,9 +121,10 @@ public class FavouriteFilm extends AppCompatActivity {
                         JSONArray jsonArray = object.getJSONArray("content");
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject obj = jsonArray.getJSONObject(i);
-                            String id = obj.getString("id");
+                            int id = obj.getInt("id");
                             int movies_id = obj.getInt("movies_id");
                             String A_name = obj.getString("A_name");
+                            int Price = obj.getInt("Price");
                             String A_poster = obj.getString("A_poster");
                             String Trailer_videos = obj.getString("Trailer_videos");
                             String Cast = obj.getString("Cast");
@@ -137,7 +133,7 @@ public class FavouriteFilm extends AppCompatActivity {
                             String Run_time = obj.getString("Run_time");
                             String Language = obj.getString("Language");
                             String Overview = obj.getString("Overview");
-                            Film.FavouriteInfo favouriteInfo = new Film.FavouriteInfo(id,movies_id,A_name, A_poster,Trailer_videos,Cast,Director,Release_date,Run_time,Language,Overview);
+                            Film.FavouriteInfo favouriteInfo = new Film.FavouriteInfo(id,movies_id,A_name,Price, A_poster,Trailer_videos,Cast,Director,Release_date,Run_time,Language,Overview);
                             favourite.add(favouriteInfo);
                             favouriteAdapter = new FavouriteAdapter(FavouriteFilm.this, favourite);
                             favourite_recycle.setAdapter(favouriteAdapter);

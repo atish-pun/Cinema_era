@@ -1,11 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
+  /*  compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }*/
     compileSdkVersion 28
     buildToolsVersion "28.0.3"
     defaultConfig {
         applicationId "com.example.cinemaera"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -17,14 +21,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-//    compileOptions {
-//        sourceCompatibility JavaVersion.VERSION_1_8
-//        targetCompatibility JavaVersion.VERSION_1_8
-//    }
-    /*  compileOptions {
-          sourceCompatibility JavaVersion.VERSION_1_8
-          targetCompatibility JavaVersion.VERSION_1_8
-      }*/
+
 }
 
 dependencies {
@@ -39,8 +36,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     compileOnly 'com.google.android.wearable:wearable:2.8.1'
     implementation 'com.android.volley:volley:1.1.1'
-    implementation 'com.github.VishnuSivadasVS:Advanced-HttpURLConnection:1.2'
-//    implementation 'com.khalti:khalti-android:2.00.01'
+//    implementation ("com.khalti:khalti-android:2.00.01") {
+//        transitive = true
+//    }
 
 
 

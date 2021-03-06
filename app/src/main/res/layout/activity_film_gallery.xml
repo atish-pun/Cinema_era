@@ -192,7 +192,7 @@
                             android:layout_marginStart="5dp"
                             android:layout_marginTop="4dp"
                             android:fontFamily="@font/adamina"
-                            android:text="Hello"
+                            android:text="Film title"
                             android:textColor="@color/film_detailsTXT"
                             android:textSize="17sp"
                             android:textStyle="bold"
@@ -200,6 +200,23 @@
                             app:layout_constraintHorizontal_bias="0.019"
                             app:layout_constraintStart_toEndOf="@+id/card_inner"
                             app:layout_constraintTop_toBottomOf="@+id/trailer_img"
+                            tools:ignore="MissingConstraints" />
+
+                        <TextView
+                            android:id="@+id/price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/adamina"
+                            android:text="Price"
+                            android:textColor="@color/film_detailsTXT"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.019"
+                            app:layout_constraintStart_toEndOf="@+id/card_inner"
+                            app:layout_constraintTop_toBottomOf="@+id/inner_Fname"
                             tools:ignore="MissingConstraints" />
 
                         <TextView
@@ -443,7 +460,21 @@
                                     android:src="@drawable/ic_launcher_foreground"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/trailer_img" />
+
+                                <Button
+                                    android:id="@+id/WatchBtn"
+                                    android:layout_width="75dp"
+                                    android:layout_height="23dp"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/videoplayericon"
+                                    android:fontFamily="@font/lateef"
+                                    android:text="Watch"
+                                    android:onClick="WatchOrBuyMovies"
+                                    android:textAllCaps="false"
+                                    android:textColor="#ffffff"
+                                    android:textSize="16dp" />
                         </androidx.cardview.widget.CardView>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <LinearLayout
                     android:layout_width="match_parent"

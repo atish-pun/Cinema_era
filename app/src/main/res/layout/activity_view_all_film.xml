@@ -6,21 +6,6 @@
     android:layout_height="match_parent"
     xmlns:khalti="http://schemas.android.com/apk/res-auto"
     tools:context=".ActionViewAllFilm">
-  <!--  <Button
-        android:id="@+id/khalti_button"
-        android:layout_width="75dp"
-        android:layout_height="30dp"
-        android:textColor="#ffffff"
-        android:fontFamily="@font/lateef"
-        android:textSize="16dp"
-        android:textAllCaps="false"
-        android:layout_marginBottom="544dp"
-        android:background="@drawable/videoplayericon"
-        android:text="Buy"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />-->
 
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/ViewRecycler"

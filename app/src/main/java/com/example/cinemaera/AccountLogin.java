@@ -22,7 +22,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
 import org.json.JSONException;
 import org.json.JSONObject;

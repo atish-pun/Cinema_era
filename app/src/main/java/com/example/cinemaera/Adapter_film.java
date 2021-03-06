@@ -54,6 +54,7 @@ class Adapter_film extends RecyclerView.Adapter<Adapter_film.ViewHolder> {
                 gallery.putExtra("movies_id",films.get(position).getId());
                 gallery.putExtra("Film images",films.get(position).getFilm_image());
                 gallery.putExtra("Film names",films.get(position).getFilm_name());
+                gallery.putExtra("Price",films.get(position).getPrice());
                 gallery.putExtra("Trailer video",films.get(position).getTrailer_videos());
                 gallery.putExtra("Cast",films.get(position).getCast());
                 gallery.putExtra("Director",films.get(position).getDirector());

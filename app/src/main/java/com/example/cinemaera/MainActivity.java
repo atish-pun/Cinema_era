@@ -102,9 +102,10 @@ public class MainActivity extends AppCompatActivity {
                         JSONArray jsonArray = response.getJSONArray("Action_movies");
                         for (int i = 0; i < response.length(); i++) {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
-                            String Fid = jsonObject.getString("id");
+                            int Fid = jsonObject.getInt("id");
                             String Fimg = jsonObject.getString("film image");
                             String Fname = jsonObject.getString("film name");
+                            int Price = jsonObject.getInt("Price");
                             String Tvideos = jsonObject.getString("trailer videos");
                             String Cast = jsonObject.getString("Cast");
                             String Director = jsonObject.getString("Director");
@@ -112,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                             String Run_time = jsonObject.getString("Run_time");
                             String Language = jsonObject.getString("Language");
                             String Overview = jsonObject.getString("Overview");
-                            Film category1 = new Film(Fid,Fimg,Fname,Tvideos,Cast, Director,Release_date,Run_time,Language,Overview);
+                            Film category1 = new Film(Fid,Fimg,Fname,Price,Tvideos,Cast, Director,Release_date,Run_time,Language,Overview);
                             films.add(category1);
 
                         }
@@ -123,16 +124,17 @@ public class MainActivity extends AppCompatActivity {
                     JSONArray jsonArray = response.getJSONArray("Love_movies");
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String Fid = jsonObject.getString("id");
+                        int Fid = jsonObject.getInt("id");
                         String Fimg = jsonObject.getString("film image");
                         String Fname = jsonObject.getString("film name");
+                        int Price = jsonObject.getInt("Price");
                         String Cast = jsonObject.getString("Cast");
                         String Director = jsonObject.getString("Director");
                         String Release_date = jsonObject.getString("Release_date");
                         String Run_time = jsonObject.getString("Run_time");
                         String Language = jsonObject.getString("Language");
                         String Overview = jsonObject.getString("Overview");
-                        Film category2 = new Film(Fid,Fimg,Fname,"faf",Cast,Director,Release_date,Run_time,Language,Overview);
+                        Film category2 = new Film(Fid,Fimg,Fname,Price,"fsf",Cast,Director,Release_date,Run_time,Language,Overview);
                         film2.add(category2);
 
                     }
@@ -143,16 +145,17 @@ public class MainActivity extends AppCompatActivity {
                     JSONArray jsonArray = response.getJSONArray("Horror_movies");
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String Fid = jsonObject.getString("id");
+                        int Fid = jsonObject.getInt("id");
                         String Fimg = jsonObject.getString("film image");
                         String Fname = jsonObject.getString("film name");
+                        int Price = jsonObject.getInt("Price");
                         String Cast = jsonObject.getString("Cast");
                         String Director = jsonObject.getString("Director");
                         String Release_date = jsonObject.getString("Release_date");
                         String Run_time = jsonObject.getString("Run_time");
                         String Language = jsonObject.getString("Language");
                         String Overview = jsonObject.getString("Overview");
-                        Film category3 = new Film(Fid,Fimg,Fname,"fdaff",Cast,Director,Release_date,Run_time,Language,Overview);
+                        Film category3 = new Film(Fid,Fimg,Fname,Price,"fdaff",Cast,Director,Release_date,Run_time,Language,Overview);
                         film3.add(category3);
 
                     }
