@@ -25,7 +25,7 @@ import java.util.List;
 public class Search_activity extends AppCompatActivity {
     ListView listView;
     SearchView searchView;
-    List<Film> search_Film = new ArrayList<Film>();
+    List<Film.Search> search_Film = new ArrayList<Film.Search>();
     SearchAdapter searchAdapter;
 
     @SuppressLint("RestrictedApi")
@@ -57,68 +57,17 @@ public class Search_activity extends AppCompatActivity {
     }
     private void FilmExtract(){
         RequestQueue queue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://192.168.100.129:8080/ERA/MoviesDetails.php", null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://192.168.100.129:8080/ERA/api/home.php", null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    JSONArray jsonArray = response.getJSONArray("action");
+                    JSONArray jsonArray = response.getJSONArray("Action_movies");
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String Fid = jsonObject.getString("id");
-                        String Fimg = jsonObject.getString("film image");
                         String Fname = jsonObject.getString("film name");
-                        String Price = jsonObject.getString("Price");
-                        String Tvideos = jsonObject.getString("trailer videos");
-                        String Cast = jsonObject.getString("Cast");
-                        String Director = jsonObject.getString("Director");
-                        String Release_date = jsonObject.getString("Release_date");
-                        String Run_time = jsonObject.getString("Run_time");
-                        String Language = jsonObject.getString("Language");
-                        String Overview = jsonObject.getString("Overview");
-                        Film category1 = new Film(Fid,Fimg,Fname,Price,Tvideos,Cast, Director,Release_date,Run_time,Language,Overview);
+
+                        Film.Search category1 = new Film.Search(Fname);
                         search_Film.add(category1);
-
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    JSONArray jsonArray = response.getJSONArray("love");
-                    for (int i = 0; i < response.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String Fid = jsonObject.getString("id");
-                        String Fimg = jsonObject.getString("film image");
-                        String Fname = jsonObject.getString("film name");
-                        String Price = jsonObject.getString("Price");
-                        String Cast = jsonObject.getString("Cast");
-                        String Director = jsonObject.getString("Director");
-                        String Release_date = jsonObject.getString("Release_date");
-                        String Run_time = jsonObject.getString("Run_time");
-                        String Language = jsonObject.getString("Language");
-                        String Overview = jsonObject.getString("Overview");
-                        Film category2 = new Film(Fid,Fimg,Fname,Price,"faf",Cast,Director,Release_date,Run_time,Language,Overview);
-                        search_Film.add(category2);
-
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    JSONArray jsonArray = response.getJSONArray("horror");
-                    for (int i = 0; i < response.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String Fid = jsonObject.getString("id");
-                        String Fimg = jsonObject.getString("film image");
-                        String Fname = jsonObject.getString("film name");
-                        String Price = jsonObject.getString("Price");
-                        String Cast = jsonObject.getString("Cast");
-                        String Director = jsonObject.getString("Director");
-                        String Release_date = jsonObject.getString("Release_date");
-                        String Run_time = jsonObject.getString("Run_time");
-                        String Language = jsonObject.getString("Language");
-                        String Overview = jsonObject.getString("Overview");
-                        Film category3 = new Film(Fid,Fimg,Fname,Price,"fdaff",Cast,Director,Release_date,Run_time,Language,Overview);
-                        search_Film.add(category3);
 
                     }
                 } catch (JSONException e) {

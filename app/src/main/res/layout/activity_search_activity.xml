@@ -1,44 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="30dp"
     tools:context=".Search_activity">
-
-    <LinearLayout
-        android:id="@+id/SearchLinear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_back"
-            tools:layout_editor_absoluteX="3dp"
-            tools:layout_editor_absoluteY="16dp" />
 
         <SearchView
             android:id="@+id/search_view"
-            android:layout_width="379dp"
-            android:layout_height="49dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:iconifiedByDefault="false"
             android:queryHint="Search for movies"
             android:theme="@style/SearchView"
-            android:searchIcon="@drawable/ic_search_bar"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            tools:ignore="MissingConstraints" />
-    </LinearLayout>
+            android:searchIcon="@drawable/ic_search_bar" />
     <ListView
         android:id="@+id/SearchList"
         android:layout_width="match_parent"
-        android:layout_below="@+id/SearchLinear"
-        android:layout_height="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="10dp"
         />
-</RelativeLayout>
+</LinearLayout>

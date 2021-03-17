@@ -14,25 +14,26 @@ import java.util.List;
 
 class SearchAdapter extends BaseAdapter implements Filterable {
     Context ctx;
-    List<Film> search_film;
-    List<Film> searchFilm;
+    List<Film.Search> OriginalSearchFilm;
+    List<Film.Search> DisplaySearchFilm;
     LayoutInflater inflater;
     ValueFilter valueFilter;
 
-    public SearchAdapter(Context ctx, List<Film> search_film) {
+    public SearchAdapter(Context ctx,List<Film.Search> OriginalSearchFilm) {
         this.ctx = ctx;
-        this.search_film = search_film;
-        searchFilm = search_film;
+        this.OriginalSearchFilm = OriginalSearchFilm;
+        this.DisplaySearchFilm = OriginalSearchFilm;
+//        searchFilm = search_film;
     }
 
     @Override
     public int getCount() {
-        return search_film.size();
+        return DisplaySearchFilm.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return search_film.get(position);
+        return DisplaySearchFilm.get(position);
     }
 
     @Override
@@ -50,44 +51,48 @@ class SearchAdapter extends BaseAdapter implements Filterable {
             convertView = inflater.inflate(R.layout.custom_search,null);
         }
         TextView Film_name = convertView.findViewById(R.id.film_text);
-        Film_name.setText(search_film.get(position).getFilm_name());
+        Film_name.setText(DisplaySearchFilm.get(position).getFilm_name());
         return convertView;
     }
 
     @Override
     public Filter getFilter() {
-        if (valueFilter ==  null){
-            valueFilter = new ValueFilter();
+        Filter filter = new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                return null;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+
+            }
         }
-        return valueFilter;
     }
     class ValueFilter extends Filter{
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults filterResults = new FilterResults();
-            if (constraint != null && constraint.length() > 0){
-                List<Film> filterFilmList = new ArrayList<Film>();
-                for (Film film: search_film){
-                    if ((film.getFilm_name().toUpperCase()).contains(constraint.toString().toUpperCase()));
-//                    Film film = new Film(searchFilm.get(i).getFilm_image(),searchFilm.get(i).getFilm_name(),searchFilm.get(i).getTrailer_videos(),searchFilm.get(i).getCast(),searchFilm.get(i).getDirector(),searchFilm.get(i).getDate(),searchFilm.get(i).getTime(),searchFilm.get(i).getLanguage(),searchFilm.get(i).getOverview());
-                    filterFilmList.add(film);
+            if (constraint == null || constraint.length() == 0){
+                filterResults.count = OriginalSearchFilm.size();
+                filterResults.values = OriginalSearchFilm;
                 }
                 filterResults.count = filterFilmList.size();
                 filterResults.values = filterFilmList;
             }
             else {
-                filterResults.count = searchFilm.size();
-                filterResults.values = searchFilm;
+
             }
             return filterResults;
         }
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            search_film = (ArrayList<Film>) results.values;
+            search_film = (ArrayList<Film.Search>) results.values;
             notifyDataSetChanged();
 
         }
     }
+
 }

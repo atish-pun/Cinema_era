@@ -28,7 +28,7 @@
             android:text="rate"
             android:fontFamily="serif"
             android:textColor="@color/Texttop"
-            android:textSize="15.7sp" />
+            android:textSize="14.7sp" />
 
     </LinearLayout>
 

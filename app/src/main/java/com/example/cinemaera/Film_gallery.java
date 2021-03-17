@@ -286,7 +286,6 @@ public class Film_gallery extends AppCompatActivity {
             alert.setView(view1);
 
             final AlertDialog alertDialog = alert.create();
-            alertDialog.getWindow().getAttributes().gravity = Gravity.BOTTOM;
             alertDialog.setCanceledOnTouchOutside(false);
             ratebar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
                 @Override
@@ -418,24 +417,25 @@ public class Film_gallery extends AppCompatActivity {
     }
 
     public void WatchOrBuyMovies(View view) {
-//        AlertDialog.Builder alert = new AlertDialog.Builder(Film_gallery.this);
-//        View view1 = getLayoutInflater().inflate(R.layout.payment_alert_box, null);
-//        final TextView paymentCost = view1.findViewById(R.id.Cost);
-//        final Button cancel = view1.findViewById(R.id.cancel);
+        AlertDialog.Builder alert = new AlertDialog.Builder(Film_gallery.this);
+        View view1 = getLayoutInflater().inflate(R.layout.payment_alert_box, null);
+        final TextView paymentCost = view1.findViewById(R.id.Cost);
+        final Button cancel = view1.findViewById(R.id.cancel);
 //        final Button Khalti = view1.findViewById(R.id.KHALTI_Button);
-//        paymentCost.setText("The total cost for this movies: "+ Costs);
-//        alert.setView(view1);
-//
-//        final AlertDialog alertDialog = alert.create();
-//        alertDialog.getWindow().getAttributes().gravity = Gravity.BOTTOM;
-//        alertDialog.setCanceledOnTouchOutside(false);
-//
-//        cancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                alertDialog.dismiss();
-//            }
-//        });
+        paymentCost.setText("The total cost for this movies: "+ Costs);
+        alert.setView(view1);
+
+        final AlertDialog alertDialog = alert.create();
+        alertDialog.getWindow().getAttributes().gravity = Gravity.BOTTOM;
+        alertDialog.setCanceledOnTouchOutside(false);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog.show();
 //
 //        Khalti.setOnClickListener(new View.OnClickListener() {
 //            @Override

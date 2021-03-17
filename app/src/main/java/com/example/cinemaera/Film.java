@@ -232,13 +232,25 @@ class Film {
     }
 
     public static class ReviewInfo {
-        public String reviews, RatedValue, userName;
+        public String reviews, RatedValue, userName, RatingAvg;
 
         public ReviewInfo(  String reviews, String RatedValue, String userName) {
             this.reviews = reviews;
             this.RatedValue = RatedValue;
             this.userName = userName;
         }
+        public ReviewInfo(  String RatingAvg) {
+            this.RatingAvg = RatingAvg;
+        }
+
+        public String getRatingAvg() {
+            return RatingAvg;
+        }
+
+        public void setRatingAvg(String ratingAvg) {
+            RatingAvg = ratingAvg;
+        }
+
         public String getReviews() {
             return reviews;
         }
@@ -261,6 +273,21 @@ class Film {
 
         public void setRatedValue(String ratedValue) {
             RatedValue = ratedValue;
+        }
+    }
+    public static class Search{
+    String film_name;
+        public Search(String film_name) {
+            this.film_name = film_name;
+
+        }
+
+        public String getFilm_name() {
+            return film_name;
+        }
+
+        public void setFilm_name(String film_name) {
+            this.film_name = film_name;
         }
     }
 }
