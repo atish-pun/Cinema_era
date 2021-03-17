@@ -65,7 +65,30 @@ public class Search_activity extends AppCompatActivity {
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String Fname = jsonObject.getString("film name");
+                        Film.Search category1 = new Film.Search(Fname);
+                        search_Film.add(category1);
 
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    JSONArray jsonArray = response.getJSONArray("Love_movies");
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String Fname = jsonObject.getString("film name");
+                        Film.Search category1 = new Film.Search(Fname);
+                        search_Film.add(category1);
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    JSONArray jsonArray = response.getJSONArray("Horror_movies");
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String Fname = jsonObject.getString("film name");
                         Film.Search category1 = new Film.Search(Fname);
                         search_Film.add(category1);
 

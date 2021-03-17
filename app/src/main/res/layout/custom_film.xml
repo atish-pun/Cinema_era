@@ -18,6 +18,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="142dp"
             app:cardCornerRadius="9dp"
+            app:cardBackgroundColor="@color/colorPrimaryDark"
             android:layout_height="215dp">
             <ImageView
                 android:id="@+id/film_image"
