@@ -36,8 +36,9 @@ public class HorrorViewAllFilm extends AppCompatActivity {
         ViewExtract();
     }
     public void ViewExtract() {
+        String url = getString(R.string.server_api_url) + "home.php";
         RequestQueue queue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://192.168.100.129:8080/ERA/api/home.php", null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {

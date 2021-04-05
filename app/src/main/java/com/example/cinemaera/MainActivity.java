@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     List<Film> films = new ArrayList<>();
     List<Film> film2 = new ArrayList<>();
     List<Film> film3 = new ArrayList<>();
+//    String url = getString(R.string.server_api_url) + "home.php";
 
     @SuppressLint("ResourceAsColor")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -89,8 +90,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void FilmExtract(){
+        String url = getString(R.string.server_api_url) + "home.php";
         RequestQueue queue = Volley.newRequestQueue(this);
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://192.168.100.129:8080/ERA/api/home.php", null, new Response.Listener<JSONObject>() {
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 filmCategoryNames.add(new FilmCategoryName(1,"Action movies",films));
