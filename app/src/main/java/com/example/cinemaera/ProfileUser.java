@@ -5,22 +5,31 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.khalti.checkout.helper.Config;
+import com.khalti.checkout.helper.OnCheckOutListener;
+import com.khalti.checkout.helper.PaymentPreference;
+import com.khalti.utils.Constant;
+import com.khalti.widget.KhaltiButton;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProfileUser extends AppCompatActivity {
     TextView emailText, nameText;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_user);
         emailText = findViewById(R.id.email);
         nameText = findViewById(R.id.name);
-
         emailText.setText(Util.GetValue(getApplicationContext(), "Cinemapref_name"));
         nameText.setText(Util.GetValue(getApplicationContext(), "Cinemapref_email"));
 
@@ -31,6 +40,7 @@ public class ProfileUser extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.home_bar:
                         Intent intent = new Intent(ProfileUser.this,MainActivity.class);
+
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         finish();
@@ -59,4 +69,5 @@ public class ProfileUser extends AppCompatActivity {
         finish();
 
     }
+
 }

@@ -66,7 +66,8 @@ public class Search_activity extends AppCompatActivity {
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String Fname = jsonObject.getString("film name");
-                        Film.Search category1 = new Film.Search(Fname);
+                        String Fid = jsonObject.getString("id");
+                        Film.Search category1 = new Film.Search(Fname,Fid);
                         search_Film.add(category1);
 
                     }
@@ -78,7 +79,8 @@ public class Search_activity extends AppCompatActivity {
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String Fname = jsonObject.getString("film name");
-                        Film.Search category1 = new Film.Search(Fname);
+                        String Fid = jsonObject.getString("id");
+                        Film.Search category1 = new Film.Search(Fname,Fid);
                         search_Film.add(category1);
 
                     }
@@ -90,7 +92,8 @@ public class Search_activity extends AppCompatActivity {
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String Fname = jsonObject.getString("film name");
-                        Film.Search category1 = new Film.Search(Fname);
+                        String Fid = jsonObject.getString("id");
+                        Film.Search category1 = new Film.Search(Fname,Fid);
                         search_Film.add(category1);
 
                     }

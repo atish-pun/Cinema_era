@@ -1,17 +1,40 @@
 package com.example.cinemaera;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.khalti.checkout.helper.Config;
+import com.khalti.checkout.helper.OnCheckOutListener;
+import com.khalti.checkout.helper.PaymentPreference;
+import com.khalti.widget.KhaltiButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 class Review_adapter extends RecyclerView.Adapter<Review_adapter.ViewHolder> {
     Context context;
@@ -35,6 +58,49 @@ class Review_adapter extends RecyclerView.Adapter<Review_adapter.ViewHolder> {
         holder.reviewOutput.setText(reviewInfo.get(position).getReviews());
         holder.ratingOutput.setText(reviewInfo.get(position).getRatedValue());
         holder.userName.setText(reviewInfo.get(position).getUserName());
+        holder.ReviewLinear.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                new AlertDialog.Builder(context)
+                        .setIcon(R.drawable.ic_favourite_delete_btn)
+                        .setTitle("Delete Reviews")
+                        .setMessage("Would you like to Delete your Review")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String parameter = "Remove_reviews.php?id="+ reviewInfo.get(position).getId() +"&otoken="+ Util.FAVOURITE_TOKEN +"&uid="+ Util.SESSION_USERID;
+                                String url = context.getString(R.string.server_api_url) + parameter;
+                                RequestQueue queue = Volley.newRequestQueue(context);
+                                StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        try {
+                                            JSONObject obj = new JSONObject(response);
+                                            if (obj.getInt("status") == 200) {
+                                                reviewInfo.remove(position);
+                                                notifyDataSetChanged();
+                                                Toast.makeText(context, "Your Review has been Removed Successfully", Toast.LENGTH_SHORT).show();
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(context,error.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                                queue.add(stringRequest);
+                            }
+                        })
+                        .setNegativeButton("No",null)
+                        .show();
+                return true;
+    }
+        });
     }
 
     @Override
@@ -44,11 +110,13 @@ class Review_adapter extends RecyclerView.Adapter<Review_adapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder{
         TextView reviewOutput, ratingOutput, userName;
+        LinearLayout ReviewLinear;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             reviewOutput = itemView.findViewById(R.id.reviewOutput);
             ratingOutput = itemView.findViewById(R.id.Rates);
             userName = itemView.findViewById(R.id.Username);
+            ReviewLinear =itemView.findViewById(R.id.ReviewLinear);
         }
     }
 }

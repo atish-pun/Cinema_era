@@ -57,6 +57,7 @@ class SearchAdapter extends BaseAdapter implements Filterable {
             @Override
             public void onClick(View v) {
                 Toast.makeText(ctx, DisplaySearchFilm.get(position).getFilm_name(), Toast.LENGTH_LONG).show();
+                Toast.makeText(ctx, DisplaySearchFilm.get(position).getFilm_id(), Toast.LENGTH_LONG).show();
             }
         });
         return convertView;

@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     List<Film> films = new ArrayList<>();
     List<Film> film2 = new ArrayList<>();
     List<Film> film3 = new ArrayList<>();
-//    String url = getString(R.string.server_api_url) + "home.php";
 
     @SuppressLint("ResourceAsColor")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

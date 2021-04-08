@@ -3,7 +3,6 @@ package com.example.cinemaera;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 class Film {
     private String id;
     private String film_image;
@@ -232,23 +231,21 @@ class Film {
     }
 
     public static class ReviewInfo {
-        public String reviews, RatedValue, userName, RatingAvg;
+        public String id, reviews, RatedValue, userName;
 
-        public ReviewInfo(  String reviews, String RatedValue, String userName) {
+        public ReviewInfo( String id, String reviews, String RatedValue, String userName) {
+            this.id = id;
             this.reviews = reviews;
             this.RatedValue = RatedValue;
             this.userName = userName;
         }
-        public ReviewInfo(  String RatingAvg) {
-            this.RatingAvg = RatingAvg;
+
+        public String getId() {
+            return id;
         }
 
-        public String getRatingAvg() {
-            return RatingAvg;
-        }
-
-        public void setRatingAvg(String ratingAvg) {
-            RatingAvg = ratingAvg;
+        public void setId(String id) {
+            this.id = id;
         }
 
         public String getReviews() {
@@ -276,9 +273,10 @@ class Film {
         }
     }
     public static class Search{
-    String film_name;
-        public Search(String film_name) {
+    String film_name, film_id;
+        public Search(String film_name, String film_id) {
             this.film_name = film_name;
+            this.film_id = film_id;
 
         }
 
@@ -288,6 +286,14 @@ class Film {
 
         public void setFilm_name(String film_name) {
             this.film_name = film_name;
+        }
+
+        public String getFilm_id() {
+            return film_id;
+        }
+
+        public void setFilm_id(String film_id) {
+            this.film_id = film_id;
         }
     }
 }

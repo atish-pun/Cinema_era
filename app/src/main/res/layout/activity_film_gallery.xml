@@ -111,12 +111,13 @@
 
                         <Button
                             android:id="@+id/Review"
-                            android:layout_width="70dp"
+                            android:layout_width="71dp"
                             android:layout_height="24dp"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="144dp"
+                            android:paddingLeft="6dp"
                             android:background="@drawable/review_backportion"
-                            android:drawableLeft="@drawable/ic_review"
+                            android:drawableStart="@drawable/ic_review"
                             android:onClick="review_dialoge"
                             android:text="Review"
                             android:textAllCaps="false"
@@ -128,13 +129,14 @@
 
                         <Button
                             android:id="@+id/favourite"
-                            android:layout_width="70dp"
+                            android:layout_width="71dp"
                             android:layout_height="24dp"
-                            android:layout_marginStart="6dp"
+                            android:layout_marginStart="10dp"
                             android:layout_marginTop="144dp"
                             android:background="@drawable/review_backportion"
-                            android:drawableLeft="@drawable/ic_favourite"
+                            android:drawableStart="@drawable/ic_favourite"
                             android:text="Favourite"
+                            android:paddingLeft="6dp"
                             android:textAllCaps="false"
                             android:onClick="FavouriteBtn"
                             android:textColor="@color/film_detailsTXT"
@@ -202,37 +204,66 @@
                             app:layout_constraintTop_toBottomOf="@+id/trailer_img"
                             tools:ignore="MissingConstraints" />
 
-                        <TextView
-                            android:id="@+id/price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="1dp"
-                            android:fontFamily="serif"
-                            android:text="Price"
-                            android:textColor="@color/film_detailsTXT"
-                            android:textSize="14.2sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.019"
-                            app:layout_constraintStart_toEndOf="@+id/card_inner"
-                            app:layout_constraintTop_toBottomOf="@+id/inner_Fname"
-                            tools:ignore="MissingConstraints" />
 
-                        <TextView
-                            android:id="@+id/AvgRatings"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="1dp"
-                            android:fontFamily="serif"
-                            android:text="AvgRate"
-                            android:textColor="@color/film_detailsTXT"
-                            android:textSize="14.2sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.019"
-                            app:layout_constraintStart_toEndOf="@+id/price"
-                            app:layout_constraintTop_toBottomOf="@+id/inner_Fname"
-                            tools:ignore="MissingConstraints" />
+                        <LinearLayout
+                            android:layout_width="150dp"
+                            android:layout_height="112dp"
+                            android:orientation="horizontal"
+                            app:layout_constraintStart_toEndOf="@+id/card_inner"
+                            app:layout_constraintTop_toBottomOf="@+id/inner_Fname">
+                                <TextView
+                                    android:id="@+id/price"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="7dp"
+                                    android:layout_marginTop="2dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:fontFamily="serif"
+                                    android:text="Price"
+                                    android:textColor="@color/film_detailsTXT"
+                                    android:textSize="14.2sp"
+                                    app:layout_constraintEnd_toStartOf="@+id/view"
+                                    app:layout_constraintStart_toEndOf="@+id/card_inner"
+                                    app:layout_constraintTop_toBottomOf="@+id/inner_Fname"
+                                    tools:ignore="MissingConstraints" />
+
+                                <View
+                                    android:id="@+id/view"
+                                    android:layout_width="1.4dp"
+                                    android:layout_height="11.2dp"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginTop="4.9dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:background="@color/film_detailsTXT"
+                                    />
+
+                                <ImageView
+                                    android:id="@+id/imageView2"
+                                    android:layout_width="19dp"
+                                    android:layout_height="19dp"
+                                    android:layout_marginStart="1.2dp"
+                                    android:layout_marginTop="0.7dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:layout_marginBottom="88dp"
+                                    app:layout_constraintBottom_toTopOf="@+id/Review"
+                                    app:layout_constraintTop_toBottomOf="@+id/inner_Fname"
+                                    app:layout_constraintVertical_bias="0.125"
+                                    app:srcCompat="@drawable/ic_ratings" />
+
+                                <TextView
+                                    android:id="@+id/AvgRatings"
+                                    android:layout_width="51dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="-1.3dp"
+                                    android:layout_marginTop="2dp"
+                                    android:layout_marginEnd="176dp"
+                                    android:layout_marginBottom="93dp"
+                                    android:fontFamily="serif"
+                                    android:text="0.0"
+                                    android:textColor="@color/film_detailsTXT"
+                                    android:textSize="14.2sp" />
+
+                        </LinearLayout>
 
                         <TextView
                             android:id="@+id/textView2"
@@ -426,7 +457,7 @@
                             android:fontFamily="serif"
                             android:text="Reviews"
                             android:textColor="@color/film_detailsTXT"
-                            android:textSize="16sp"
+                            android:textSize="17.5sp"
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/OverviewTxt" />

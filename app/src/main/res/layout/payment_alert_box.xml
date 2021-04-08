@@ -23,12 +23,12 @@
             android:layout_height="35dp"
             android:textAllCaps="false"
             android:text="cancle"/>
-<!--        <com.khalti.widget.KhaltiButton-->
-<!--        android:id="@+id/KHALTI_Button"-->
-<!--        android:layout_marginLeft="30dp"-->
-<!--        android:layout_width="60dp"-->
-<!--        android:layout_height="35dp"-->
-<!--        khalti:button_style="khalti"/>-->
+
         </LinearLayout>
+    <com.khalti.widget.KhaltiButton
+        android:id="@+id/khalti_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        khalti:button_style="khalti"/>
 
 </LinearLayout>

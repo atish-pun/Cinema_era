@@ -42,8 +42,10 @@ class ViewAllFilmAdapter extends RecyclerView.Adapter<ViewAllFilmAdapter.ViewHol
             @Override
             public void onClick(View v) {
                 Intent gallery = new Intent(ctx ,Film_gallery.class);
+                gallery.putExtra("movies_id",actionMoviesAll.get(position).getId());
                 gallery.putExtra("Film images",actionMoviesAll.get(position).getFilm_image());
                 gallery.putExtra("Film names",actionMoviesAll.get(position).getFilm_name());
+                gallery.putExtra("Price",actionMoviesAll.get(position).getPrice());
                 gallery.putExtra("Trailer video",actionMoviesAll.get(position).getTrailer_videos());
                 gallery.putExtra("Cast",actionMoviesAll.get(position).getCast());
                 gallery.putExtra("Director",actionMoviesAll.get(position).getDirector());

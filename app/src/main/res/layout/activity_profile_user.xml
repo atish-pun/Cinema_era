@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:khalti="http://schemas.android.com/apk/res-auto"
     android:background="#ffff"
     tools:context=".ProfileUser">
 
@@ -63,9 +64,6 @@
             </LinearLayout>
         </LinearLayout>
 
-
-
-
         <LinearLayout
             android:padding="5dp"
             android:id="@+id/logout"
@@ -96,7 +94,6 @@
                 android:onClick="Logout"
                 android:textSize="16sp" />
         </LinearLayout>
-
     </LinearLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/buttom_nav"

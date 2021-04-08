@@ -67,27 +67,28 @@ public class AccountLogin extends AppCompatActivity {
                         public void onResponse(String response) {
                             try {
                                 JSONObject obj = new JSONObject(response);
-                                if (obj.getInt("status") == 200) {
-                                    String session = obj.getString("session"), id = obj.getString("id"), fullName = obj.getString("fullName"), emailAddress = obj.getString("emailAddress"), favourite_token = obj.getString("Favourite_token");
-                                    Util.SetKey(getApplicationContext(), "Cinemapref_session", session);
-                                    Util.SESSION_KEY = session;
-                                    Util.SetKey(getApplicationContext(), "Cinemapref_uid", id);
-                                    Util.SESSION_USERID = id;
-                                    Util.SetKey(getApplicationContext(), "Cinemapref_name", fullName);
-                                    Util.SESSION_NAME = fullName;
-                                    Util.SetKey(getApplicationContext(), "Cinemapref_email", emailAddress);
-                                    Util.SESSION_EMAIL = emailAddress;
-                                    if(favourite_token == null || favourite_token.equals("") || favourite_token.equals("null")) {
-                                        Util.SetKey(getApplicationContext(), "Cinemapref_favourite_token", "");
-                                        Util.FAVOURITE_TOKEN = null;}
-                                    else {
-                                        Util.SetKey(getApplicationContext(), "Cinemapref_favourite_token", favourite_token); Util.FAVOURITE_TOKEN = favourite_token;
-                                    }
+                                 if (obj.getInt("status") == 200 ) {
+                                        String session = obj.getString("session"), id = obj.getString("id"), fullName = obj.getString("fullName"), emailAddress = obj.getString("emailAddress"), favourite_token = obj.getString("Favourite_token");
+                                        Util.SetKey(getApplicationContext(), "Cinemapref_session", session);
+                                        Util.SESSION_KEY = session;
+                                        Util.SetKey(getApplicationContext(), "Cinemapref_uid", id);
+                                        Util.SESSION_USERID = id;
+                                        Util.SetKey(getApplicationContext(), "Cinemapref_name", fullName);
+                                        Util.SESSION_NAME = fullName;
+                                        Util.SetKey(getApplicationContext(), "Cinemapref_email", emailAddress);
+                                        Util.SESSION_EMAIL = emailAddress;
+                                        if (favourite_token == null || favourite_token.equals("") || favourite_token.equals("null")) {
+                                            Util.SetKey(getApplicationContext(), "Cinemapref_favourite_token", "");
+                                            Util.FAVOURITE_TOKEN = null;
+                                        } else {
+                                            Util.SetKey(getApplicationContext(), "Cinemapref_favourite_token", favourite_token);
+                                            Util.FAVOURITE_TOKEN = favourite_token;
+                                        }
+                                        Toast.makeText(AccountLogin.this, "Login Success.", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
 
-                                    Toast.makeText(AccountLogin.this, "Login Success.", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
                                 } else {
                                     Toast.makeText(AccountLogin.this, obj.getString("content"), Toast.LENGTH_SHORT).show();
                                 }

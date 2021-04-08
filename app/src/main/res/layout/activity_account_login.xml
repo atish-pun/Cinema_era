@@ -82,6 +82,7 @@
             android:layout_marginTop="6dp"
             android:layout_gravity="center"
             android:focusable="true"
+            app:passwordToggleEnabled="true"
             app:hintTextColor="@color/colorPrimaryDark"
             android:focusableInTouchMode="true">
             <EditText
@@ -89,7 +90,7 @@
                 android:background="@drawable/account"
                 android:layout_width="240dp"
                 android:layout_height="40dp"
-                android:drawableLeft="@drawable/ic_lock"
+                android:drawableStart="@drawable/ic_lock"
                 android:hint="Password"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>

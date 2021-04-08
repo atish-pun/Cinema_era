@@ -1,11 +1,13 @@
 package com.example.cinemaera;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -31,6 +34,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.khalti.checkout.helper.Config;
+import com.khalti.checkout.helper.OnCheckOutListener;
+import com.khalti.checkout.helper.PaymentPreference;
+import com.khalti.widget.KhaltiButton;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -38,12 +45,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Film_gallery extends AppCompatActivity {
     ImageView filmImg,trailer_img,gradientImg, backTrailer;
     VideoView trailer_video;
-    TextView filmTxt, startTime, endTime, cast, director, releaseDate, runtime, language,overview,Price;
+    TextView filmTxt, startTime, endTime, cast, director, releaseDate, runtime, language,overview,Price,AvgRatings;
     Button frontTrailerPlay, innerTrailerPlay,fav;
     SeekBar seekBar;
     float ratingValue;
@@ -79,6 +88,7 @@ public class Film_gallery extends AppCompatActivity {
         overview = findViewById(R.id.OverviewTxt);
         fav = findViewById(R.id.favourite);
         Price = findViewById(R.id.price);
+        AvgRatings =  findViewById(R.id.AvgRatings);
         FilmGalleryRefresh = findViewById(R.id.FilmGalleryRefresh);
         MoviePoster = getIntent().getStringExtra("Film images");
         Film_name = getIntent().getStringExtra("Film names");
@@ -101,10 +111,12 @@ public class Film_gallery extends AppCompatActivity {
         InitSeekBar();
         TrailerVideoCLick();
         ExtractReviews();
+        AverageRatings();
         FilmGalleryRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 ExtractReviews();
+                AverageRatings();
                 FilmGalleryRefresh.setRefreshing(false);
             }
         });
@@ -292,15 +304,15 @@ public class Film_gallery extends AppCompatActivity {
                 public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                     ratingValue = ratebar.getRating();
                     if (ratingValue <= 1 && ratingValue > 0)
-                        ratevalue.setText(ratingValue + "/5");
+                        ratevalue.setText(ratingValue + "");
                     else if (ratingValue <= 2 && ratingValue > 1)
-                        ratevalue.setText(ratingValue + "/5");
+                        ratevalue.setText(ratingValue + "");
                     else if (ratingValue <= 3 && ratingValue > 2)
-                        ratevalue.setText(ratingValue + "/5");
+                        ratevalue.setText(ratingValue + "");
                     else if (ratingValue <= 4 && ratingValue > 3)
-                        ratevalue.setText(ratingValue + "/5");
+                        ratevalue.setText(ratingValue + "");
                     else if (ratingValue <= 5 && ratingValue > 4)
-                        ratevalue.setText(ratingValue + "/5");
+                        ratevalue.setText(ratingValue + "");
 
                 }
             });
@@ -316,9 +328,8 @@ public class Film_gallery extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     String ReviewOutput;
-                    TotalRatings = "Rated: " + ratevalue.getText().toString();
+                    TotalRatings = ratevalue.getText().toString();
                     ReviewOutput = review_txt.getText().toString();
-                    if(Util.FAVOURITE_TOKEN == null || Util.FAVOURITE_TOKEN.equals("")) Util.GenerateFavouriteToken(Film_gallery.this);
                     String url = getString(R.string.server_api_url) + "add-reviews.php?uid=" + Util.SESSION_USERID + "&pid=" + Movie_id +"&otoken=" + Util.FAVOURITE_TOKEN + "&reviews=" + ReviewOutput + "&ratedValue=" + TotalRatings;
                     RequestQueue queue = Volley.newRequestQueue(Film_gallery.this);
                     StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -362,10 +373,11 @@ public class Film_gallery extends AppCompatActivity {
                     JSONArray jsonArray = jsonObject.getJSONArray("content");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject obj = jsonArray.getJSONObject(i);
+                        String ReviewId = obj.getString("id");
                         String reviews = obj.getString("reviews");
                         String RatedValue = obj.getString("RatedValue");
                         String fullName = obj.getString("fullName");
-                        Film.ReviewInfo reviewInfo1 = new Film.ReviewInfo(reviews, RatedValue, fullName);
+                        Film.ReviewInfo reviewInfo1 = new Film.ReviewInfo(ReviewId,reviews, RatedValue, fullName);
                         reviewInfo.add(reviewInfo1);
                         Review_adapter review_adapter = new Review_adapter(Film_gallery.this, reviewInfo);
                         RecyclerView reviewRecycler = findViewById(R.id.ReviewRecycler);
@@ -417,52 +429,132 @@ public class Film_gallery extends AppCompatActivity {
     }
 
     public void WatchOrBuyMovies(View view) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(Film_gallery.this);
-        View view1 = getLayoutInflater().inflate(R.layout.payment_alert_box, null);
-        final TextView paymentCost = view1.findViewById(R.id.Cost);
-        final Button cancel = view1.findViewById(R.id.cancel);
-//        final Button Khalti = view1.findViewById(R.id.KHALTI_Button);
-        paymentCost.setText("The total cost for this movies: "+ Costs);
-        alert.setView(view1);
-
-        final AlertDialog alertDialog = alert.create();
-        alertDialog.getWindow().getAttributes().gravity = Gravity.BOTTOM;
-        alertDialog.setCanceledOnTouchOutside(false);
-
-        cancel.setOnClickListener(new View.OnClickListener() {
+        if(Util.FAVOURITE_TOKEN == null || Util.FAVOURITE_TOKEN.equals("")) Util.GenerateFavouriteToken(Film_gallery.this);
+        String url = getString(R.string.server_api_url) + "Khalti_status.php?pid=" + Movie_id + "&uid=" + Util.SESSION_USERID +"&otoken=" + Util.FAVOURITE_TOKEN ;
+        RequestQueue queue = Volley.newRequestQueue(Film_gallery.this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
-            public void onClick(View v) {
-                alertDialog.dismiss();
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    if (object.getInt("status") == 200) {
+                        Toast.makeText(Film_gallery.this, object.getString("content"), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Film_gallery.this, MainActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(0,0);
+                        finish();
+                    }
+                    else {
+                        AlertDialog.Builder alert = new AlertDialog.Builder(Film_gallery.this);
+                        View view1 = getLayoutInflater().inflate(R.layout.payment_alert_box, null);
+                        final TextView paymentCost = view1.findViewById(R.id.Cost);
+                        final Button cancel = view1.findViewById(R.id.cancel);
+                        KhaltiButton Khalti = view1.findViewById(R.id.khalti_button);
+                        paymentCost.setText("The total cost for this movies: "+ Costs);
+                        alert.setView(view1);
+
+                        final AlertDialog alertDialog = alert.create();
+                        alertDialog.getWindow().getAttributes().gravity = Gravity.BOTTOM;
+                        alertDialog.setCanceledOnTouchOutside(false);
+
+                        cancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                alertDialog.dismiss();
+                            }
+                        });
+                        alertDialog.show();
+
+                        Map<String, Object> map = new HashMap<>();
+                        map.put("merchant_extra", "This is extra data");
+
+                        Config.Builder builder = new Config.Builder("test_public_key_60306ba0ad9645d0a4b0f7bbc71d846d", Movie_id, Film_name, Long.parseLong(Costs)*100, new OnCheckOutListener() {
+                            @Override
+                            public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
+                                Toast.makeText(Film_gallery.this,errorMap.toString(),Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onSuccess(@NonNull Map<String, Object> data) {
+                                KhaltiPay(data.toString());
+                            }
+                        })
+                                .paymentPreferences(new ArrayList<PaymentPreference>() {{
+                                    add(PaymentPreference.KHALTI);
+                                }});
+                        Config config = builder.build();
+                        Khalti.setCheckOutConfig(config);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(Film_gallery.this, error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
-        alertDialog.show();
-//
-//        Khalti.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Map<String, Object> map = new HashMap<>();
-//                map.put("merchant_extra", "This is extra data");
-//
-//                Config.Builder builder = new Config.Builder("test_public_key_60306ba0ad9645d0a4b0f7bbc71d846d", Movie_id, Film_name,Costs, new OnCheckOutListener() {
-//                    @Override
-//                    public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
-//                        Log.i(action, errorMap.toString());
-//                    }
-//
-//                    @Override
-//                    public void onSuccess(@NonNull Map<String, Object> data) {
-//                        Log.i("success", data.toString());
-//                    }
-//                })
-//                        .paymentPreferences(new ArrayList<PaymentPreference>() {{
-//                            add(PaymentPreference.KHALTI);
-//                        }});
-//                Config config = builder.build();
-//
-//            }
-//        });
-
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        queue.add(stringRequest);
     }
+     private void KhaltiPay(String data) {
+         String url = getString(R.string.server_api_url) + "add-Khalti.php?pid=" + Movie_id + "&uid=" + Util.SESSION_USERID +"&otoken=" + Util.FAVOURITE_TOKEN + "&transaction=" + data;
+         RequestQueue queue = Volley.newRequestQueue(Film_gallery.this);
+         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+             @Override
+             public void onResponse(String response) {
+                 try {
+                     JSONObject object = new JSONObject(response);
+                     if (object.getInt("status") == 200) {
+                         Toast.makeText(Film_gallery.this, object.getString("content"), Toast.LENGTH_SHORT).show();
+                         Intent intent = new Intent(Film_gallery.this, MainActivity.class);
+                         startActivity(intent);
+                         overridePendingTransition(0,0);
+                         finish();
+                     }
+                 } catch (JSONException e) {
+                     e.printStackTrace();
+                 }
+             }
+         }, new Response.ErrorListener() {
+             @Override
+             public void onErrorResponse(VolleyError error) {
+                 Toast.makeText(Film_gallery.this, error.toString(), Toast.LENGTH_SHORT).show();
+             }
+         });
+         stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+         queue.add(stringRequest);
+     }
+
+     public void AverageRatings(){
+        String url = getString(R.string.server_api_url) + "AvgRate.php?Movies_id=" + Movie_id;
+        RequestQueue requestQueue = Volley.newRequestQueue(Film_gallery.this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    JSONArray jsonArray = obj.getJSONArray("content");
+                    for (int i = 0; i<jsonArray.length(); i++){
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String AverageRating = jsonObject.getString("RatingAvg");
+                        AvgRatings.setText(AverageRating);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Film_gallery", error.getMessage());
+            }
+        });
+         stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+         requestQueue.add(stringRequest);
+     }
 //        final String casting, directors, dates, times, languages, overviews;
 //        casting = String.valueOf(cast.getText());
 //        directors = String.valueOf(director.getText());
