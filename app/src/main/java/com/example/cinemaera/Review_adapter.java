@@ -3,6 +3,7 @@ package com.example.cinemaera;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +37,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static android.content.ContentValues.TAG;
+
 class Review_adapter extends RecyclerView.Adapter<Review_adapter.ViewHolder> {
     Context context;
     List<Film.ReviewInfo> reviewInfo = new ArrayList<>();
@@ -64,38 +67,38 @@ class Review_adapter extends RecyclerView.Adapter<Review_adapter.ViewHolder> {
                 new AlertDialog.Builder(context)
                         .setIcon(R.drawable.ic_favourite_delete_btn)
                         .setTitle("Delete Reviews")
-                        .setMessage("Would you like to Delete your Review")
+                        .setMessage("Would you like to Delete your Review?")
                         .setCancelable(false)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                String parameter = "Remove_reviews.php?id="+ reviewInfo.get(position).getId() +"&otoken="+ Util.FAVOURITE_TOKEN +"&uid="+ Util.SESSION_USERID;
-                                String url = context.getString(R.string.server_api_url) + parameter;
-                                RequestQueue queue = Volley.newRequestQueue(context);
-                                StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-                                    @Override
-                                    public void onResponse(String response) {
-                                        try {
-                                            JSONObject obj = new JSONObject(response);
-                                            if (obj.getInt("status") == 200) {
-                                                reviewInfo.remove(position);
-                                                notifyDataSetChanged();
-                                                Toast.makeText(context, "Your Review has been Removed Successfully", Toast.LENGTH_SHORT).show();
-                                            }
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                }, new Response.ErrorListener() {
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-                                        Toast.makeText(context,error.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                                stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-                                queue.add(stringRequest);
-                            }
-                        })
+                       .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialog, int which) {
+                               String parameter = "Review_userType.php?id="+ reviewInfo.get(position).getId() +"&otoken="+ Util.FAVOURITE_TOKEN +"&uid="+ Util.SESSION_USERID;
+                               String url = context.getString(R.string.server_api_url) + parameter;
+                               RequestQueue queue = Volley.newRequestQueue(context);
+                               StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                                   @Override
+                                   public void onResponse(String response) {
+                                       try {
+                                           JSONObject obj = new JSONObject(response);
+                                           if (obj.getInt("status") == 200) {
+                                               reviewInfo.remove(position);
+                                               notifyDataSetChanged();
+                                               Log.d(TAG, "Review will be deleted only for specific users ");
+                                           }
+                                       } catch (JSONException e) {
+                                           e.printStackTrace();
+                                       }
+                                   }
+                               }, new Response.ErrorListener() {
+                                   @Override
+                                   public void onErrorResponse(VolleyError error) {
+                                       Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
+                                   }
+                               });
+                               stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                               queue.add(stringRequest);
+                           }
+                       })
                         .setNegativeButton("No",null)
                         .show();
                 return true;

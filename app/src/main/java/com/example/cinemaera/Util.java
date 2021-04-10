@@ -16,11 +16,6 @@ public class Util {
     public static String SESSION_NAME = "";
     public static String SESSION_EMAIL = "";
 
-    public static void ActiveView(View container){ container.setVisibility(View.VISIBLE); }
-
-    public static void DeActiveView(View container){ container.setVisibility(View.GONE); }
-
-
     public static boolean SetKey(Context context, String key, String value){
         SharedPreferences.Editor editor = context.getSharedPreferences("Cinema_pref", Context.MODE_PRIVATE).edit();
         editor.putString(key, value);

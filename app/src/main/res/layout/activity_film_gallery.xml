@@ -239,10 +239,10 @@
 
                                 <ImageView
                                     android:id="@+id/imageView2"
-                                    android:layout_width="19dp"
-                                    android:layout_height="19dp"
-                                    android:layout_marginStart="1.2dp"
-                                    android:layout_marginTop="0.7dp"
+                                    android:layout_width="18dp"
+                                    android:layout_height="18dp"
+                                    android:layout_marginStart="1.1dp"
+                                    android:layout_marginTop="1.1dp"
                                     android:layout_marginEnd="5dp"
                                     android:layout_marginBottom="88dp"
                                     app:layout_constraintBottom_toTopOf="@+id/Review"
@@ -254,12 +254,12 @@
                                     android:id="@+id/AvgRatings"
                                     android:layout_width="51dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="-1.3dp"
-                                    android:layout_marginTop="2dp"
+                                    android:layout_marginStart="-2dp"
+                                    android:layout_marginTop="2.5dp"
                                     android:layout_marginEnd="176dp"
                                     android:layout_marginBottom="93dp"
                                     android:fontFamily="serif"
-                                    android:text="0.0"
+                                    android:text="0"
                                     android:textColor="@color/film_detailsTXT"
                                     android:textSize="14.2sp" />
 
@@ -522,6 +522,17 @@
                                     android:textColor="#ffffff"
                                     android:textSize="16dp" />
                         </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/test"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="64dp"
+                            android:layout_marginEnd="57dp"
+                            android:textSize="200px"
+                            android:text="TextView"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/trailer_img" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <LinearLayout

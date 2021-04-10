@@ -93,7 +93,9 @@ public class AccountLogin extends AppCompatActivity {
                                     Toast.makeText(AccountLogin.this, obj.getString("content"), Toast.LENGTH_SHORT).show();
                                 }
                             } catch (JSONException e) {
-                                e.printStackTrace();
+                                Toast.makeText(AccountLogin.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+
                             }
                         }
                     }

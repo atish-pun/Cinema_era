@@ -28,7 +28,6 @@ public class Search_activity extends AppCompatActivity {
     List<Film.Search> search_Film = new ArrayList<Film.Search>();
     SearchAdapter searchAdapter;
 
-    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
