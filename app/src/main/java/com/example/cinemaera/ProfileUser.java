@@ -30,6 +30,7 @@ public class ProfileUser extends AppCompatActivity {
         setContentView(R.layout.activity_profile_user);
         emailText = findViewById(R.id.email);
         nameText = findViewById(R.id.name);
+//        nameText.setText(util.getusername());
         emailText.setText(Util.GetValue(getApplicationContext(), "Cinemapref_name"));
         nameText.setText(Util.GetValue(getApplicationContext(), "Cinemapref_email"));
 
@@ -58,6 +59,7 @@ public class ProfileUser extends AppCompatActivity {
 
     }
     public void Logout(View view) {
+//        util.setlogin(false );
         Util.SESSION_KEY = null;
         Util.SESSION_USERID = null;
         Util.SESSION_NAME = null;

@@ -42,6 +42,7 @@ public class AccountLogin extends AppCompatActivity {
         log_in = findViewById(R.id.button_login);
         SignUp = findViewById(R.id.signup);
         getSupportActionBar().hide();
+        Util util = new Util(getApplicationContext());
 
 
         SignUp.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +69,7 @@ public class AccountLogin extends AppCompatActivity {
                             try {
                                 JSONObject obj = new JSONObject(response);
                                  if (obj.getInt("status") == 200 ) {
+
                                         String session = obj.getString("session"), id = obj.getString("id"), fullName = obj.getString("fullName"), emailAddress = obj.getString("emailAddress"), favourite_token = obj.getString("Favourite_token");
                                         Util.SetKey(getApplicationContext(), "Cinemapref_session", session);
                                         Util.SESSION_KEY = session;
@@ -77,6 +79,8 @@ public class AccountLogin extends AppCompatActivity {
                                         Util.SESSION_NAME = fullName;
                                         Util.SetKey(getApplicationContext(), "Cinemapref_email", emailAddress);
                                         Util.SESSION_EMAIL = emailAddress;
+                                     util.setlogin(true);
+                                     util.setusername(session);
                                         if (favourite_token == null || favourite_token.equals("") || favourite_token.equals("null")) {
                                             Util.SetKey(getApplicationContext(), "Cinemapref_favourite_token", "");
                                             Util.FAVOURITE_TOKEN = null;
@@ -84,7 +88,7 @@ public class AccountLogin extends AppCompatActivity {
                                             Util.SetKey(getApplicationContext(), "Cinemapref_favourite_token", favourite_token);
                                             Util.FAVOURITE_TOKEN = favourite_token;
                                         }
-                                        Toast.makeText(AccountLogin.this, "Login Success.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AccountLogin.this, obj.getString("fullName") , Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                         startActivity(intent);
                                         finish();

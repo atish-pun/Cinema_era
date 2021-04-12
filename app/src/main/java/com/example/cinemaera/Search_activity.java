@@ -7,12 +7,15 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -28,6 +31,7 @@ public class Search_activity extends AppCompatActivity {
     List<Film.Search> search_Film = new ArrayList<Film.Search>();
     SearchAdapter searchAdapter;
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,45 +61,51 @@ public class Search_activity extends AppCompatActivity {
     private void FilmExtract(){
         String url = getString(R.string.server_api_url) + "home.php";
         RequestQueue queue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(String response) {
                 try {
-                    JSONArray jsonArray = response.getJSONArray("Action_movies");
-                    for (int i = 0; i < response.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String Fname = jsonObject.getString("film name");
-                        String Fid = jsonObject.getString("id");
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("Action_movies");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject obj = jsonArray.getJSONObject(i);
+                        String Fname = obj.getString("film name");
+                        String Fid = obj.getString("id");
                         Film.Search category1 = new Film.Search(Fname,Fid);
                         search_Film.add(category1);
-
                     }
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 try {
-                    JSONArray jsonArray = response.getJSONArray("Love_movies");
-                    for (int i = 0; i < response.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String Fname = jsonObject.getString("film name");
-                        String Fid = jsonObject.getString("id");
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("Love_stories");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject obj = jsonArray.getJSONObject(i);
+                        String Fname = obj.getString("film name");
+                        String Fid = obj.getString("id");
                         Film.Search category1 = new Film.Search(Fname,Fid);
                         search_Film.add(category1);
-
                     }
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 try {
-                    JSONArray jsonArray = response.getJSONArray("Horror_movies");
-                    for (int i = 0; i < response.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String Fname = jsonObject.getString("film name");
-                        String Fid = jsonObject.getString("id");
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("Horror_movies");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject obj = jsonArray.getJSONObject(i);
+                        String Fname = obj.getString("film name");
+                        String Fid = obj.getString("id");
                         Film.Search category1 = new Film.Search(Fname,Fid);
                         search_Film.add(category1);
-
                     }
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -104,9 +114,10 @@ public class Search_activity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(Search_activity.this, error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
-        queue.add(jsonObjectRequest);
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        queue.add(stringRequest);
     }
 }
