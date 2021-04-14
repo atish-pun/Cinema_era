@@ -517,7 +517,7 @@
                                     android:text="Watch"
                                     android:drawableLeft="@drawable/ic_play"
                                     android:drawablePadding="-9dp"
-                                    android:onClick="WatchOrBuyMovies"
+                                   android:onClick="BuyOrWatchFilms"
                                     android:textAllCaps="false"
                                     android:textColor="#ffffff"
                                     android:textSize="16dp" />

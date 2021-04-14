@@ -436,7 +436,7 @@ public class Film_gallery extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-    public void WatchOrBuyMovies(View view) {
+    public void BuyOrWatchFilms(View view) {
         if(Util.FAVOURITE_TOKEN == null || Util.FAVOURITE_TOKEN.equals("")) Util.GenerateFavouriteToken(Film_gallery.this);
         String url = getString(R.string.server_api_url) + "Khalti_status.php?pid=" + Movie_id + "&uid=" + Util.SESSION_USERID +"&otoken=" + Util.FAVOURITE_TOKEN ;
         RequestQueue queue = Volley.newRequestQueue(Film_gallery.this);
@@ -484,15 +484,15 @@ public class Film_gallery extends AppCompatActivity {
                             public void onSuccess(@NonNull Map<String, Object> data) {
                                 alertDialog.dismiss();
                                 KhaltiPay(data.toString());
-//                                JSONObject jsonObject = new JSONObject(data);
-//                                try {
-//                                    String token = jsonObject.getString("token");
-//                                    Double amount = jsonObject.getDouble("amount");
-////                                    Khalti_Verification(token, amount);
-//
-//                                } catch (JSONException e) {
-//                                    e.printStackTrace();
-//                                }
+                                JSONObject jsonObject = new JSONObject(data);
+                                try {
+                                    String token = jsonObject.getString("token");
+                                    Double amount = jsonObject.getDouble("amount");
+//                                    Khalti_Verification(token, amount);
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         })
                                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
@@ -514,6 +514,7 @@ public class Film_gallery extends AppCompatActivity {
         });
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(stringRequest);
+
     }
      public void KhaltiPay(String data) {
          String url = getString(R.string.server_api_url) + "add-Khalti.php?pid=" + Movie_id + "&uid=" + Util.SESSION_USERID +"&otoken=" + Util.FAVOURITE_TOKEN + "&transaction=" + data;
@@ -524,17 +525,17 @@ public class Film_gallery extends AppCompatActivity {
                  try {
                      JSONObject object = new JSONObject(response);
                      if (object.getInt("status") == 200) {
-                         Toast.makeText(Film_gallery.this,"fffff", Toast.LENGTH_SHORT).show();
+                         Toast.makeText(Film_gallery.this,response.toString(), Toast.LENGTH_SHORT).show();
                      }
                  } catch (JSONException e) {
-                     Toast.makeText(Film_gallery.this, "fdaf", Toast.LENGTH_SHORT).show();
+                     Toast.makeText(Film_gallery.this, e.toString(), Toast.LENGTH_SHORT).show();
 
                  }
              }
          }, new Response.ErrorListener() {
              @Override
              public void onErrorResponse(VolleyError error) {
-                 Toast.makeText(Film_gallery.this, "fffffffffffff", Toast.LENGTH_SHORT).show();
+                 Toast.makeText(Film_gallery.this, error.toString(), Toast.LENGTH_SHORT).show();
              }
          });
          stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
@@ -661,54 +662,9 @@ public class Film_gallery extends AppCompatActivity {
          stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
          requestQueue.add(stringRequest);
      }
-//        final String casting, directors, dates, times, languages, overviews;
-//        casting = String.valueOf(cast.getText());
-//        directors = String.valueOf(director.getText());
-//        dates = String.valueOf(releaseDate.getText());
-//        times = String.valueOf(runtime.getText());
-//        languages = String.valueOf(language.getText());
-//        overviews = String.valueOf(overview.getText());
-//        Handler handler = new Handler();
-//        handler.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                String[] field = new String[9];
-//                field[0] = "Movie_name";
-//                field[1] = "Movie_poster";
-//                field[2] = "Trailer_videos";
-//                field[3] = "Cast";
-//                field[4] = "Director";
-//                field[5] = "Release_date";
-//                field[6] = "Run_time";
-//                field[7] = "Language";
-//                field[8] = "Overview";
-//
-//                //Creating array for data
-//                String[] data = new String[9];
-//                data[0] = Film_name;
-//                data[1] = MoviePoster;
-//                data[2] = Trailer_videos;
-//                data[3] = casting;
-//                data[4] = directors;
-//                data[5] = dates;
-//                data[6] = times;
-//                data[7] = languages;
-//                data[8] = overviews;
-//
-//                PutData putData = new PutData("http://192.168.100.129:8080/ERA/Favourite.php", "POST", field, data);
-//                if (putData.startPut()) {
-//                    if (putData.onComplete()) {
-//                        String result = putData.getResult();
-//                        if (result.equals("Successfully added to Favourite")) {
-//                            Toast.makeText(getApplicationContext(), Film_name + " added to Favourite List", Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                }
-//            }
-//        });
-    }
+
+
+}
 
 
 
