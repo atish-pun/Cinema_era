@@ -482,17 +482,17 @@ public class Film_gallery extends AppCompatActivity {
 
                             @Override
                             public void onSuccess(@NonNull Map<String, Object> data) {
-                                KhaltiPay(data.toString());
                                 alertDialog.dismiss();
-                                JSONObject jsonObject = new JSONObject(data);
-                                try {
-                                    String token = jsonObject.getString("token");
-                                    Double amount = jsonObject.getDouble("amount");
-                                    Khalti_Verification(token, amount);
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
+                                KhaltiPay(data.toString());
+//                                JSONObject jsonObject = new JSONObject(data);
+//                                try {
+//                                    String token = jsonObject.getString("token");
+//                                    Double amount = jsonObject.getDouble("amount");
+////                                    Khalti_Verification(token, amount);
+//
+//                                } catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                }
                             }
                         })
                                 .paymentPreferences(new ArrayList<PaymentPreference>() {{
@@ -502,7 +502,8 @@ public class Film_gallery extends AppCompatActivity {
                         Khalti.setCheckOutConfig(config);
                     }
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Toast.makeText(Film_gallery.this, e.toString(), Toast.LENGTH_SHORT).show();
+
                 }
             }
         }, new Response.ErrorListener() {
@@ -514,7 +515,7 @@ public class Film_gallery extends AppCompatActivity {
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(stringRequest);
     }
-     private void KhaltiPay(String data) {
+     public void KhaltiPay(String data) {
          String url = getString(R.string.server_api_url) + "add-Khalti.php?pid=" + Movie_id + "&uid=" + Util.SESSION_USERID +"&otoken=" + Util.FAVOURITE_TOKEN + "&transaction=" + data;
          RequestQueue queue = Volley.newRequestQueue(Film_gallery.this);
          StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -523,69 +524,70 @@ public class Film_gallery extends AppCompatActivity {
                  try {
                      JSONObject object = new JSONObject(response);
                      if (object.getInt("status") == 200) {
-                         Toast.makeText(Film_gallery.this, object.getString("content"), Toast.LENGTH_SHORT).show();
+                         Toast.makeText(Film_gallery.this,"fffff", Toast.LENGTH_SHORT).show();
                      }
                  } catch (JSONException e) {
-                     e.printStackTrace();
+                     Toast.makeText(Film_gallery.this, "fdaf", Toast.LENGTH_SHORT).show();
+
                  }
              }
          }, new Response.ErrorListener() {
              @Override
              public void onErrorResponse(VolleyError error) {
-                 Toast.makeText(Film_gallery.this, error.toString(), Toast.LENGTH_SHORT).show();
+                 Toast.makeText(Film_gallery.this, "fffffffffffff", Toast.LENGTH_SHORT).show();
              }
          });
          stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
          queue.add(stringRequest);
      }
 
-    public void Khalti_Verification(String token, Double amount) {
-        String SecretKey = "test_secret_key_cb7b90d18fc7480f82a5fd712424520d";
-        String url = "https://khalti.com/api/v2/payment/verify/";
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("token",token);
-            jsonObject.put("amount",amount);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        JSONObject jsonObject1 = new JSONObject();
-        try {
-            jsonObject.put("Authorization",SecretKey);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    // do something...
-                    Toast.makeText(Film_gallery.this, token, Toast.LENGTH_SHORT).show();
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(Film_gallery.this, error.toString(), Toast.LENGTH_SHORT).show();
-                    // do something...
-                }
-            })
-            {
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put("payload", jsonObject.toString());
-                    return params;
-                }
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    final Map<String, String> headers = new HashMap<>();
-                    headers.put("Content-Type", "application/json");
-                    headers.put("headers",jsonObject1.toString());
-                    return headers;
-                }
-            };
-            requestQueue.add(jsonObjectRequest);
+//    public void Khalti_Verification(String token, Double amount) {
+//        String SecretKey = "test_secret_key_cb7b90d18fc7480f82a5fd712424520d";
+//        String url = "https://khalti.com/api/v2/payment/verify/";
+//        RequestQueue requestQueue = Volley.newRequestQueue(this);
+//        JSONObject jsonObject = new JSONObject();
+//        try {
+//            jsonObject.put("token",token);
+//            jsonObject.put("amount",amount);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        JSONObject jsonObject1 = new JSONObject();
+//        try {
+//            jsonObject1.put("Authorization",SecretKey);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+//            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+//                @Override
+//                public void onResponse(JSONObject response) {
+//                    // do something...
+//                    Toast.makeText(Film_gallery.this, token, Toast.LENGTH_SHORT).show();
+//                }
+//            }, new Response.ErrorListener() {
+//                @Override
+//                public void onErrorResponse(VolleyError error) {
+//                    Toast.makeText(Film_gallery.this, error.toString(), Toast.LENGTH_SHORT).show();
+//                    // do something...
+//                }
+//            })
+//            {
+//                @Override
+//                protected Map<String, String> getParams() throws AuthFailureError {
+//                    Map<String, String> params = new HashMap<String, String>();
+//                    params.put("payload", jsonObject.toString());
+//                    return params;
+//                }
+//                @Override
+//                public Map<String, String> getHeaders() throws AuthFailureError {
+//                    final Map<String, String> headers = new HashMap<>();
+//                    headers.put("Content-Type", "application/json");
+//                    headers.put("headers",jsonObject1.toString());
+//                    return headers;
+//                }
+//            };
+//            requestQueue.add(jsonObjectRequest);
 
 
 //        String SecretKey = "test_secret_key_cb7b90d18fc7480f82a5fd712424520d";
@@ -628,7 +630,7 @@ public class Film_gallery extends AppCompatActivity {
 //        stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 //        queue.add(stringRequest);
 
-    }
+
 
 
     public void AverageRatings(){
