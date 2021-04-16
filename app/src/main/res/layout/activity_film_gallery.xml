@@ -500,6 +500,7 @@
 
                                 <ImageView
                                     android:id="@+id/inner_Fimg"
+                                    android:background="@color/edit_portion"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:scaleType="centerCrop"

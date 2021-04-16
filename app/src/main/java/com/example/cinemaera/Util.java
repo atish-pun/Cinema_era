@@ -35,28 +35,6 @@ public class Util {
         sharedPreferences.edit().remove("Cinemapref_name").apply();
         sharedPreferences.edit().remove("Cinemapref_favourite_token").apply();
     }
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
-
-    public  Util(Context context){
-        sharedPreferences = context.getSharedPreferences("appkey",0);
-        editor = sharedPreferences.edit();
-        editor.commit();
-    }
-    public void setlogin(boolean login){
-        editor.putBoolean("key_login",login);
-        editor.commit();
-    }
-    public boolean getlogin(){
-        return sharedPreferences.getBoolean("key_login",false);
-    }
-    public void setusername(String username){
-        editor.putString("key_username",username);
-        editor.commit();
-    }
-    public String getusername(){
-        return sharedPreferences.getString("key_username","");
-    }
 
     public static void GenerateFavouriteToken(Context context){
         FAVOURITE_TOKEN = UUID.randomUUID().toString();

@@ -4,6 +4,7 @@ import android.app.ActivityOptions;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Parcelable;
@@ -26,6 +27,8 @@ import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.cinemaera.R.drawable.buffer_bar;
 
 class Adapter_film extends RecyclerView.Adapter<Adapter_film.ViewHolder> {
     Context ctx;

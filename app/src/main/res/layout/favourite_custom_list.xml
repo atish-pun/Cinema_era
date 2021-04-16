@@ -29,7 +29,8 @@
             <ImageView
                 android:id="@+id/film_image"
                 android:layout_width="50dp"
-                android:layout_height="70dp"
+                android:background="@color/edit_portion"
+                android:layout_height="71dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher_foreground" />
         </androidx.cardview.widget.CardView>

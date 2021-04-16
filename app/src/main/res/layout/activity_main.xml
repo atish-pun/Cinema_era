@@ -5,9 +5,45 @@
     android:layout_width="match_parent"
     android:background="@color/colorPrimaryDark"
     android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
         <include
             layout="@layout/tool_bars"/>
+            
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="13dp"
+        app:cardCornerRadius="8dp">
+        <com.smarteist.autoimageslider.SliderView
+            android:layout_below="@+id/customtoolbar"
+            android:layout_width="match_parent"
+            android:background="@color/edit_portion"
+            android:layout_height="154dp"
+            android:id="@+id/Movie_slider"
+            android:visibility="gone"
+            app:sliderScrollTimeInSec="4"
+            app:sliderAutoCycleDirection="back_and_forth"
+            app:sliderStartAutoCycle="true"
+            app:sliderIndicatorPadding="2.5dp"
+            app:sliderIndicatorRadius="1.6dp"
+            app:sliderIndicatorSelectedColor="#636363"
+            app:sliderIndicatorUnselectedColor="#F3FFFFFF"
+            app:sliderAnimationDuration="1000"
+            app:sliderIndicatorOrientation="horizontal"
+            app:sliderIndicatorGravity="center_horizontal|bottom" />
+
+    </androidx.cardview.widget.CardView>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_view_main"
@@ -17,7 +53,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_above="@id/buttom_nav"
-        android:layout_below="@+id/customtoolbar"
+        android:layout_below="@+id/Movie_slider"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="2dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
@@ -36,5 +72,8 @@
         app:itemIconSize="24dp"
         android:background="@drawable/nav_portion">
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+        </LinearLayout>
+
+    </ScrollView>
 </RelativeLayout>
 

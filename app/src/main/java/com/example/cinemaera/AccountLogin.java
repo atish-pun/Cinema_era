@@ -42,7 +42,6 @@ public class AccountLogin extends AppCompatActivity {
         log_in = findViewById(R.id.button_login);
         SignUp = findViewById(R.id.signup);
         getSupportActionBar().hide();
-        Util util = new Util(getApplicationContext());
 
 
         SignUp.setOnClickListener(new View.OnClickListener() {
@@ -79,8 +78,7 @@ public class AccountLogin extends AppCompatActivity {
                                         Util.SESSION_NAME = fullName;
                                         Util.SetKey(getApplicationContext(), "Cinemapref_email", emailAddress);
                                         Util.SESSION_EMAIL = emailAddress;
-                                     util.setlogin(true);
-                                     util.setusername(session);
+
                                         if (favourite_token == null || favourite_token.equals("") || favourite_token.equals("null")) {
                                             Util.SetKey(getApplicationContext(), "Cinemapref_favourite_token", "");
                                             Util.FAVOURITE_TOKEN = null;

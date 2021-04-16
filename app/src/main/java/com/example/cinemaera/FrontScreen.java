@@ -18,6 +18,7 @@ public class FrontScreen extends AppCompatActivity {
         ImageView img = findViewById(R.id.cinemasingle);
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_animation);
         img.setAnimation(animation);
+        ManageSession();
 
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -37,7 +38,46 @@ public class FrontScreen extends AppCompatActivity {
 
             }
         });
-
-
     }
-}
+    private void ManageSession(){
+        String session = Util.GetValue(this,"Cinemapref_session");
+        if(!session.equals("")){
+            String User_id = Util.GetValue(this, "Cinemapref_uid");
+            String Full_name = Util.GetValue(this, "Cinemapref_name");
+            String Email_address = Util.GetValue(this, "Cinemapref_email");
+
+            Util.SESSION_KEY = session;
+            Util.SESSION_USERID = User_id;
+            Util.SESSION_NAME = Full_name;
+            Util.SESSION_EMAIL = Email_address;
+
+            Thread thread = new Thread(){
+                @Override
+                public void run() {
+                    try { sleep(1000);
+                        Intent intent = new Intent(FrontScreen.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            thread.start();
+        }
+        else {
+            Thread thread = new Thread(){
+                @Override
+                public void run() {
+                    try { sleep(2000);
+                        Intent intent = new Intent(FrontScreen.this, AccountLogin.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    catch (Exception e){ e.printStackTrace(); }
+                }
+                };
+            }
+        }
+    }

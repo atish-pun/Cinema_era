@@ -473,7 +473,6 @@ public class Film_gallery extends AppCompatActivity {
                         });
                         alertDialog.show();
                         Map<String, Object> map = new HashMap<>();
-                        map.put("merchant_extra", "This is extra data");
                         Config.Builder builder = new Config.Builder("test_public_key_60306ba0ad9645d0a4b0f7bbc71d846d", Movie_id, Film_name, Long.parseLong(Costs)*100, new OnCheckOutListener() {
                             @Override
                             public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
@@ -482,12 +481,12 @@ public class Film_gallery extends AppCompatActivity {
 
                             @Override
                             public void onSuccess(@NonNull Map<String, Object> data) {
-                                alertDialog.dismiss();
                                 JSONObject jsonObject = new JSONObject(data);
                                 try {
                                     String token = jsonObject.getString("token");
                                     Double amount = jsonObject.getDouble("amount");
                                     Khalti_Verification(token, amount);
+                                    alertDialog.dismiss();
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -516,7 +515,6 @@ public class Film_gallery extends AppCompatActivity {
 
     }
     public void Khalti_Verification(String token, Double amount) {
-        String SecretKey = "test_secret_key_cb7b90d18fc7480f82a5fd712424520d";
         RequestQueue queue = Volley.newRequestQueue(Film_gallery.this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://khalti.com/api/v2/payment/verify/", new Response.Listener<String>() {
             @Override
@@ -603,7 +601,6 @@ public class Film_gallery extends AppCompatActivity {
          stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
          requestQueue.add(stringRequest);
      }
-
 
 }
 

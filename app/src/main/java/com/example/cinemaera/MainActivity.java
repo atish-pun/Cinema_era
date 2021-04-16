@@ -24,6 +24,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,11 +37,14 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     RecyclerView main_recyclerView;
+    SliderView Movie_slider;
     MainAdapter mainAdapter;
+    MovieSliderAdapter movieSliderAdapter;
     List<FilmCategoryName> filmCategoryNames = new ArrayList<>();
     List<Film> films = new ArrayList<>();
     List<Film> film2 = new ArrayList<>();
     List<Film> film3 = new ArrayList<>();
+    List<Film> movieSlider = new ArrayList<>();
 
     @SuppressLint("ResourceAsColor")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -47,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+        Movie_slider = findViewById(R.id.Movie_slider);
         FilmExtract();
 
         ImageView imageView = findViewById(R.id.search_custom);
@@ -102,6 +109,40 @@ public class MainActivity extends AppCompatActivity {
                 filmCategoryNames.add(new FilmCategoryName(2,"Love stories",film2));
                 filmCategoryNames.add(new FilmCategoryName(3,"Horror movies",film3));
                 setMain_recyclerView(filmCategoryNames);
+
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray jsonArray = object.getJSONArray("Slider_movies");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject obj = jsonArray.getJSONObject(i);
+                        String Fid = obj.getString("id");
+                        String Fimg = obj.getString("film image");
+                        String Image_location = getString(R.string.Image_url) + Fimg;
+                        String Fname = obj.getString("film name");
+                        String Price = obj.getString("Price");
+                        String Tvideos = obj.getString("trailer videos");
+                        String Trailer_video = getString(R.string.Trailer_Video_url) + Tvideos;
+                        String Cast = obj.getString("Cast");
+                        String Director = obj.getString("Director");
+                        String Release_date = obj.getString("Release_date");
+                        String Run_time = obj.getString("Run_time");
+                        String Language = obj.getString("Language");
+                        String Overview = obj.getString("Overview");
+                        Film SliderMovie = new Film(Fid, Image_location, Fname, Price, Trailer_video, Cast, Director, Release_date, Run_time, Language, Overview);
+                        movieSlider.add(SliderMovie);
+                        movieSliderAdapter = new MovieSliderAdapter(MainActivity.this,movieSlider);
+                        Movie_slider.setSliderAdapter(movieSliderAdapter);
+                        Movie_slider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+                        Movie_slider.setIndicatorAnimation(IndicatorAnimationType.DROP);
+                        Movie_slider.startAutoCycle();
+                        Movie_slider.setVisibility(View.VISIBLE);
+
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 try {
                     JSONObject object = new JSONObject(response);
                         JSONArray jsonArray = object.getJSONArray("Action_movies");
@@ -109,16 +150,18 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject obj = jsonArray.getJSONObject(i);
                             String Fid = obj.getString("id");
                             String Fimg = obj.getString("film image");
+                            String Image_location = getString(R.string.Image_url) + Fimg;
                             String Fname = obj.getString("film name");
                             String Price = obj.getString("Price");
                             String Tvideos = obj.getString("trailer videos");
+                            String Trailer_video = getString(R.string.Trailer_Video_url) + Tvideos;
                             String Cast = obj.getString("Cast");
                             String Director = obj.getString("Director");
                             String Release_date = obj.getString("Release_date");
                             String Run_time = obj.getString("Run_time");
                             String Language = obj.getString("Language");
                             String Overview = obj.getString("Overview");
-                            Film category1 = new Film(Fid, Fimg, Fname, Price, Tvideos, Cast, Director, Release_date, Run_time, Language, Overview);
+                            Film category1 = new Film(Fid, Image_location, Fname, Price, Trailer_video, Cast, Director, Release_date, Run_time, Language, Overview);
                             films.add(category1);
                         }
 
@@ -133,16 +176,18 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject obj = jsonArray.getJSONObject(i);
                         String Fid = obj.getString("id");
                         String Fimg = obj.getString("film image");
+                        String Image_location = getString(R.string.Image_url) + Fimg;
                         String Fname = obj.getString("film name");
                         String Price = obj.getString("Price");
                         String Tvideos = obj.getString("trailer videos");
+                        String Trailer_video = getString(R.string.Trailer_Video_url) + Tvideos;
                         String Cast = obj.getString("Cast");
                         String Director = obj.getString("Director");
                         String Release_date = obj.getString("Release_date");
                         String Run_time = obj.getString("Run_time");
                         String Language = obj.getString("Language");
                         String Overview = obj.getString("Overview");
-                        Film category1 = new Film(Fid, Fimg, Fname, Price, Tvideos, Cast, Director, Release_date, Run_time, Language, Overview);
+                        Film category1 = new Film(Fid, Image_location, Fname, Price, Trailer_video, Cast, Director, Release_date, Run_time, Language, Overview);
                         film2.add(category1);
                     }
 
@@ -157,16 +202,18 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject obj = jsonArray.getJSONObject(i);
                         String Fid = obj.getString("id");
                         String Fimg = obj.getString("film image");
+                        String Image_location = getString(R.string.Image_url) + Fimg;
                         String Fname = obj.getString("film name");
                         String Price = obj.getString("Price");
                         String Tvideos = obj.getString("trailer videos");
+                        String Trailer_video = getString(R.string.Trailer_Video_url) + Tvideos;
                         String Cast = obj.getString("Cast");
                         String Director = obj.getString("Director");
                         String Release_date = obj.getString("Release_date");
                         String Run_time = obj.getString("Run_time");
                         String Language = obj.getString("Language");
                         String Overview = obj.getString("Overview");
-                        Film category1 = new Film(Fid, Fimg, Fname, Price, Tvideos, Cast, Director, Release_date, Run_time, Language, Overview);
+                        Film category1 = new Film(Fid, Image_location, Fname, Price, Trailer_video, Cast, Director, Release_date, Run_time, Language, Overview);
                         film3.add(category1);
                     }
 

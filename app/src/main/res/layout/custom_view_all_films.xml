@@ -26,6 +26,7 @@
             <ImageView
                 android:id="@+id/film_image"
                 android:scaleType="centerCrop"
+                android:background="@color/edit_portion"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_launcher_foreground"/>

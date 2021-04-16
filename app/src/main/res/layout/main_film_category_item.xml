@@ -13,7 +13,7 @@
         android:layout_marginBottom="230dp"
         android:text="TextView"
         android:textColor="@color/Texttop"
-        android:textSize="13dp"
+        android:textSize="13.3dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
