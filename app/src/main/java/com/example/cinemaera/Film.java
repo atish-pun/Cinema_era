@@ -231,9 +231,10 @@ class Film {
     }
 
     public static class ReviewInfo {
-        public String id, reviews, RatedValue, userName;
+        public String id, reviews, userName;
+        public float RatedValue;
 
-        public ReviewInfo( String id, String reviews, String RatedValue, String userName) {
+        public ReviewInfo( String id, String reviews, float RatedValue, String userName) {
             this.id = id;
             this.reviews = reviews;
             this.RatedValue = RatedValue;
@@ -264,11 +265,11 @@ class Film {
             this.userName = userName;
         }
 
-        public String getRatedValue() {
+        public float getRatedValue() {
             return RatedValue;
         }
 
-        public void setRatedValue(String ratedValue) {
+        public void setRatedValue(float ratedValue) {
             RatedValue = ratedValue;
         }
     }

@@ -383,7 +383,7 @@ public class Film_gallery extends AppCompatActivity {
                         JSONObject obj = jsonArray.getJSONObject(i);
                         String ReviewId = obj.getString("ReviewId");
                         String reviews = obj.getString("reviews");
-                        String RatedValue = obj.getString("RatedValue");
+                        Float RatedValue = Float.valueOf(obj.getString("RatedValue"));
                         String fullName = obj.getString("fullName");
                         Film.ReviewInfo reviewInfo1 = new Film.ReviewInfo(ReviewId,reviews, RatedValue, fullName);
                         reviewInfo.add(reviewInfo1);

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,8 +60,9 @@ class Review_adapter extends RecyclerView.Adapter<Review_adapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.reviewOutput.setText(reviewInfo.get(position).getReviews());
-        holder.ratingOutput.setText(reviewInfo.get(position).getRatedValue());
+        holder.ratingOutput.setRating(reviewInfo.get(position).getRatedValue());
         holder.userName.setText(reviewInfo.get(position).getUserName());
+        holder.ratingOutput.setIsIndicator(true);
         holder.ReviewLinear.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -112,7 +114,8 @@ class Review_adapter extends RecyclerView.Adapter<Review_adapter.ViewHolder> {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        TextView reviewOutput, ratingOutput, userName;
+        RatingBar ratingOutput;
+        TextView reviewOutput, userName;
         LinearLayout ReviewLinear;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

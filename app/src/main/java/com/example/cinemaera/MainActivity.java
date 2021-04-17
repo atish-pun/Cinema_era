@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     SliderView Movie_slider;
     MainAdapter mainAdapter;
     MovieSliderAdapter movieSliderAdapter;
+    SwipeRefreshLayout MainActivityRefresh;
     List<FilmCategoryName> filmCategoryNames = new ArrayList<>();
     List<Film> films = new ArrayList<>();
     List<Film> film2 = new ArrayList<>();
@@ -54,7 +56,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
         Movie_slider = findViewById(R.id.Movie_slider);
+        MainActivityRefresh = findViewById(R.id.MainActivityRefresh);
         FilmExtract();
+        MainActivityRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                FilmExtract();
+                MainActivityRefresh.setRefreshing(false);
+
+            }
+        });
 
         ImageView imageView = findViewById(R.id.search_custom);
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
     public void FilmExtract() {
         String url = getString(R.string.server_api_url) + "home.php";
         RequestQueue queue = Volley.newRequestQueue(this);
+        filmCategoryNames.clear();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -112,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
                     JSONObject object = new JSONObject(response);
+                    movieSlider.clear();
                     JSONArray jsonArray = object.getJSONArray("Slider_movies");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject obj = jsonArray.getJSONObject(i);
@@ -145,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 try {
                     JSONObject object = new JSONObject(response);
+                    films.clear();
                         JSONArray jsonArray = object.getJSONArray("Action_movies");
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject obj = jsonArray.getJSONObject(i);
@@ -171,6 +185,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 try {
                     JSONObject object = new JSONObject(response);
+                    film2.clear();
                     JSONArray jsonArray = object.getJSONArray("Love_stories");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject obj = jsonArray.getJSONObject(i);
@@ -197,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 try {
                     JSONObject object = new JSONObject(response);
+                    film3.clear();
                     JSONArray jsonArray = object.getJSONArray("Horror_movies");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject obj = jsonArray.getJSONObject(i);
