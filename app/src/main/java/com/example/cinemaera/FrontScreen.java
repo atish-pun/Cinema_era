@@ -78,6 +78,7 @@ public class FrontScreen extends AppCompatActivity {
                     catch (Exception e){ e.printStackTrace(); }
                 }
                 };
-            }
+            thread.start();
+        }
         }
     }

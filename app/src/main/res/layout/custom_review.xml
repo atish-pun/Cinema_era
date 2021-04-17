@@ -26,7 +26,7 @@
             android:layout_width="1.4dp"
             android:layout_height="11.2dp"
             android:layout_marginStart="6dp"
-            android:layout_marginTop="4.7dp"
+            android:layout_marginTop="4.5dp"
             android:layout_marginEnd="5dp"
             android:background="@color/filmname"
             />
@@ -34,7 +34,7 @@
             android:id="@+id/Rates"
             android:scaleX=".35"
             android:scaleY=".35"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="1.9dp"
             android:transformPivotX="0dp"
             android:transformPivotY="0dp"
             android:layout_width="wrap_content"

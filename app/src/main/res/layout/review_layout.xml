@@ -1,45 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="#FCFCFC"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:text="Rate Cinema era"
-        android:textSize="26dp"/>
+        android:layout_marginTop="7dp"
+        android:textColor="@color/Texttop"
+        android:text="Rate the Movie!"
+        android:fontFamily="serif"
+        android:textStyle="bold"
+        android:textSize="14dp"/>
+    <TextView
+        android:layout_gravity="center"
+        android:layout_marginTop="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/filmname"
+        android:textStyle="bold"
+        android:text="Help your friend to know"/>
 
     <TextView
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/filmname"
+        android:textStyle="bold"
+        android:text="your satisfaction from this movie"/>
+
+    <View
+        android:id="@+id/LineView"
+        android:layout_width="200dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/viewline"
+        android:layout_gravity="center" />
+    <TextView
+        android:layout_marginTop="13dp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose your Rate"/>
+
+    <TextView
+        android:visibility="gone"
         android:id="@+id/ratevalue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="26dp"/>
     <RatingBar
+        android:scaleX=".7"
+        android:scaleY=".7"
+        android:layout_gravity="center"
         android:id="@+id/review_ratingbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <EditText
+        android:layout_gravity="center"
         android:id="@+id/review_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Type your review"
-        android:textSize="19dp"/>
+        android:background="@drawable/ratingcornerradius"
+        android:layout_width="220dp"
+        android:layout_height="100dp"
+        android:inputType="textMultiLine"
+        android:maxLines="4"
+        android:lines="4"
+        android:hint="Lets hear your review"
+        android:textSize="12dp"/>
     <LinearLayout
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_marginBottom="15dp"
         android:layout_height="wrap_content">
     <Button
         android:id="@+id/cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="cancle"/>
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:textColor="@color/action_menu_color"
+        android:background="@drawable/account"
+        android:textAllCaps="false"
+        android:layout_width="80dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="3dp"
+        android:textSize="15sp"
+        android:layout_height="30dp"
+        android:text="cancel"/>
 
         <Button
             android:id="@+id/submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
+            android:textAllCaps="false"
+            android:layout_width="80dp"
+            android:textSize="15sp"
+            android:layout_marginLeft="20dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:textColor="@color/action_menu_color"
+            android:background="@drawable/account"
+            android:layout_height="30dp"
             android:text="submit" />
 
     </LinearLayout>

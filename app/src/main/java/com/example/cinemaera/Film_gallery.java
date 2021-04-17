@@ -338,35 +338,43 @@ public class Film_gallery extends AppCompatActivity {
                     String ReviewOutput;
                     TotalRatings = ratevalue.getText().toString();
                     ReviewOutput = review_txt.getText().toString();
-                    String url = getString(R.string.server_api_url) + "add-reviews.php?uid=" + Util.SESSION_USERID + "&pid=" + Movie_id +"&otoken=" + Util.FAVOURITE_TOKEN + "&reviews=" + ReviewOutput + "&ratedValue=" + TotalRatings;
-                    RequestQueue queue = Volley.newRequestQueue(Film_gallery.this);
-                    StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            try {
-                                JSONObject object = new JSONObject(response);
-                                if (object.getInt("status") == 200) {
-                                    Toast.makeText(Film_gallery.this, object.getString("content"), Toast.LENGTH_SHORT).show();
+                    if (!TotalRatings.equals("") || !ReviewOutput.equals("")){
+                        if(Util.FAVOURITE_TOKEN == null || Util.FAVOURITE_TOKEN.equals("")) Util.GenerateFavouriteToken(Film_gallery.this);
+                        String url = getString(R.string.server_api_url) + "add-reviews.php?uid=" + Util.SESSION_USERID + "&pid=" + Movie_id +"&otoken=" + Util.FAVOURITE_TOKEN + "&reviews=" + ReviewOutput + "&ratedValue=" + TotalRatings;
+                        RequestQueue queue = Volley.newRequestQueue(Film_gallery.this);
+                        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject object = new JSONObject(response);
+                                    if (object.getInt("status") == 200) {
+                                        Toast.makeText(Film_gallery.this, object.getString("content"), Toast.LENGTH_SHORT).show();
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
                             }
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(Film_gallery.this, error.toString(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-                    queue.add(stringRequest);
-                    review_txt.setText("");
-                    ratebar.setRating(0);
-                    ratevalue.setText("");
-                    alertDialog.dismiss();
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(Film_gallery.this, error.toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                        queue.add(stringRequest);
+                        review_txt.setText("");
+                        ratebar.setRating(0);
+                        ratevalue.setText("");
+                        alertDialog.dismiss();
+
+                    }
+                    else {
+                        Toast.makeText(Film_gallery.this,"Please fill up at least one of the field and submit",Toast.LENGTH_SHORT).show();
+                    }
 
                 }
             });
+
             alertDialog.show();
         }
     public  void ExtractReviews(){
