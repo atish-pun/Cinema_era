@@ -6,6 +6,14 @@
     android:background="@color/colorPrimaryDark"
     android:layout_height="match_parent">
 
+        <ProgressBar
+            android:id="@+id/CustomFilmProgressBar"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:indeterminate="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"/>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/MainActivityRefresh"
         android:layout_above="@id/buttom_nav"
@@ -26,16 +34,17 @@
             
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
+        app:cardElevation="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginStart="13dp"
         android:layout_marginEnd="13dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="9dp">
+
         <com.smarteist.autoimageslider.SliderView
             android:layout_below="@+id/customtoolbar"
             android:layout_width="match_parent"
-            android:background="@color/edit_portion"
-            android:layout_height="155dp"
+            android:layout_height="151dp"
             android:id="@+id/Movie_slider"
             android:visibility="gone"
             app:sliderScrollTimeInSec="4"
@@ -45,7 +54,7 @@
             app:sliderIndicatorRadius="1.77dp"
             app:sliderIndicatorSelectedColor="#636363"
             app:sliderIndicatorUnselectedColor="#F3FFFFFF"
-            app:sliderAnimationDuration="2700"
+            app:sliderAnimationDuration="1950"
             app:sliderIndicatorOrientation="horizontal"
             app:sliderIndicatorGravity="center_horizontal|bottom" />
 
@@ -55,7 +64,7 @@
         android:id="@+id/recycle_view_main"
         android:layout_width="match_parent"
         android:layout_height="669dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_below="@+id/Movie_slider"

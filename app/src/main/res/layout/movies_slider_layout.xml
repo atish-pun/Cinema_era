@@ -2,8 +2,16 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/colorPrimaryDark"
     android:layout_height="match_parent">
 
+    <ProgressBar
+        android:id="@+id/CustomFilmProgressBar"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:indeterminate="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"/>
 
     <ImageView
         android:id="@+id/MoviesCustomSlider"
@@ -13,7 +21,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="103dp"
+        android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/gradient" />
 

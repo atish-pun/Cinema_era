@@ -32,8 +32,8 @@
             />
         <RatingBar
             android:id="@+id/Rates"
-            android:scaleX=".35"
-            android:scaleY=".35"
+            android:scaleX=".32"
+            android:scaleY=".32"
             android:layout_marginTop="1.9dp"
             android:transformPivotX="0dp"
             android:transformPivotY="0dp"

@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView main_recyclerView;
     SliderView Movie_slider;
     MainAdapter mainAdapter;
+    ProgressBar CustomFilmProgressBar;
     MovieSliderAdapter movieSliderAdapter;
     SwipeRefreshLayout MainActivityRefresh;
     List<FilmCategoryName> filmCategoryNames = new ArrayList<>();
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         Movie_slider = findViewById(R.id.Movie_slider);
         MainActivityRefresh = findViewById(R.id.MainActivityRefresh);
+        CustomFilmProgressBar = findViewById(R.id.CustomFilmProgressBar);
         FilmExtract();
         MainActivityRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -121,6 +125,8 @@ public class MainActivity extends AppCompatActivity {
                 filmCategoryNames.add(new FilmCategoryName(2,"Love stories",film2));
                 filmCategoryNames.add(new FilmCategoryName(3,"Horror movies",film3));
                 setMain_recyclerView(filmCategoryNames);
+                CustomFilmProgressBar.setVisibility(View.GONE);
+
 
                 try {
                     JSONObject object = new JSONObject(response);

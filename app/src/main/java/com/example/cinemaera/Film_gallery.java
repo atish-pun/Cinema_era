@@ -63,6 +63,7 @@ public class Film_gallery extends AppCompatActivity {
     TextView filmTxt, startTime, endTime, cast, director, releaseDate, runtime, language,overview,Price,AvgRatings;
     Button frontTrailerPlay, innerTrailerPlay,fav;
     SeekBar seekBar;
+    View TrailerBarLoad;
     float ratingValue;
     Boolean fullscreen = false;
     String TotalRatings, Film_name,MoviePoster,Trailer_videos,Movie_id, Costs;
@@ -96,6 +97,7 @@ public class Film_gallery extends AppCompatActivity {
         overview = findViewById(R.id.OverviewTxt);
         fav = findViewById(R.id.favourite);
         Price = findViewById(R.id.price);
+        TrailerBarLoad = findViewById(R.id.TrailerBarLoad);
         AvgRatings =  findViewById(R.id.AvgRatings);
         FilmGalleryRefresh = findViewById(R.id.FilmGalleryRefresh);
         MoviePoster = getIntent().getStringExtra("Film images");
@@ -194,15 +196,13 @@ public class Film_gallery extends AppCompatActivity {
         frontTrailerPlay.setVisibility(view.INVISIBLE);
         videoConstraint.setVisibility(View.VISIBLE);
         trailer_video.setVisibility(View.VISIBLE);
-        final ProgressDialog progressDialog = new ProgressDialog(Film_gallery.this);
-        progressDialog.setMessage("Please wait a moment for Trailer of "+Film_name+" video....");
-        progressDialog.show();
         trailer_video.start();
         trailer_video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
-                progressDialog.dismiss();
+                TrailerBarLoad.setVisibility(View.GONE);
                 seekBar.setMax(trailer_video.getDuration());
+
             }
         });
 
@@ -216,10 +216,10 @@ public class Film_gallery extends AppCompatActivity {
         trailer_video.setOnErrorListener(new MediaPlayer.OnErrorListener() {
             @Override
             public boolean onError(MediaPlayer mp, int what, int extra) {
-                progressDialog.dismiss();
+                TrailerBarLoad.setVisibility(View.GONE);
                 AlertDialog.Builder alert = new AlertDialog.Builder(Film_gallery.this,R.style.Alert);
                 alert.setTitle("Can't play Video");
-                alert.setMessage("Unable to launch trailer of "+Film_name+" video because of its absence in server!!");
+                alert.setMessage("Trailer video of "+Film_name+" isn't available!!");
                 alert.setPositiveButton("OK",null);
                 AlertDialog alertDialog = alert.create();
                 alertDialog.setCanceledOnTouchOutside(false);

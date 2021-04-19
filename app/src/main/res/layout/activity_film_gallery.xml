@@ -11,536 +11,553 @@
             android:id="@+id/FilmGalleryRefresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="none"
-            tools:ignore="MissingConstraints">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/videoConstrant"
-                    android:visibility="gone"
-                    android:background="@color/colorPrimaryDark">
-
-                <VideoView
-                    android:id="@+id/trailer_video"
-                    android:layout_width="match_parent"
-                    android:layout_height="240dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
-
-                <SeekBar
-                    android:id="@+id/seekBar"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:foregroundGravity="center"
-                    app:layout_constraintBottom_toBottomOf="@+id/trailer_video"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/trailer_video"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.88" />
-
-                <Button
-                    android:id="@+id/innerTrialerplay"
-                    android:layout_width="43dp"
-                    android:layout_height="33dp"
-                    android:gravity="center"
-                    android:onClick="innerTrialerplay"
-                    android:background="@drawable/ic_pause"
-                    app:layout_constraintBottom_toBottomOf="@+id/trailer_video"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/trailer_video"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1" />
-
-                        <TextView
-                            android:id="@+id/startTime"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="00:00"
-                            android:textColor="#FFFFFF"
-                            android:gravity="left"
-                            app:layout_constraintBottom_toBottomOf="@+id/trailer_video"
-                            app:layout_constraintEnd_toStartOf="@+id/seekBar"
-                            app:layout_constraintStart_toStartOf="@+id/parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.88" />
-
-                        <TextView
-                            android:id="@+id/endTime"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="00:00"
-                            android:textColor="#FFFFFF"
-                            app:layout_constraintBottom_toBottomOf="@+id/trailer_video"
-                            app:layout_constraintEnd_toEndOf="@+id/parent"
-                            app:layout_constraintHorizontal_bias="0.333"
-                            app:layout_constraintStart_toEndOf="@+id/seekBar"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.88"
-                            tools:ignore="UnknownId" />
-
-                        <ImageView
-                            android:id="@+id/backTrailer"
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
-                            android:background="@color/colorPrimaryDark"
-                            android:onClick="Backtrailer"
-                            app:layout_constraintStart_toStartOf="@+id/trailer_video"
-                            app:layout_constraintTop_toTopOf="@+id/trailer_video"
-                            app:srcCompat="@drawable/ic_crosstrailer" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                        <Button
-                            android:id="@+id/Review"
-                            android:layout_width="73dp"
-                            android:layout_height="24dp"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="144dp"
-                            android:paddingLeft="6dp"
-                            android:background="@drawable/review_backportion"
-                            android:drawableStart="@drawable/ic_review"
-                            android:onClick="review_dialoge"
-                            android:text="Review"
-                            android:textAllCaps="false"
-                            android:textColor="@color/film_detailsTXT"
-                            android:textSize="10dp"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toEndOf="@+id/card_inner"
-                            app:layout_constraintTop_toBottomOf="@+id/trailer_img" />
-
-                        <Button
-                            android:id="@+id/favourite"
-                            android:layout_width="73dp"
-                            android:layout_height="24dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="144dp"
-                            android:background="@drawable/review_backportion"
-                            android:drawableStart="@drawable/ic_favourite"
-                            android:text="Favourite"
-                            android:paddingLeft="6dp"
-                            android:textAllCaps="false"
-                            android:onClick="FavouriteBtn"
-                            android:textColor="@color/film_detailsTXT"
-                            android:textSize="10dp"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toEndOf="@+id/Review"
-                            app:layout_constraintTop_toBottomOf="@+id/trailer_img" />
-
-                        <Button
-                            android:id="@+id/fronttrailerplay"
-                            android:layout_width="75dp"
-                            android:layout_height="30dp"
-                            android:background="@drawable/videoplayericon"
-                            android:drawableLeft="@drawable/ic_play"
-                            android:drawablePadding="-9dp"
-                            android:fontFamily="@font/lateef"
-                            android:gravity="center"
-                            android:onClick="fronttrailerplay"
-                            android:text="Trailer"
-                            android:textAllCaps="false"
-                            android:textColor="#FFFFFF"
-                            android:textSize="16dp"
-                            app:layout_constraintBottom_toBottomOf="@+id/trailer_img"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="@+id/trailer_img"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.496" />
-
-                        <ImageView
-                            android:id="@+id/trailer_img"
-                            android:layout_width="match_parent"
-                            android:layout_height="160dp"
-                            android:foregroundGravity="center"
-                            android:scaleType="centerCrop"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/trailer" />
-
-                        <ImageView
-                            android:id="@+id/gradientimg"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            app:layout_constraintBottom_toBottomOf="@+id/trailer_img"
-                            app:layout_constraintEnd_toEndOf="@+id/trailer_img"
-                            app:layout_constraintHorizontal_bias="1.0"
-                            app:layout_constraintStart_toStartOf="@+id/trailer_img"
-                            app:layout_constraintTop_toTopOf="@+id/trailer_img"
-                            app:layout_constraintVertical_bias="1.0"
-                            app:srcCompat="@drawable/gradient" />
-
-                        <TextView
-                            android:id="@+id/inner_Fname"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="4dp"
-                            android:fontFamily="serif"
-                            android:text="Film title"
-                            android:textColor="@color/film_detailsTXT"
-                            android:textSize="17sp"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.019"
-                            app:layout_constraintStart_toEndOf="@+id/card_inner"
-                            app:layout_constraintTop_toBottomOf="@+id/trailer_img"
-                            tools:ignore="MissingConstraints" />
-
+                    android:scrollbars="none"
+                    tools:ignore="MissingConstraints">
 
                         <LinearLayout
-                            android:layout_width="150dp"
-                            android:layout_height="112dp"
-                            android:orientation="horizontal"
-                            app:layout_constraintStart_toEndOf="@+id/card_inner"
-                            app:layout_constraintTop_toBottomOf="@+id/inner_Fname">
-                                <TextView
-                                    android:id="@+id/price"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="7dp"
-                                    android:layout_marginTop="2dp"
-                                    android:layout_marginEnd="5dp"
-                                    android:fontFamily="serif"
-                                    android:text="Price"
-                                    android:textColor="@color/film_detailsTXT"
-                                    android:textSize="14.2sp"
-                                    app:layout_constraintEnd_toStartOf="@+id/view"
-                                    app:layout_constraintStart_toEndOf="@+id/card_inner"
-                                    app:layout_constraintTop_toBottomOf="@+id/inner_Fname"
-                                    tools:ignore="MissingConstraints" />
-
-                                <View
-                                    android:id="@+id/view"
-                                    android:layout_width="1.4dp"
-                                    android:layout_height="11.2dp"
-                                    android:layout_marginStart="4dp"
-                                    android:layout_marginTop="4.9dp"
-                                    android:layout_marginEnd="5dp"
-                                    android:background="@color/film_detailsTXT"
-                                    />
-
-                                <ImageView
-                                    android:id="@+id/imageView2"
-                                    android:layout_width="18dp"
-                                    android:layout_height="18dp"
-                                    android:layout_marginStart="1.1dp"
-                                    android:layout_marginTop="1.1dp"
-                                    android:layout_marginEnd="5dp"
-                                    android:layout_marginBottom="88dp"
-                                    app:layout_constraintBottom_toTopOf="@+id/Review"
-                                    app:layout_constraintTop_toBottomOf="@+id/inner_Fname"
-                                    app:layout_constraintVertical_bias="0.125"
-                                    app:srcCompat="@drawable/ic_ratings" />
-
-                                <TextView
-                                    android:id="@+id/AvgRatings"
-                                    android:layout_width="51dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="-2dp"
-                                    android:layout_marginTop="2.5dp"
-                                    android:layout_marginEnd="176dp"
-                                    android:layout_marginBottom="93dp"
-                                    android:fontFamily="serif"
-                                    android:text="0"
-                                    android:textColor="@color/film_detailsTXT"
-                                    android:textSize="14.2sp" />
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/textView2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="10dp"
-                            android:fontFamily="serif"
-                            android:text="Cast:"
-                            android:textColor="@color/Texttop"
-                            android:textSize="15.7sp"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/viewline" />
-
-                        <TextView
-                            android:id="@+id/castTxt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
-                            android:paddingRight="46dp"
-                            android:layout_marginTop="11dp"
-                            android:fontFamily="serif"
-                            android:text="Cast"
-                            android:lineSpacingExtra="3dp"
-                            android:textColor="@color/filmname"
-                            android:textSize="15sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toEndOf="@+id/textView2"
-                            app:layout_constraintTop_toBottomOf="@+id/viewline" />
-
-                        <TextView
-                            android:id="@+id/textView3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="4dp"
-                            android:fontFamily="serif"
-                            android:text="Director:"
-                            android:textColor="@color/Texttop"
-                            android:textSize="15.7sp"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/castTxt" />
-
-                        <TextView
-                            android:id="@+id/directorTxt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
-                            android:layout_marginTop="5dp"
-                            android:fontFamily="serif"
-                            android:text="Director"
-                            android:textColor="@color/filmname"
-                            android:textSize="15sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView3"
-                            app:layout_constraintTop_toBottomOf="@+id/castTxt" />
-
-                        <TextView
-                            android:id="@+id/textView4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="4dp"
-                            android:fontFamily="serif"
-                            android:text="Released Date:"
-                            android:textColor="@color/Texttop"
-                            android:textSize="15.7sp"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-                        <TextView
-                            android:id="@+id/dateTxt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
-                            android:layout_marginTop="5dp"
-                            android:fontFamily="serif"
-                            android:text="Released Date"
-                            android:textColor="@color/filmname"
-                            android:textSize="15sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView4"
-                            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-                        <TextView
-                            android:id="@+id/textView5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="4dp"
-                            android:fontFamily="serif"
-                            android:text="Run time:"
-                            android:textColor="@color/Texttop"
-                            android:textSize="15.7sp"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-                        <TextView
-                            android:id="@+id/timeTxt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
-                            android:layout_marginTop="5dp"
-                            android:fontFamily="serif"
-                            android:text="Run time"
-                            android:textColor="@color/filmname"
-                            android:textSize="15sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView5"
-                            app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-                        <TextView
-                            android:id="@+id/textView6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="4dp"
-                            android:fontFamily="serif"
-                            android:text="Language:"
-                            android:textColor="@color/Texttop"
-                            android:textSize="15.7sp"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-                        <TextView
-                            android:id="@+id/languageTxt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
-                            android:layout_marginTop="5dp"
-                            android:fontFamily="serif"
-                            android:text="Language"
-                            android:textColor="@color/filmname"
-                            android:textSize="15sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView6"
-                            app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-                        <TextView
-                            android:id="@+id/textView7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="4dp"
-                            android:fontFamily="serif"
-                            android:text="Overview:"
-                            android:textColor="@color/Texttop"
-                            android:textSize="15.7sp"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-                        <TextView
-                            android:id="@+id/OverviewTxt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginEnd="14dp"
-                            android:fontFamily="serif"
-                            android:justificationMode="inter_word"
-                            android:lineSpacingExtra="3dp"
-                            android:text="Overview"
-                            android:textColor="@color/filmname"
-                            android:textSize="15sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-                        <TextView
-                            android:id="@+id/detailTxt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="10dp"
-                            android:fontFamily="serif"
-                            android:text="Details"
-                            android:textColor="@color/film_detailsTXT"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/Review" />
-
-                        <TextView
-                            android:id="@+id/reviewTxt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="7dp"
-                            android:fontFamily="serif"
-                            android:text="Reviews"
-                            android:textColor="@color/film_detailsTXT"
-                            android:textSize="17.5sp"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/OverviewTxt" />
-
-                        <View
-                            android:id="@+id/viewline"
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginStart="77dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginEnd="8dp"
-                            android:background="@color/viewline"
-                            android:foregroundGravity="center"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/detailTxt"
-                            app:layout_constraintTop_toBottomOf="@+id/Review" />
-
-                        <View
-                            android:id="@+id/viewline1"
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginStart="77dp"
-                            android:layout_marginTop="17dp"
-                            android:layout_marginEnd="8dp"
-                            android:background="@color/viewline"
-                            android:foregroundGravity="center"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/reviewTxt"
-                            app:layout_constraintTop_toBottomOf="@+id/OverviewTxt" />
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/card_inner"
-                            android:layout_width="96dp"
-                            android:layout_height="165.5dp"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="5dp"
-                            app:cardCornerRadius="9dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/trailer_img">
-
-                                <ImageView
-                                    android:id="@+id/inner_Fimg"
-                                    android:background="@color/edit_portion"
+                            android:orientation="vertical">
+                                <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/ic_launcher_foreground"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/trailer_img" />
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/videoConstrant"
+                                    android:visibility="gone"
+                                    android:background="@color/colorPrimaryDark">
+                                        <RelativeLayout
+                                            android:id="@+id/TrailerFilmProgressBar"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
 
-                                <Button
-                                    android:id="@+id/WatchBtn"
-                                    android:layout_width="64dp"
-                                    android:layout_height="24.4dp"
-                                    android:layout_gravity="center"
-                                    android:background="@drawable/videoplayericon"
-                                    android:fontFamily="@font/lateef"
-                                    android:text="Watch"
-                                    android:drawableLeft="@drawable/ic_play"
-                                    android:drawablePadding="-9dp"
-                                   android:onClick="BuyOrWatchFilms"
-                                    android:textAllCaps="false"
-                                    android:textColor="#ffffff"
-                                    android:textSize="16dp" />
-                        </androidx.cardview.widget.CardView>
+                                            <VideoView
+                                                android:id="@+id/trailer_video"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="240dp"
+                                                android:layout_alignParentStart="true"
+                                                android:layout_alignParentEnd="true"
+                                                android:layout_marginStart="0dp"
+                                                android:layout_marginEnd="0dp"
+                                                app:layout_constraintEnd_toEndOf="parent"
+                                                app:layout_constraintHorizontal_bias="0.0"
+                                                app:layout_constraintStart_toStartOf="parent"
+                                                app:layout_constraintTop_toTopOf="parent"
+                                                tools:ignore="MissingConstraints" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp">
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/ReviewRecycler"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/reviewTxt" />
+                                                <ProgressBar
+                                                    android:id="@+id/TrailerBarLoad"
+                                                    android:layout_width="30dp"
+                                                    android:layout_height="30dp"
+                                                    android:indeterminate="true"
+                                                    android:layout_centerHorizontal="true"
+                                                    android:layout_centerInParent="true"/>
+                                        </RelativeLayout>
 
-                </LinearLayout>
-        </LinearLayout>
-        </ScrollView>
+                                        <SeekBar
+                                            android:id="@+id/seekBar"
+                                            android:layout_width="250dp"
+                                            android:layout_height="wrap_content"
+                                            android:foregroundGravity="center"
+                                            app:layout_constraintBottom_toBottomOf="@+id/TrailerFilmProgressBar"
+                                            app:layout_constraintEnd_toEndOf="parent"
+                                            app:layout_constraintStart_toStartOf="@+id/TrailerFilmProgressBar"
+                                            app:layout_constraintTop_toTopOf="parent"
+                                            app:layout_constraintVertical_bias="0.88" />
+
+                                        <Button
+                                            android:id="@+id/innerTrialerplay"
+                                            android:layout_width="43dp"
+                                            android:layout_height="33dp"
+                                            android:gravity="center"
+                                            android:onClick="innerTrialerplay"
+                                            android:background="@drawable/ic_pause"
+                                            app:layout_constraintBottom_toBottomOf="@+id/TrailerFilmProgressBar"
+                                            app:layout_constraintEnd_toEndOf="parent"
+                                            app:layout_constraintStart_toStartOf="@+id/TrailerFilmProgressBar"
+                                            app:layout_constraintTop_toTopOf="parent"
+                                            app:layout_constraintVertical_bias="1" />
+
+                                        <TextView
+                                            android:id="@+id/startTime"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="00:00"
+                                            android:textColor="#FFFFFF"
+                                            android:gravity="left"
+                                            app:layout_constraintBottom_toBottomOf="@+id/TrailerFilmProgressBar"
+                                            app:layout_constraintEnd_toStartOf="@+id/seekBar"
+                                            app:layout_constraintStart_toStartOf="@+id/parent"
+                                            app:layout_constraintTop_toTopOf="parent"
+                                            app:layout_constraintVertical_bias="0.88" />
+
+                                        <TextView
+                                            android:id="@+id/endTime"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="right"
+                                            android:text="00:00"
+                                            android:textColor="#FFFFFF"
+                                            app:layout_constraintBottom_toBottomOf="@+id/TrailerFilmProgressBar"
+                                            app:layout_constraintEnd_toEndOf="@+id/parent"
+                                            app:layout_constraintHorizontal_bias="0.333"
+                                            app:layout_constraintStart_toEndOf="@+id/seekBar"
+                                            app:layout_constraintTop_toTopOf="parent"
+                                            app:layout_constraintVertical_bias="0.88"
+                                            tools:ignore="UnknownId" />
+
+                                        <ImageView
+                                            android:id="@+id/backTrailer"
+                                            android:layout_width="28dp"
+                                            android:layout_height="28dp"
+                                            android:background="@color/colorPrimaryDark"
+                                            android:onClick="Backtrailer"
+                                            app:layout_constraintStart_toStartOf="@+id/TrailerFilmProgressBar"
+                                            app:layout_constraintTop_toTopOf="@+id/TrailerFilmProgressBar"
+                                            app:srcCompat="@drawable/ic_crosstrailer" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                        <Button
+                                            android:id="@+id/Review"
+                                            android:layout_width="73dp"
+                                            android:layout_height="24dp"
+                                            android:layout_marginStart="8dp"
+                                            android:layout_marginTop="131dp"
+                                            android:paddingLeft="6dp"
+                                            android:background="@drawable/review_backportion"
+                                            android:drawableStart="@drawable/ic_review"
+                                            android:onClick="review_dialoge"
+                                            android:text="Review"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/film_detailsTXT"
+                                            android:textSize="10dp"
+                                            android:textStyle="bold"
+                                            app:layout_constraintStart_toEndOf="@+id/card_inner"
+                                            app:layout_constraintTop_toBottomOf="@+id/trailer_img" />
+
+                                        <Button
+                                            android:id="@+id/favourite"
+                                            android:layout_width="73dp"
+                                            android:layout_height="24dp"
+                                            android:layout_marginStart="10dp"
+                                            android:layout_marginTop="131dp"
+                                            android:background="@drawable/review_backportion"
+                                            android:drawableStart="@drawable/ic_favourite"
+                                            android:text="Favourite"
+                                            android:paddingLeft="6dp"
+                                            android:textAllCaps="false"
+                                            android:onClick="FavouriteBtn"
+                                            android:textColor="@color/film_detailsTXT"
+                                            android:textSize="10dp"
+                                            android:textStyle="bold"
+                                            app:layout_constraintStart_toEndOf="@+id/Review"
+                                            app:layout_constraintTop_toBottomOf="@+id/trailer_img" />
+
+                                        <Button
+                                            android:id="@+id/fronttrailerplay"
+                                            android:layout_width="75dp"
+                                            android:layout_height="30dp"
+                                            android:background="@drawable/videoplayericon"
+                                            android:drawableLeft="@drawable/ic_play"
+                                            android:drawablePadding="-9dp"
+                                            android:fontFamily="@font/lateef"
+                                            android:gravity="center"
+                                            android:onClick="fronttrailerplay"
+                                            android:text="Trailer"
+                                            android:textAllCaps="false"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="16dp"
+                                            app:layout_constraintBottom_toBottomOf="@+id/trailer_img"
+                                            app:layout_constraintEnd_toEndOf="parent"
+                                            app:layout_constraintStart_toStartOf="@+id/trailer_img"
+                                            app:layout_constraintTop_toTopOf="parent"
+                                            app:layout_constraintVertical_bias="0.496" />
+
+                                        <ImageView
+                                            android:id="@+id/trailer_img"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="160dp"
+                                            android:foregroundGravity="center"
+                                            android:scaleType="centerCrop"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toTopOf="parent"
+                                            app:srcCompat="@drawable/trailer" />
+
+                                        <ImageView
+                                            android:id="@+id/gradientimg"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            app:layout_constraintBottom_toBottomOf="@+id/trailer_img"
+                                            app:layout_constraintEnd_toEndOf="@+id/trailer_img"
+                                            app:layout_constraintHorizontal_bias="1.0"
+                                            app:layout_constraintStart_toStartOf="@+id/trailer_img"
+                                            app:layout_constraintTop_toTopOf="@+id/trailer_img"
+                                            app:layout_constraintVertical_bias="1.0"
+                                            app:srcCompat="@drawable/gradient" />
+
+                                        <TextView
+                                            android:id="@+id/inner_Fname"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="5dp"
+                                            android:layout_marginTop="4dp"
+                                            android:fontFamily="serif"
+                                            android:text="Film title"
+                                            android:textColor="@color/film_detailsTXT"
+                                            android:textSize="17sp"
+                                            android:textStyle="bold"
+                                            app:layout_constraintEnd_toEndOf="parent"
+                                            app:layout_constraintHorizontal_bias="0.019"
+                                            app:layout_constraintStart_toEndOf="@+id/card_inner"
+                                            app:layout_constraintTop_toBottomOf="@+id/trailer_img"
+                                            tools:ignore="MissingConstraints" />
+
+
+                                        <LinearLayout
+                                            android:layout_width="150dp"
+                                            android:layout_height="112dp"
+                                            android:orientation="horizontal"
+                                            app:layout_constraintStart_toEndOf="@+id/card_inner"
+                                            app:layout_constraintTop_toBottomOf="@+id/inner_Fname">
+                                                <TextView
+                                                    android:id="@+id/price"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginStart="7dp"
+                                                    android:layout_marginTop="2dp"
+                                                    android:layout_marginEnd="5dp"
+                                                    android:fontFamily="serif"
+                                                    android:text="Price"
+                                                    android:textColor="@color/film_detailsTXT"
+                                                    android:textSize="14.2sp"
+                                                    app:layout_constraintEnd_toStartOf="@+id/view"
+                                                    app:layout_constraintStart_toEndOf="@+id/card_inner"
+                                                    app:layout_constraintTop_toBottomOf="@+id/inner_Fname"
+                                                    tools:ignore="MissingConstraints" />
+
+                                                <View
+                                                    android:id="@+id/view"
+                                                    android:layout_width="1.4dp"
+                                                    android:layout_height="11.2dp"
+                                                    android:layout_marginStart="4dp"
+                                                    android:layout_marginTop="4.9dp"
+                                                    android:layout_marginEnd="5dp"
+                                                    android:background="@color/film_detailsTXT"
+                                                    />
+
+                                                <ImageView
+                                                    android:id="@+id/imageView2"
+                                                    android:layout_width="18dp"
+                                                    android:layout_height="18dp"
+                                                    android:layout_marginStart="1.1dp"
+                                                    android:layout_marginTop="1.1dp"
+                                                    android:layout_marginEnd="5dp"
+                                                    android:layout_marginBottom="88dp"
+                                                    app:layout_constraintBottom_toTopOf="@+id/Review"
+                                                    app:layout_constraintTop_toBottomOf="@+id/inner_Fname"
+                                                    app:layout_constraintVertical_bias="0.125"
+                                                    app:srcCompat="@drawable/ic_ratings" />
+
+                                                <TextView
+                                                    android:id="@+id/AvgRatings"
+                                                    android:layout_width="51dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginStart="-2dp"
+                                                    android:layout_marginTop="2.5dp"
+                                                    android:layout_marginEnd="176dp"
+                                                    android:layout_marginBottom="93dp"
+                                                    android:fontFamily="serif"
+                                                    android:text="0"
+                                                    android:textColor="@color/film_detailsTXT"
+                                                    android:textSize="14.2sp" />
+
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:id="@+id/textView2"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="15dp"
+                                            android:layout_marginTop="10dp"
+                                            android:fontFamily="serif"
+                                            android:text="Cast:"
+                                            android:textColor="@color/Texttop"
+                                            android:textSize="15.7sp"
+                                            android:textStyle="bold"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toBottomOf="@+id/viewline" />
+
+                                        <TextView
+                                            android:id="@+id/castTxt"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="4dp"
+                                            android:paddingRight="46dp"
+                                            android:layout_marginTop="11dp"
+                                            android:fontFamily="serif"
+                                            android:text="Cast"
+                                            android:lineSpacingExtra="3dp"
+                                            android:textColor="@color/filmname"
+                                            android:textSize="15sp"
+                                            app:layout_constraintEnd_toEndOf="parent"
+                                            app:layout_constraintHorizontal_bias="0.0"
+                                            app:layout_constraintStart_toEndOf="@+id/textView2"
+                                            app:layout_constraintTop_toBottomOf="@+id/viewline" />
+
+                                        <TextView
+                                            android:id="@+id/textView3"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="15dp"
+                                            android:layout_marginTop="4dp"
+                                            android:fontFamily="serif"
+                                            android:text="Director:"
+                                            android:textColor="@color/Texttop"
+                                            android:textSize="15.7sp"
+                                            android:textStyle="bold"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toBottomOf="@+id/castTxt" />
+
+                                        <TextView
+                                            android:id="@+id/directorTxt"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="4dp"
+                                            android:layout_marginTop="5dp"
+                                            android:fontFamily="serif"
+                                            android:text="Director"
+                                            android:textColor="@color/filmname"
+                                            android:textSize="15sp"
+                                            app:layout_constraintStart_toEndOf="@+id/textView3"
+                                            app:layout_constraintTop_toBottomOf="@+id/castTxt" />
+
+                                        <TextView
+                                            android:id="@+id/textView4"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="15dp"
+                                            android:layout_marginTop="4dp"
+                                            android:fontFamily="serif"
+                                            android:text="Released Date:"
+                                            android:textColor="@color/Texttop"
+                                            android:textSize="15.7sp"
+                                            android:textStyle="bold"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+                                        <TextView
+                                            android:id="@+id/dateTxt"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="4dp"
+                                            android:layout_marginTop="5dp"
+                                            android:fontFamily="serif"
+                                            android:text="Released Date"
+                                            android:textColor="@color/filmname"
+                                            android:textSize="15sp"
+                                            app:layout_constraintStart_toEndOf="@+id/textView4"
+                                            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+                                        <TextView
+                                            android:id="@+id/textView5"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="15dp"
+                                            android:layout_marginTop="4dp"
+                                            android:fontFamily="serif"
+                                            android:text="Run time:"
+                                            android:textColor="@color/Texttop"
+                                            android:textSize="15.7sp"
+                                            android:textStyle="bold"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+                                        <TextView
+                                            android:id="@+id/timeTxt"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="4dp"
+                                            android:layout_marginTop="5dp"
+                                            android:fontFamily="serif"
+                                            android:text="Run time"
+                                            android:textColor="@color/filmname"
+                                            android:textSize="15sp"
+                                            app:layout_constraintStart_toEndOf="@+id/textView5"
+                                            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+                                        <TextView
+                                            android:id="@+id/textView6"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="15dp"
+                                            android:layout_marginTop="4dp"
+                                            android:fontFamily="serif"
+                                            android:text="Language:"
+                                            android:textColor="@color/Texttop"
+                                            android:textSize="15.7sp"
+                                            android:textStyle="bold"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+                                        <TextView
+                                            android:id="@+id/languageTxt"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="4dp"
+                                            android:layout_marginTop="5dp"
+                                            android:fontFamily="serif"
+                                            android:text="Language"
+                                            android:textColor="@color/filmname"
+                                            android:textSize="15sp"
+                                            app:layout_constraintStart_toEndOf="@+id/textView6"
+                                            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+                                        <TextView
+                                            android:id="@+id/textView7"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="15dp"
+                                            android:layout_marginTop="4dp"
+                                            android:fontFamily="serif"
+                                            android:text="Overview:"
+                                            android:textColor="@color/Texttop"
+                                            android:textSize="15.7sp"
+                                            android:textStyle="bold"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+                                        <TextView
+                                            android:id="@+id/OverviewTxt"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="15dp"
+                                            android:layout_marginEnd="14dp"
+                                            android:fontFamily="serif"
+                                            android:justificationMode="inter_word"
+                                            android:lineSpacingExtra="3dp"
+                                            android:text="Overview"
+                                            android:textColor="@color/filmname"
+                                            android:textSize="15sp"
+                                            app:layout_constraintEnd_toEndOf="parent"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+                                        <TextView
+                                            android:id="@+id/detailTxt"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="15dp"
+                                            android:layout_marginTop="10dp"
+                                            android:fontFamily="serif"
+                                            android:text="Details"
+                                            android:textColor="@color/film_detailsTXT"
+                                            android:textSize="16sp"
+                                            android:textStyle="bold"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toBottomOf="@+id/Review" />
+
+                                        <TextView
+                                            android:id="@+id/reviewTxt"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="15dp"
+                                            android:layout_marginTop="7dp"
+                                            android:fontFamily="serif"
+                                            android:text="Reviews"
+                                            android:textColor="@color/film_detailsTXT"
+                                            android:textSize="17.5sp"
+                                            android:textStyle="bold"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toBottomOf="@+id/OverviewTxt" />
+
+                                        <View
+                                            android:id="@+id/viewline"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="1dp"
+                                            android:layout_marginStart="77dp"
+                                            android:layout_marginTop="20dp"
+                                            android:layout_marginEnd="8dp"
+                                            android:background="@color/viewline"
+                                            android:foregroundGravity="center"
+                                            app:layout_constraintEnd_toEndOf="parent"
+                                            app:layout_constraintStart_toEndOf="@+id/detailTxt"
+                                            app:layout_constraintTop_toBottomOf="@+id/Review" />
+
+                                        <View
+                                            android:id="@+id/viewline1"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="1dp"
+                                            android:layout_marginStart="77dp"
+                                            android:layout_marginTop="17dp"
+                                            android:layout_marginEnd="8dp"
+                                            android:background="@color/viewline"
+                                            android:foregroundGravity="center"
+                                            app:layout_constraintEnd_toEndOf="parent"
+                                            app:layout_constraintStart_toEndOf="@+id/reviewTxt"
+                                            app:layout_constraintTop_toBottomOf="@+id/OverviewTxt" />
+
+                                        <androidx.cardview.widget.CardView
+                                            android:id="@+id/card_inner"
+                                            android:layout_width="95dp"
+                                            android:layout_height="151dp"
+                                            android:layout_marginStart="15dp"
+                                            android:layout_marginTop="5dp"
+                                            app:cardCornerRadius="9dp"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toBottomOf="@+id/trailer_img">
+
+                                                <ImageView
+                                                    android:id="@+id/inner_Fimg"
+                                                    android:background="@color/edit_portion"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:scaleType="centerCrop"
+                                                    android:src="@drawable/ic_launcher_foreground"
+                                                    app:layout_constraintStart_toStartOf="parent"
+                                                    app:layout_constraintTop_toBottomOf="@+id/trailer_img" />
+
+                                                <Button
+                                                    android:id="@+id/WatchBtn"
+                                                    android:layout_width="64dp"
+                                                    android:layout_height="24.4dp"
+                                                    android:layout_gravity="center"
+                                                    android:background="@drawable/videoplayericon"
+                                                    android:fontFamily="@font/lateef"
+                                                    android:text="Watch"
+                                                    android:drawableLeft="@drawable/ic_play"
+                                                    android:drawablePadding="-9dp"
+                                                    android:onClick="BuyOrWatchFilms"
+                                                    android:textAllCaps="false"
+                                                    android:textColor="#ffffff"
+                                                    android:textSize="16dp" />
+                                        </androidx.cardview.widget.CardView>
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_marginBottom="5dp"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginEnd="15dp">
+                                        <androidx.recyclerview.widget.RecyclerView
+                                            android:id="@+id/ReviewRecycler"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toBottomOf="@+id/reviewTxt" />
+
+                                </LinearLayout>
+                        </LinearLayout>
+                </ScrollView>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

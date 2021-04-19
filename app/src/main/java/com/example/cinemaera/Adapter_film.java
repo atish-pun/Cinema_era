@@ -16,9 +16,11 @@ import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,8 +29,6 @@ import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.example.cinemaera.R.drawable.buffer_bar;
 
 class Adapter_film extends RecyclerView.Adapter<Adapter_film.ViewHolder> {
     Context ctx;
@@ -87,7 +87,6 @@ class Adapter_film extends RecyclerView.Adapter<Adapter_film.ViewHolder> {
             film_img = itemView.findViewById(R.id.film_image);
             film_txt = itemView.findViewById(R.id.film_text);
             parent_layout = itemView.findViewById(R.id.custom_layout);
-
         }
     }
 }
