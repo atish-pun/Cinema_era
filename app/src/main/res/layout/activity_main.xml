@@ -69,6 +69,7 @@
         android:layout_marginEnd="10dp"
         android:layout_below="@+id/Movie_slider"
         tools:layout_editor_absoluteX="0dp"
+        android:layout_marginBottom="6dp"
         tools:layout_editor_absoluteY="2dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
         </LinearLayout>

@@ -10,8 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ProfileUser"/>
-        <activity android:name=".AccountSignup" />
-        <activity android:name=".AccountLogin" />
+        <activity android:name=".AccountSignup"
+            android:theme="@style/AccountTheme"/>
+        <activity android:name=".AccountLogin"
+            android:theme="@style/AccountTheme" />
         <activity
             android:name=".ActionViewAllFilm"
             android:parentActivityName=".MainActivity"

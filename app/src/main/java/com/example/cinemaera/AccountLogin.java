@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract;
+import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,6 +34,7 @@ public class AccountLogin extends AppCompatActivity {
     private EditText emailL, passwordL;
     private TextView SignUp;
     private Button log_in;
+    TextInputLayout EmailErrorTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,7 @@ public class AccountLogin extends AppCompatActivity {
         passwordL = findViewById(R.id.editPassword);
         log_in = findViewById(R.id.button_login);
         SignUp = findViewById(R.id.signup);
+        EmailErrorTxt = findViewById(R.id.EmailErrorTxt);
         getSupportActionBar().hide();
 
 
@@ -55,19 +59,21 @@ public class AccountLogin extends AppCompatActivity {
         log_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String str_emailL, str_passwordL;
+                final String str_emailL, str_passwordL, str_EmailErrorTxt;
                 str_emailL = emailL.getText().toString().trim();
                 str_passwordL = passwordL.getText().toString().trim();
 
                 if(!str_emailL.equals("") && !str_passwordL.equals("")){
-                    String url = getString(R.string.server_api_url) + "login.php?emailAddress="+str_emailL+"&Password="+str_passwordL;
-                    RequestQueue queue = Volley.newRequestQueue(AccountLogin.this);
-                    StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            try {
-                                JSONObject obj = new JSONObject(response);
-                                 if (obj.getInt("status") == 200 ) {
+                    if (Patterns.EMAIL_ADDRESS.matcher(str_emailL).matches())
+                    {
+                        String url = getString(R.string.server_api_url) + "login.php?emailAddress="+str_emailL+"&Password="+str_passwordL;
+                        RequestQueue queue = Volley.newRequestQueue(AccountLogin.this);
+                        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject obj = new JSONObject(response);
+                                    if (obj.getInt("status") == 200 ) {
 
                                         String session = obj.getString("session"), id = obj.getString("id"), fullName = obj.getString("fullName"), emailAddress = obj.getString("emailAddress"), favourite_token = obj.getString("Favourite_token");
                                         Util.SetKey(getApplicationContext(), "Cinemapref_session", session);
@@ -91,28 +97,33 @@ public class AccountLogin extends AppCompatActivity {
                                         startActivity(intent);
                                         finish();
 
-                                } else {
-                                    Toast.makeText(AccountLogin.this, obj.getString("content"), Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(AccountLogin.this, obj.getString("content"), Toast.LENGTH_SHORT).show();
+                                    }
+                                } catch (JSONException e) {
+                                    Toast.makeText(AccountLogin.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+
                                 }
-                            } catch (JSONException e) {
-                                Toast.makeText(AccountLogin.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-
-
                             }
                         }
+                                , new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(AccountLogin.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                                error.printStackTrace();
+                            }
+                        });
+                        stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                        queue.add(stringRequest);
                     }
-                    , new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(AccountLogin.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                            error.printStackTrace();
-                        }
-                    });
-                            stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-                    queue.add(stringRequest);
+                    else{
+                        Toast.makeText(AccountLogin.this, "Enter valid Email!!", Toast.LENGTH_SHORT).show();
+                        EmailErrorTxt.setError("Invalid Email");
+                    }
                 }
                 else{
-                    Toast.makeText(AccountLogin.this, "All field required.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AccountLogin.this, "Fields can't be empty!!", Toast.LENGTH_SHORT).show();
                 }
             }
 

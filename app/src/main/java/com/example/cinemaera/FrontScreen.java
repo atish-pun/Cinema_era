@@ -45,11 +45,13 @@ public class FrontScreen extends AppCompatActivity {
             String User_id = Util.GetValue(this, "Cinemapref_uid");
             String Full_name = Util.GetValue(this, "Cinemapref_name");
             String Email_address = Util.GetValue(this, "Cinemapref_email");
+            String FavoriteToken = Util.GetValue(this, "Cinemapref_favourite_token");
 
             Util.SESSION_KEY = session;
             Util.SESSION_USERID = User_id;
             Util.SESSION_NAME = Full_name;
             Util.SESSION_EMAIL = Email_address;
+            Util.FAVOURITE_TOKEN = FavoriteToken;
 
             Thread thread = new Thread(){
                 @Override

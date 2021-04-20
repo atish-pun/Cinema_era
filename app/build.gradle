@@ -39,11 +39,4 @@ dependencies {
     implementation 'com.khalti:khalti-android:2.00.01'
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
 
-
-
-
-
-
-
-
 }

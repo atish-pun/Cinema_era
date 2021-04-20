@@ -22,8 +22,8 @@
         android:layout_marginRight="4dp"
         android:fontFamily="serif"
         android:text="Cinema"
-        android:textColor="#8792CC"
-        android:textSize="21dp"
+        android:textColor="@color/ToolbarTitleColor"
+        android:textSize="19dp"
         android:textStyle="bold"
         android:gravity="center"/>
 
@@ -34,8 +34,8 @@
         android:fontFamily="serif"
         android:gravity="center"
         android:text="Era"
-        android:textColor="#141729"
-        android:textSize="21dp"
+        android:textColor="@color/action_menu_color"
+        android:textSize="19dp"
         android:textStyle="bold" />
     <ImageView
         android:layout_width="24dp"

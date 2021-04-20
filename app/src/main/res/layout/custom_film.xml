@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/custom_layout"
-    android:layout_width="133dp"
+    android:layout_width="130dp"
     android:layout_height="wrap_content">
 
     <LinearLayout
@@ -17,11 +17,11 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/CardViewCustomFilm"
-            android:layout_width="122dp"
+            android:layout_width="120dp"
             app:cardElevation="0dp"
             app:cardCornerRadius="9dp"
             app:cardBackgroundColor="@color/colorPrimaryDark"
-            android:layout_height="192dp">
+            android:layout_height="195dp">
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">

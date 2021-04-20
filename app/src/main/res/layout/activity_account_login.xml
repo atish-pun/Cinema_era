@@ -5,147 +5,161 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AccountLogin"
-    android:orientation="vertical"
-    >
+    android:background="@color/AccountBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gradient"
         android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="49dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="31dp"
-            android:layout_marginTop="57dp"
-            android:background="@drawable/cinemasingleicon" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_wave__1_"
+            android:orientation="vertical">
 
         <TextView
             android:id="@+id/welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="33dp"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center"
             android:fontFamily="serif"
-            android:text="Welcome to"
-            android:textColor="#000000"
-            android:textSize="30dp"
+            android:text="Let's sign you in"
+            android:textColor="@color/AccountHeading"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/cinema"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="33dp"
-            android:layout_marginTop="-7dp"
-            android:fontFamily="serif"
-            android:text="Cinema Era"
-            android:textStyle="bold"
-            android:textColor="@color/login"
-            android:textSize="30dp" />
-        <TextView
-            android:id="@+id/logintext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="serif"
-            android:layout_marginTop="30dp"
+            android:text="Welcome back"
             android:textStyle="bold"
-            android:text="Login to your account"
-            android:textColor="@color/login"
-            android:textSize="20dp" />
+            android:textColor="@color/AccountHeading"
+            android:textSize="17dp" />
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="103dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="26dp"
+                android:layout_marginTop="38dp"
+                android:background="@drawable/accountmovie" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="110dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/logintext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="serif"
+                android:textStyle="bold"
+                android:text="Login to your account"
+                android:textColor="@color/Texttop"
+                android:textSize="15dp" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/EmailErrorTxt"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:focusableInTouchMode="true"
+            android:layout_height="46dp"
+            android:layout_marginTop="11dp"
+            app:boxStrokeErrorColor="@color/ToolbarTitleColor"
+            app:errorTextColor="@color/ToolbarTitleColor"
+            app:errorIconTint="@color/ToolbarTitleColor"
             android:layout_gravity="center"
-            android:focusable="true"
-            app:hintTextColor="@color/colorPrimaryDark">
+            app:boxStrokeColor="@color/colorPrimary"
+            app:boxStrokeWidthFocused="1dp"
+            android:hint="Email address"
+            app:hintTextColor="@color/Texttop"
+            app:startIconDrawable="@drawable/ic_email"
+            app:endIconMode="clear_text">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editEmailAddress"
-                android:layout_width="240dp"
-                android:layout_height="40dp"
-                android:layout_below="@+id/cinema"
-                android:background="@drawable/account"
-                android:drawableLeft="@drawable/ic_email"
-                android:hint="Email"
+                android:layout_width="245dp"
+                android:shadowColor="@color/colorPrimary"
+                android:layout_height="41dp"
+                android:textSize="13dp"
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_height="47dp"
             android:layout_gravity="center"
-            android:focusable="true"
-            app:passwordToggleEnabled="true"
-            app:hintTextColor="@color/colorPrimaryDark"
-            android:focusableInTouchMode="true">
-            <EditText
+            app:boxStrokeColor="@color/colorPrimary"
+            android:layout_marginTop="7dp"
+            app:boxStrokeWidthFocused="1dp"
+            android:hint="Password"
+            app:hintTextColor="@color/Texttop"
+            app:startIconDrawable="@drawable/ic_lock"
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editPassword"
-                android:background="@drawable/account"
-                android:layout_width="240dp"
-                android:layout_height="40dp"
-                android:drawableStart="@drawable/ic_lock"
-                android:hint="Password"
+                android:layout_width="245dp"
+                android:shadowColor="@color/colorPrimary"
+                android:layout_height="41dp"
+                android:textSize="13dp"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/password"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="69dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/login"
-            android:text="Forgot password?"
-            android:textSize="13dp"
-            android:textStyle="bold" />
+            android:layout_marginTop="30dp"
+            android:orientation="vertical">
 
         <Button
             android:id="@+id/button_login"
-            android:layout_width="190dp"
-            android:layout_height="44dp"
-            android:textSize="16dp"
-            android:layout_marginTop="40dp"
+            android:layout_width="245dp"
+            android:layout_height="37dp"
+            android:textSize="13dp"
             android:backgroundTint="@color/colorPrimaryDark"
             android:textColor="@color/action_menu_color"
             android:background="@drawable/account"
             android:layout_gravity="center"
             android:fontFamily="serif"
             android:text="Log in"
+            android:textAllCaps="false"
             android:textStyle="bold" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="4dp"
-        android:layout_marginStart="3dp"
-        android:layout_gravity="center"
-        >
+            <TextView
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Or"
+                android:layout_gravity="center"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/Texttop"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#CBCDCD"
-            android:text="Not a member?"
-            android:textSize="12dp"/>
-
-        <TextView
-            android:id="@+id/signup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="sign up"
-            android:textStyle="bold"
-            android:layout_marginStart="3dp"
-            android:textColor="@color/login"
-            android:textSize="13dp" />
-    </LinearLayout>
-    </LinearLayout>
+            <Button
+                android:id="@+id/signup"
+                android:layout_width="245dp"
+                android:layout_height="37dp"
+                android:textSize="13dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:textColor="@color/action_menu_color"
+                android:background="@drawable/signupborder"
+                android:layout_gravity="center"
+                android:fontFamily="serif"
+                android:text="Sign up"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+        </LinearLayout>
+        </LinearLayout>
+        </LinearLayout>
 </RelativeLayout>

@@ -32,7 +32,7 @@
                 android:id="@+id/film_image"
                 android:layout_width="50dp"
                 android:background="@color/edit_portion"
-                android:layout_height="73dp"
+                android:layout_height="76dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher_foreground" />
         </androidx.cardview.widget.CardView>
