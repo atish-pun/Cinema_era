@@ -3,8 +3,12 @@ package com.example.cinemaera;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -28,7 +32,8 @@ import java.util.List;
 public class Search_activity extends AppCompatActivity {
     ListView listView;
     SearchView searchView;
-    List<Film.Search> search_Film = new ArrayList<Film.Search>();
+    ImageView SearchBack;
+    List<Film> search_Film = new ArrayList<Film>();
     SearchAdapter searchAdapter;
 
     @SuppressLint("RestrictedApi")
@@ -36,20 +41,41 @@ public class Search_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_activity);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().hide();
         FilmExtract();
         searchView = findViewById(R.id.search_view);
         listView = findViewById(R.id.SearchList);
+        SearchBack = findViewById(R.id.SearchBack);
         searchAdapter = new SearchAdapter(this,search_Film);
         listView.setAdapter(searchAdapter);
+
+        int SearchUnderLine = searchView.getContext().getResources().getIdentifier("android:id/search_plate", null, null);
+        View searchPlate = findViewById(SearchUnderLine);
+        searchPlate.setBackgroundColor(Color.parseColor("#1C1B1B"));
+
+        SearchBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getParent().equals(MainActivity.class)){
+                    Intent intent = new Intent(Search_activity.this,MainActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+
+                }
+                else {
+                    Intent intent = new Intent(Search_activity.this,FavouriteFilm.class);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                }
+            }
+        });
 
        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
            @Override
            public boolean onQueryTextSubmit(String query) {
+               Search_activity.this.searchAdapter.getFilter().filter(query);
                return false;
            }
-
            @Override
            public boolean onQueryTextChange(String newText) {
                searchAdapter.getFilter().filter(newText);
@@ -69,9 +95,20 @@ public class Search_activity extends AppCompatActivity {
                     JSONArray jsonArray = object.getJSONArray("Action_movies");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject obj = jsonArray.getJSONObject(i);
-                        String Fname = obj.getString("film name");
                         String Fid = obj.getString("id");
-                        Film.Search category1 = new Film.Search(Fname,Fid);
+                        String Fimg = obj.getString("film image");
+                        String Image_location = getString(R.string.Image_url) + Fimg;
+                        String Fname = obj.getString("film name");
+                        String Price = obj.getString("Price");
+                        String Tvideos = obj.getString("trailer videos");
+                        String Trailer_video = getString(R.string.Trailer_Video_url) + Tvideos;
+                        String Cast = obj.getString("Cast");
+                        String Director = obj.getString("Director");
+                        String Release_date = obj.getString("Release_date");
+                        String Run_time = obj.getString("Run_time");
+                        String Language = obj.getString("Language");
+                        String Overview = obj.getString("Overview");
+                        Film category1 = new Film(Fid, Image_location, Fname, Price, Trailer_video, Cast, Director, Release_date, Run_time, Language, Overview);
                         search_Film.add(category1);
                     }
 
@@ -84,10 +121,21 @@ public class Search_activity extends AppCompatActivity {
                     JSONArray jsonArray = object.getJSONArray("Love_stories");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject obj = jsonArray.getJSONObject(i);
-                        String Fname = obj.getString("film name");
                         String Fid = obj.getString("id");
-                        Film.Search category1 = new Film.Search(Fname,Fid);
-                        search_Film.add(category1);
+                        String Fimg = obj.getString("film image");
+                        String Image_location = getString(R.string.Image_url) + Fimg;
+                        String Fname = obj.getString("film name");
+                        String Price = obj.getString("Price");
+                        String Tvideos = obj.getString("trailer videos");
+                        String Trailer_video = getString(R.string.Trailer_Video_url) + Tvideos;
+                        String Cast = obj.getString("Cast");
+                        String Director = obj.getString("Director");
+                        String Release_date = obj.getString("Release_date");
+                        String Run_time = obj.getString("Run_time");
+                        String Language = obj.getString("Language");
+                        String Overview = obj.getString("Overview");
+                        Film category2 = new Film(Fid, Image_location, Fname, Price, Trailer_video, Cast, Director, Release_date, Run_time, Language, Overview);
+                        search_Film.add(category2);
                     }
 
 
@@ -99,10 +147,21 @@ public class Search_activity extends AppCompatActivity {
                     JSONArray jsonArray = object.getJSONArray("Horror_movies");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject obj = jsonArray.getJSONObject(i);
-                        String Fname = obj.getString("film name");
                         String Fid = obj.getString("id");
-                        Film.Search category1 = new Film.Search(Fname,Fid);
-                        search_Film.add(category1);
+                        String Fimg = obj.getString("film image");
+                        String Image_location = getString(R.string.Image_url) + Fimg;
+                        String Fname = obj.getString("film name");
+                        String Price = obj.getString("Price");
+                        String Tvideos = obj.getString("trailer videos");
+                        String Trailer_video = getString(R.string.Trailer_Video_url) + Tvideos;
+                        String Cast = obj.getString("Cast");
+                        String Director = obj.getString("Director");
+                        String Release_date = obj.getString("Release_date");
+                        String Run_time = obj.getString("Run_time");
+                        String Language = obj.getString("Language");
+                        String Overview = obj.getString("Overview");
+                        Film category3 = new Film(Fid, Image_location, Fname, Price, Trailer_video, Cast, Director, Release_date, Run_time, Language, Overview);
+                        search_Film.add(category3);
                     }
 
 

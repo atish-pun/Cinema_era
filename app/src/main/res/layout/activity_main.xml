@@ -6,16 +6,20 @@
     android:background="@color/colorPrimaryDark"
     android:layout_height="match_parent">
 
+    <include
+        layout="@layout/tool_bars" />
+
         <ProgressBar
             android:id="@+id/CustomFilmProgressBar"
-            android:layout_width="43dp"
-            android:layout_height="43dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:indeterminate="true"
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"/>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/MainActivityRefresh"
+        android:layout_below="@+id/customtoolbar"
         android:layout_above="@id/buttom_nav"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -29,32 +33,26 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-        <include
-            layout="@layout/tool_bars"/>
-            
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        app:cardElevation="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginStart="13dp"
         android:layout_marginEnd="13dp"
         app:cardCornerRadius="9dp">
 
         <com.smarteist.autoimageslider.SliderView
-            android:layout_below="@+id/customtoolbar"
             android:layout_width="match_parent"
-            android:layout_height="151dp"
+            android:layout_height="152dp"
             android:id="@+id/Movie_slider"
             android:visibility="gone"
-            app:sliderScrollTimeInSec="4"
+            app:sliderScrollTimeInSec="3"
             app:sliderAutoCycleDirection="back_and_forth"
             app:sliderStartAutoCycle="true"
             app:sliderIndicatorPadding="2.5dp"
             app:sliderIndicatorRadius="1.77dp"
             app:sliderIndicatorSelectedColor="#636363"
             app:sliderIndicatorUnselectedColor="#F3FFFFFF"
-            app:sliderAnimationDuration="1950"
+            app:sliderAnimationDuration="1700"
             app:sliderIndicatorOrientation="horizontal"
             app:sliderIndicatorGravity="center_horizontal|bottom" />
 

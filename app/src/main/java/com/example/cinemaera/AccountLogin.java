@@ -53,6 +53,7 @@ public class AccountLogin extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AccountLogin.this,AccountSignup.class);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
                 finish();
             }
         });
@@ -93,10 +94,12 @@ public class AccountLogin extends AppCompatActivity {
                                             Util.SetKey(getApplicationContext(), "Cinemapref_favourite_token", favourite_token);
                                             Util.FAVOURITE_TOKEN = favourite_token;
                                         }
-                                        Toast.makeText(AccountLogin.this,"Successfully account has been Registered", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AccountLogin.this,"Login successful", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                         startActivity(intent);
+                                        overridePendingTransition(0, 0);
                                         finish();
+
 
                                     } else {
                                         Toast.makeText(AccountLogin.this, obj.getString("content"), Toast.LENGTH_SHORT).show();

@@ -221,6 +221,15 @@
                                             app:layout_constraintTop_toBottomOf="@+id/trailer_img"
                                             tools:ignore="MissingConstraints" />
 
+<!--                                        <ImageView-->
+<!--                                            android:id="@+id/FilmGallery_back"-->
+<!--                                            android:layout_width="40dp"-->
+<!--                                            android:layout_height="28dp"-->
+<!--                                            android:background="@drawable/film_back_background"-->
+<!--                                            android:src="@drawable/ic_film_gallery_back"-->
+<!--                                            app:layout_constraintStart_toStartOf="parent"-->
+<!--                                            app:layout_constraintTop_toTopOf="parent" />-->
+
 
                                         <LinearLayout
                                             android:layout_width="150dp"
@@ -251,8 +260,7 @@
                                                     android:layout_marginStart="4dp"
                                                     android:layout_marginTop="4.9dp"
                                                     android:layout_marginEnd="5dp"
-                                                    android:background="@color/film_detailsTXT"
-                                                    />
+                                                    android:background="@color/film_detailsTXT" />
 
                                                 <ImageView
                                                     android:id="@+id/imageView2"
@@ -507,7 +515,7 @@
 
                                         <androidx.cardview.widget.CardView
                                             android:id="@+id/card_inner"
-                                            android:layout_width="95dp"
+                                            android:layout_width="89dp"
                                             android:layout_height="151dp"
                                             android:layout_marginStart="15dp"
                                             android:layout_marginTop="5dp"
@@ -560,4 +568,5 @@
                         </LinearLayout>
                 </ScrollView>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

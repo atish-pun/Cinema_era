@@ -73,6 +73,9 @@ public class FavouriteFilm extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.search_bar:
+                Intent search = new Intent(FavouriteFilm.this, Search_activity.class);
+                startActivity(search);
+                overridePendingTransition(0, 0);
 
             case R.id.setting_bar:
 

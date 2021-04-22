@@ -1,5 +1,6 @@
 package com.example.cinemaera;
 
+import android.accounts.Account;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -55,6 +56,9 @@ class ViewAllFilmAdapter extends RecyclerView.Adapter<ViewAllFilmAdapter.ViewHol
                 gallery.putExtra("Overview",actionMoviesAll.get(position).getOverview());
                 gallery.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 ctx.startActivity(gallery);
+                ActionViewAllFilm actionViewAllFilm = (ActionViewAllFilm) ctx;
+                actionViewAllFilm.overridePendingTransition(0, 0);
+
             }
         });
     }

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="serif"
+            android:textStyle="bold"
+            android:text="Edit your info"
+            android:textColor="@color/Texttop"
+            android:textSize="14dp" />
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_gravity="center"
+        app:startIconTint="@color/filmname"
+        app:endIconTint="@color/filmname"
+        android:textColorHint="@color/filmname"
+        android:layout_marginTop="11dp"
+        app:boxStrokeColor="@color/colorPrimary"
+        android:enabled="false"
+        app:boxStrokeWidthFocused="1dp"
+        android:hint="Email"
+        app:hintTextColor="@color/Texttop"
+        app:startIconDrawable="@drawable/ic_email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="245dp"
+            android:textColor="@color/Texttop"
+            android:shadowColor="@color/colorPrimary"
+            android:layout_height="41dp"
+            android:textSize="13dp"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_gravity="center"
+        app:boxStrokeErrorColor="@color/ToolbarTitleColor"
+        app:errorTextColor="@color/ToolbarTitleColor"
+        app:errorIconTint="@color/ToolbarTitleColor"
+        app:boxStrokeColor="@color/colorPrimary"
+        android:layout_marginTop="11dp"
+        app:boxStrokeWidthFocused="1dp"
+        android:hint="Full name"
+        app:hintTextColor="@color/Texttop"
+        app:startIconTint="@color/filmname"
+        app:endIconTint="@color/filmname"
+        android:textColorHint="@color/filmname"
+        app:startIconDrawable="@drawable/ic_name"
+        app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fullname"
+            android:layout_width="245dp"
+            android:textColor="@color/Texttop"
+            android:shadowColor="@color/colorPrimary"
+            android:layout_height="41dp"
+            android:textSize="13dp"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:onClick="saveProfileInfo"
+            android:layout_width="245dp"
+            style="@style/Widget.App.Button"
+            android:layout_height="37dp"
+            android:textSize="13dp"
+            android:layout_marginTop="25dp"
+            android:textColor="@color/filmname"
+            android:background="@drawable/update_profile_button"
+            android:layout_gravity="center"
+            android:fontFamily="serif"
+            android:text="Update detail"
+            android:textAllCaps="false"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/signtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="serif"
+        android:textStyle="bold"
+        android:text="Edit your Password "
+        android:textColor="@color/Texttop"
+        android:textSize="14dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/PasswordErrorTxt"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="wrap_content"
+            android:layout_height="47dp"
+            app:boxStrokeErrorColor="@color/ToolbarTitleColor"
+            app:errorTextColor="@color/ToolbarTitleColor"
+            app:errorIconTint="@color/ToolbarTitleColor"
+            android:layout_gravity="center"
+            app:boxStrokeColor="@color/colorPrimary"
+            android:layout_marginTop="11dp"
+            app:boxStrokeWidthFocused="1dp"
+            android:hint="Current Password"
+            app:hintTextColor="@color/Texttop"
+            app:startIconDrawable="@drawable/ic_lock"
+            app:endIconTint="@color/filmname"
+            app:startIconTint="@color/filmname"
+            app:endIconMode="password_toggle"
+            android:textColorHint="@color/filmname">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/oldpass"
+                android:textColor="@color/Texttop"
+                android:layout_width="245dp"
+                android:shadowColor="@color/colorPrimary"
+                android:layout_height="41dp"
+                android:textSize="13dp"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="wrap_content"
+            android:layout_height="47dp"
+            app:boxStrokeErrorColor="@color/ToolbarTitleColor"
+            app:errorTextColor="@color/ToolbarTitleColor"
+            app:errorIconTint="@color/ToolbarTitleColor"
+            android:layout_gravity="center"
+            app:boxStrokeColor="@color/colorPrimary"
+            android:layout_marginTop="11dp"
+            app:boxStrokeWidthFocused="1dp"
+            app:startIconTint="@color/filmname"
+            app:endIconTint="@color/filmname"
+            android:textColorHint="@color/filmname"
+            android:hint="New Password"
+            app:hintTextColor="@color/Texttop"
+            app:startIconDrawable="@drawable/ic_lock"
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/newpass"
+                android:layout_width="245dp"
+                android:textColor="@color/Texttop"
+                android:shadowColor="@color/colorPrimary"
+                android:layout_height="41dp"
+                android:textSize="13dp"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="wrap_content"
+        android:layout_height="47dp"
+        app:boxStrokeErrorColor="@color/ToolbarTitleColor"
+        app:errorTextColor="@color/ToolbarTitleColor"
+        app:errorIconTint="@color/ToolbarTitleColor"
+        android:layout_gravity="center"
+        app:boxStrokeColor="@color/colorPrimary"
+        android:layout_marginTop="11dp"
+        app:boxStrokeWidthFocused="1dp"
+        app:startIconTint="@color/filmname"
+        app:endIconTint="@color/filmname"
+        android:textColorHint="@color/filmname"
+        android:hint="Confirm-Password"
+        app:hintTextColor="@color/Texttop"
+        app:startIconDrawable="@drawable/ic_lock"
+        app:endIconMode="password_toggle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/rnewpass"
+            android:textColor="@color/Texttop"
+            android:layout_width="245dp"
+            android:shadowColor="@color/colorPrimary"
+            android:layout_height="41dp"
+            android:textSize="13dp"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:onClick="PasswordUpdate"
+            android:layout_width="245dp"
+            android:layout_height="37dp"
+            style="@style/Widget.App.Button"
+            android:textSize="13dp"
+            android:layout_marginTop="25dp"
+            android:textColor="@color/filmname"
+            android:background="@drawable/update_profile_button"
+            android:layout_gravity="center"
+            android:fontFamily="serif"
+            android:text="Update Password"
+            android:textAllCaps="false"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

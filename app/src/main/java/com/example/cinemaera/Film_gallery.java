@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -122,6 +123,7 @@ public class Film_gallery extends AppCompatActivity {
         TrailerVideoCLick();
         ExtractReviews();
         AverageRatings();
+
         FilmGalleryRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -130,9 +132,10 @@ public class Film_gallery extends AppCompatActivity {
                 FilmGalleryRefresh.setRefreshing(false);
             }
         });
-//        FullScreen();
+
 
     }
+
     public void setHandler(){
         final Handler moviehandler = new Handler();
         Runnable movierun = new Runnable() {
@@ -464,9 +467,14 @@ public class Film_gallery extends AppCompatActivity {
                         AlertDialog.Builder alert = new AlertDialog.Builder(Film_gallery.this);
                         View view1 = getLayoutInflater().inflate(R.layout.payment_alert_box, null);
                         final TextView paymentCost = view1.findViewById(R.id.Cost);
+                        ImageView filmImage = findViewById(R.id.filmImage);
+                        TextView FilmName = findViewById(R.id.FilmName);
+                        
+//                        Picasso.get().load(MoviePoster).into(filmImage);
                         final Button cancel = view1.findViewById(R.id.cancel);
                         KhaltiButton Khalti = view1.findViewById(R.id.khalti_button);
                         paymentCost.setText("The total cost for this movies: "+ Costs);
+
                         alert.setView(view1);
 
                         final AlertDialog alertDialog = alert.create();

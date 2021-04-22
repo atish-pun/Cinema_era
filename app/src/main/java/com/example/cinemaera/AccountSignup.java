@@ -49,6 +49,7 @@ public class AccountSignup extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AccountSignup.this, AccountLogin.class);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
                 finish();
 
             }
@@ -75,7 +76,10 @@ public class AccountSignup extends AppCompatActivity {
                                         try {
                                             JSONObject obj = new JSONObject(response);
                                             if (obj.getInt("status") == 200) {
-                                                Toast.makeText(AccountSignup.this, "Sign Up Success.", Toast.LENGTH_LONG).show();
+                                                Toast.makeText(AccountSignup.this, "Successfully account has been Registered", Toast.LENGTH_LONG).show();
+                                                Intent intent = new Intent(AccountSignup.this, AccountLogin.class);
+                                                startActivity(intent);
+                                                overridePendingTransition(0, 0);
                                                 finish();
                                             } else
                                                 Toast.makeText(AccountSignup.this, obj.getString("content"), Toast.LENGTH_SHORT).show();

@@ -71,12 +71,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ImageView imageView = findViewById(R.id.search_custom);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        ImageView searchIcon = findViewById(R.id.search_custom);
+        searchIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent search = new Intent(MainActivity.this, Search_activity.class);
                 startActivity(search);
+                overridePendingTransition(0, 0);
             }
         });
 

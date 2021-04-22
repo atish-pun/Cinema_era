@@ -53,7 +53,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="113dp"
+            android:layout_marginTop="114dp"
             android:orientation="vertical">
 
             <TextView
@@ -78,6 +78,9 @@
             app:errorIconTint="@color/ToolbarTitleColor"
             android:layout_gravity="center"
             app:boxStrokeColor="@color/colorPrimary"
+            app:startIconTint="@color/filmname"
+            app:endIconTint="@color/filmname"
+            android:textColorHint="@color/filmname"
             app:boxStrokeWidthFocused="1dp"
             android:hint="Email address"
             app:hintTextColor="@color/Texttop"
@@ -89,6 +92,7 @@
                 android:layout_width="245dp"
                 android:shadowColor="@color/colorPrimary"
                 android:layout_height="41dp"
+                android:textColor="@color/Texttop"
                 android:textSize="13dp"
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -98,6 +102,9 @@
             android:layout_width="wrap_content"
             android:layout_height="47dp"
             android:layout_gravity="center"
+            app:startIconTint="@color/filmname"
+            app:endIconTint="@color/filmname"
+            android:textColorHint="@color/filmname"
             app:boxStrokeColor="@color/colorPrimary"
             android:layout_marginTop="7dp"
             app:boxStrokeWidthFocused="1dp"
@@ -111,6 +118,7 @@
                 android:layout_width="245dp"
                 android:shadowColor="@color/colorPrimary"
                 android:layout_height="41dp"
+                android:textColor="@color/Texttop"
                 android:textSize="13dp"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>

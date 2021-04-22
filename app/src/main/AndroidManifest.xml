@@ -9,10 +9,16 @@
         android:roundIcon="@mipmap/cinema_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProfileUser"/>
-        <activity android:name=".AccountSignup"
-            android:theme="@style/AccountTheme"/>
-        <activity android:name=".AccountLogin"
+        <activity android:name=".Profile_Update"
+            android:parentActivityName=".ProfileUser"
+            android:theme="@style/EditProfileTheme"/>
+        <activity android:name=".ProfileUser"
+            android:theme="@style/AppTheme.NoActionBarViewAllFilm"/>
+        <activity
+            android:name=".AccountSignup"
+            android:theme="@style/AccountTheme" />
+        <activity
+            android:name=".AccountLogin"
             android:theme="@style/AccountTheme" />
         <activity
             android:name=".ActionViewAllFilm"
@@ -30,22 +36,27 @@
             android:name=".FavouriteFilm"
             android:theme="@style/AppTheme.NoActionBarViewAllFilm" />
         <activity android:name=".Film_gallery" />
-        <activity android:name=".Search_activity" />
+        <activity
+            android:name=".Search_activity"
+            android:theme="@style/SearchView" />
         <activity
             android:name=".FrontScreen"
             android:theme="@style/AppTheme.NoActionBarSplashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBarMain"/>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBarMain" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

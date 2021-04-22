@@ -4,97 +4,169 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:khalti="http://schemas.android.com/apk/res-auto"
-    android:background="#ffff"
     tools:context=".ProfileUser">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
         <LinearLayout
-            android:background="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:id="@+id/edit_profile"
+            android:id="@+id/MainLinearProfile"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_margin="5dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-            <RelativeLayout
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_weight="0.5"
-                android:padding="15dp">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/profile_icon"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitCenter" />
-            </RelativeLayout>
+                    android:id="@+id/imageView"
+                    android:layout_width="56dp"
+                    android:layout_height="40dp"
+                    android:onClick="Logout"
+                    android:src="@drawable/logout_icon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ProfileUpdate"
+                    android:layout_width="51dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/edit_profile_icon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="106dp"
+                    android:layout_height="106dp"
+                    android:src="@drawable/profile_icon"
+                    app:civ_border_color="#74BAB7B7"
+                    app:civ_border_width="1dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView"
+                    app:layout_constraintVertical_bias="0.087" />
+
+                <ImageView
+                    android:id="@+id/UploadProfilePhoto"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="83dp"
+                    android:background="@drawable/profile_add"
+                    android:src="@drawable/ic_add"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.569"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ProfileUpdate" />
+
+                <Button
+                    android:id="@+id/StoreProfileImage"
+                    android:layout_width="60dp"
+                    android:layout_height="22dp"
+                    android:background="@drawable/videoplayericon"
+                    android:drawableLeft="@drawable/ic_save_profile"
+                    android:paddingLeft="5dp"
+                    android:text="save"
+                    android:textAllCaps="false"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/action_menu_color"
+                    android:textSize="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/UploadProfilePhoto" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <LinearLayout
-                android:id="@+id/textView"
+                android:id="@+id/LinearView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="2dp"
-                android:layout_weight="10"
-                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold" />
-
-                <TextView
+                    android:text="Full name"
                     android:id="@+id/name"
+                    android:textSize="13.2dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:fontFamily="serif"
+                    android:textColor="@color/filmname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/email"
+                        android:text="Email"
+                        android:textSize="11.5dp"
+                        android:fontFamily="serif"
+                        android:gravity="center"
+                        android:textColor="@color/filmname"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content" />
+
+                    <View
+                        android:id="@+id/ReviewView"
+                        android:layout_width="1.9dp"
+                        android:layout_height="11.2dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginTop="4.5dp"
+                        android:layout_marginEnd="5dp"
+                        android:background="@color/filmname" />
+
+                    <TextView
+                        android:id="@+id/TotalReview"
+                        android:text="Total reviews: 0"
+                        android:gravity="center"
+                        android:textSize="11.5dp"
+                        android:fontFamily="serif"
+                        android:layout_weight="1"
+                        android:textColor="@color/filmname"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <TextView
+                    android:text="My movies"
+                    android:id="@+id/MovieTitle"
+                    android:textSize="13.2dp"
+                    android:layout_marginStart="13dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="9dp"
+                    android:fontFamily="serif"
+                    android:textColor="@color/filmname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:padding="5dp"
-            android:id="@+id/logout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="horizontal">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ViewRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/buttom_nav"
+        android:layout_below="@+id/MainLinearProfile"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <RelativeLayout
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_margin="5dp">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitCenter" />
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center|start"
-                android:text="Logout"
-                android:onClick="Logout"
-                android:textSize="16sp" />
-        </LinearLayout>
-    </LinearLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/buttom_nav"
         android:layout_width="match_parent"
@@ -109,6 +181,5 @@
         app:itemIconSize="24dp"
         android:background="@drawable/nav_portion">
     </com.google.android.material.bottomnavigation.BottomNavigationView>
-
 
 </RelativeLayout>

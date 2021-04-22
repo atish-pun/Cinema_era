@@ -65,6 +65,8 @@ class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.ViewHolder>
                 gallery.putExtra("movies_id",favourite.get(position).getMovies_id());
                 gallery.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 ctx.startActivity(gallery);
+                FavouriteFilm favouriteFilm = (FavouriteFilm) ctx;
+                favouriteFilm.overridePendingTransition(0, 0);
             }
         });
          holder.DeleteFavourite.setOnClickListener(new View.OnClickListener() {

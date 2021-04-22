@@ -13,4 +13,5 @@
     <color name="AccountHeading">#A4AEAF</color>
     <color name="AccountBackground">#4A4D50</color>
     <color name="ToolbarTitleColor">#8792CC</color>
+    <color name="mtrl_textinput_default_box_stroke_color">#6A6767</color>
 </resources>

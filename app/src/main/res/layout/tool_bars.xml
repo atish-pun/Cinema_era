@@ -7,6 +7,7 @@
     android:layout_marginTop="7dp"
     android:layout_marginLeft="12dp"
     android:layout_marginRight="12dp"
+    android:layout_marginBottom="10dp"
     android:background="@drawable/edit_portion">
 
     <ImageView
@@ -38,9 +39,9 @@
         android:textSize="19dp"
         android:textStyle="bold" />
     <ImageView
-        android:layout_width="24dp"
+        android:layout_width="26dp"
         android:id="@+id/search_custom"
-        android:layout_height="28dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="6dp"
         android:src="@drawable/ic_search_bar"
         android:layout_gravity="end"/>

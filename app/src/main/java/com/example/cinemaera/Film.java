@@ -230,6 +230,120 @@ class Film {
         }
     }
 
+    public static class TransactedMovieInfo {
+        public String id, movies_id, A_name, Price, A_poster, Trailer_videos, Cast, Director, Release_date, Run_time, Language, Overview;
+
+        public TransactedMovieInfo(String id, String movies_id, String a_name, String Price, String a_poster, String trailer_videos, String cast, String director, String release_date, String run_time, String language, String overview) {
+            this.id = id;
+            this.movies_id = movies_id;
+            this.A_name = a_name;
+            this.Price = Price;
+            this.A_poster = a_poster;
+            this.Trailer_videos = trailer_videos;
+            this.Cast = cast;
+            this.Director = director;
+            this.Release_date = release_date;
+            this.Run_time = run_time;
+            this.Language = language;
+            this.Overview = overview;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getMovies_id() {
+            return movies_id;
+        }
+
+        public void setMovies_id(String movies_id) {
+            this.movies_id = movies_id;
+        }
+
+        public String getA_name() {
+            return A_name;
+        }
+
+        public void setA_name(String a_name) {
+            A_name = a_name;
+        }
+
+        public String getPrice() {
+            return Price;
+        }
+
+        public void setPrice(String price) {
+            Price = price;
+        }
+
+        public String getA_poster() {
+            return A_poster;
+        }
+
+        public void setA_poster(String a_poster) {
+            A_poster = a_poster;
+        }
+
+        public String getTrailer_videos() {
+            return Trailer_videos;
+        }
+
+        public void setTrailer_videos(String trailer_videos) {
+            Trailer_videos = trailer_videos;
+        }
+
+        public String getCast() {
+            return Cast;
+        }
+
+        public void setCast(String cast) {
+            Cast = cast;
+        }
+
+        public String getDirector() {
+            return Director;
+        }
+
+        public void setDirector(String director) {
+            Director = director;
+        }
+
+        public String getRelease_date() {
+            return Release_date;
+        }
+
+        public void setRelease_date(String release_date) {
+            Release_date = release_date;
+        }
+
+        public String getRun_time() {
+            return Run_time;
+        }
+
+        public void setRun_time(String run_time) {
+            Run_time = run_time;
+        }
+
+        public String getLanguage() {
+            return Language;
+        }
+
+        public void setLanguage(String language) {
+            Language = language;
+        }
+
+        public String getOverview() {
+            return Overview;
+        }
+
+        public void setOverview(String overview) {
+            Overview = overview;
+        }
+    }
     public static class ReviewInfo {
         public String id, reviews, userName;
         public float RatedValue;
