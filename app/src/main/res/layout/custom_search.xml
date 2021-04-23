@@ -22,9 +22,9 @@
         app:cardCornerRadius="6dp">
         <ImageView
             android:id="@+id/film_image"
-            android:layout_width="42dp"
+            android:layout_width="44dp"
             android:background="@color/edit_portion"
-            android:layout_height="60dp"
+            android:layout_height="63dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_foreground" />
     </androidx.cardview.widget.CardView>

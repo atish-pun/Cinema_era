@@ -47,6 +47,9 @@
 
     <style name="Alert" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="android:textColorPrimary">@color/filmname</item>
+        <item name="android:textColor">@color/Texttop</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
     </style>
 
     <style name="TextAppearance.AppCompat.Widget.ActionBar.Title" parent="@android:style/TextAppearance">

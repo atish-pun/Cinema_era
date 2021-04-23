@@ -3,14 +3,14 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="#FCFCFC"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="15dp"
         android:textColor="@color/Texttop"
         android:text="Rate the Movie!"
         android:fontFamily="serif"
@@ -44,8 +44,10 @@
     <TextView
         android:layout_marginTop="13dp"
         android:textStyle="bold"
+        android:textSize="13dp"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
+        android:textColor="@color/filmname"
         android:layout_height="wrap_content"
         android:text="Choose your Rate"/>
 
@@ -58,6 +60,7 @@
     <RatingBar
         android:scaleX=".7"
         android:scaleY=".7"
+        android:progressBackgroundTint="#566A6767"
         android:layout_gravity="center"
         android:id="@+id/review_ratingbar"
         android:layout_width="wrap_content"
@@ -67,6 +70,8 @@
         android:id="@+id/review_type"
         android:background="@drawable/ratingcornerradius"
         android:layout_width="220dp"
+        android:textColor="@color/Texttop"
+        android:textColorHint="@color/filmname"
         android:layout_height="100dp"
         android:inputType="textMultiLine"
         android:maxLines="4"
@@ -81,7 +86,7 @@
         android:layout_height="wrap_content">
     <Button
         android:id="@+id/cancel"
-        android:backgroundTint="@color/colorPrimaryDark"
+        android:backgroundTint="#000000"
         android:textColor="@color/action_menu_color"
         android:background="@drawable/account"
         android:textAllCaps="false"
@@ -98,7 +103,7 @@
             android:layout_width="80dp"
             android:textSize="15sp"
             android:layout_marginLeft="20dp"
-            android:backgroundTint="@color/colorPrimaryDark"
+            android:backgroundTint="#000000"
             android:textColor="@color/action_menu_color"
             android:background="@drawable/account"
             android:layout_height="30dp"

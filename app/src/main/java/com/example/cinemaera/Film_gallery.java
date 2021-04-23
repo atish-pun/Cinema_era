@@ -467,13 +467,13 @@ public class Film_gallery extends AppCompatActivity {
                         AlertDialog.Builder alert = new AlertDialog.Builder(Film_gallery.this);
                         View view1 = getLayoutInflater().inflate(R.layout.payment_alert_box, null);
                         final TextView paymentCost = view1.findViewById(R.id.Cost);
-                        ImageView filmImage = findViewById(R.id.filmImage);
-                        TextView FilmName = findViewById(R.id.FilmName);
-                        
-//                        Picasso.get().load(MoviePoster).into(filmImage);
-                        final Button cancel = view1.findViewById(R.id.cancel);
+                        ImageView filmImage = view1.findViewById(R.id.filmImage);
+                        TextView FilmName = view1.findViewById(R.id.FilmName);
+                        FilmName.setText(Film_name);
+                        Picasso.get().load(MoviePoster).into(filmImage);
+                        final ImageView cancel = view1.findViewById(R.id.cancel);
                         KhaltiButton Khalti = view1.findViewById(R.id.khalti_button);
-                        paymentCost.setText("The total cost for this movies: "+ Costs);
+                        paymentCost.setText("The Total cost: Rs "+ Costs);
 
                         alert.setView(view1);
 

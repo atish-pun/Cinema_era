@@ -107,7 +107,9 @@ class SearchAdapter extends BaseAdapter implements Filterable {
            @Override
            protected void publishResults(CharSequence constraint, FilterResults results) {
                DisplaySearchFilm = (List<Film>) results.values;
+               notifyDataSetChanged();
            }
+
        };
        return filter;
     }

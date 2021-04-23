@@ -73,7 +73,6 @@ public class Search_activity extends AppCompatActivity {
        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
            @Override
            public boolean onQueryTextSubmit(String query) {
-               Search_activity.this.searchAdapter.getFilter().filter(query);
                return false;
            }
            @Override

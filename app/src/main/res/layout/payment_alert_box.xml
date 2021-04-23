@@ -4,19 +4,58 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/tools"
-    android:background="#FCFCFC"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
+    android:padding="7dp"
     app:ignore="NamespaceTypo">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginStart="22dp"
+            android:padding="5dp"
+            android:text="Movies Payment"
+            android:textColor="@color/Texttop"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            khalti:layout_constraintEnd_toStartOf="@+id/cancel"
+            khalti:layout_constraintStart_toStartOf="parent"
+            khalti:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/cancel"
+            android:layout_width="40dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_crosstrailer"
+            khalti:layout_constraintBottom_toBottomOf="parent"
+            khalti:layout_constraintEnd_toEndOf="parent"
+            khalti:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/filmname" />
+
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="6dp">
+            app:cardCornerRadius="50dp">
             <ImageView
                 android:id="@+id/filmImage"
                 android:layout_width="50dp"
@@ -26,38 +65,52 @@
                 android:src="@drawable/ic_launcher_foreground" />
 
         </androidx.cardview.widget.CardView>
-        <TextView
-            android:id="@+id/FilmName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="payment"
-            android:fontFamily="serif"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/FilmName"
+                android:layout_width="match_parent"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_height="wrap_content"
+                android:text="FilmName"
+                android:textSize="13dp"
+                android:textStyle="bold"
+                android:textColor="@color/filmname"
+                android:fontFamily="serif"/>
+
+            <TextView
+                android:id="@+id/Cost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/filmname"
+                android:layout_marginStart="12dp"
+                android:text="payment"
+                android:fontFamily="serif"/>
+        </LinearLayout>
     </LinearLayout>
 
     <TextView
-        android:id="@+id/Cost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="payment"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:justificationMode="inter_word"
+        android:lineSpacingExtra="3dp"
+        android:textColor="@color/filmname"
+        android:textSize="11dp"
+        android:text="Complete the purchase of movies with Khalti payment and enjoy the movies."
         android:fontFamily="serif"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/cancel"
-            android:layout_width="60dp"
-            android:textSize="12sp"
-            android:layout_height="35dp"
-            android:textAllCaps="false"
-            android:text="cancle"/>
 
-        </LinearLayout>
-    <com.khalti.widget.KhaltiButton
-        android:id="@+id/khalti_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        khalti:button_style="khalti"/>
-
+        <com.khalti.widget.KhaltiButton
+            android:id="@+id/khalti_button"
+            android:layout_width="match_parent"
+            android:layout_marginTop="34dp"
+            android:layout_gravity="end"
+            android:layout_marginBottom="13dp"
+            android:layout_height="27dp"
+            khalti:button_style="basic"/>
 </LinearLayout>
