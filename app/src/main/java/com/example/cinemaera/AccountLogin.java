@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract;
@@ -44,6 +45,7 @@ public class AccountLogin extends AppCompatActivity {
         passwordL = findViewById(R.id.editPassword);
         log_in = findViewById(R.id.button_login);
         SignUp = findViewById(R.id.signup);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         EmailErrorTxt = findViewById(R.id.EmailErrorTxt);
         getSupportActionBar().hide();
 

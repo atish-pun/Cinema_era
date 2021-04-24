@@ -68,7 +68,6 @@ class Adapter_film extends RecyclerView.Adapter<Adapter_film.ViewHolder> {
                 gallery.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 ctx.startActivity(gallery);
                 MainActivity mainActivity = (MainActivity) ctx;
-                mainActivity.overridePendingTransition(0, 0);
             }
         });
 

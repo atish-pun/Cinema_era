@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -46,6 +47,7 @@ public class Search_activity extends AppCompatActivity {
         searchView = findViewById(R.id.search_view);
         listView = findViewById(R.id.SearchList);
         SearchBack = findViewById(R.id.SearchBack);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         searchAdapter = new SearchAdapter(this,search_Film);
         listView.setAdapter(searchAdapter);
 

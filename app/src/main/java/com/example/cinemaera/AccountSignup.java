@@ -1,6 +1,7 @@
 package com.example.cinemaera;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -41,6 +42,7 @@ public class AccountSignup extends AppCompatActivity {
         confirmPassword = findViewById(R.id.ConfirmPassword);
         sign_up = findViewById(R.id.Button_signup);
         signin = findViewById(R.id.signin);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         EmailErrorTxt = findViewById(R.id.EmailErrorTxt);
         PasswordErrorTxt = findViewById(R.id.PasswordErrorTxt);
         getSupportActionBar().hide();

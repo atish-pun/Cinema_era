@@ -1,6 +1,7 @@
 package com.example.cinemaera;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -49,6 +50,7 @@ public class FavouriteFilm extends AppCompatActivity {
         SecondFavouriteText = findViewById(R.id.SecondFavouriteText);
         swipeRefreshLayout = findViewById(R.id.RefreshFavourite);
         getSupportActionBar().setTitle("Favourites");
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(FavouriteFilm.this,LinearLayoutManager.VERTICAL,false);
         favourite_recycle.setLayoutManager(linearLayoutManager);
         Navigation();

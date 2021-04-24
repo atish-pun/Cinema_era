@@ -57,7 +57,6 @@ class ViewAllFilmAdapter extends RecyclerView.Adapter<ViewAllFilmAdapter.ViewHol
                 gallery.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 ctx.startActivity(gallery);
                 ActionViewAllFilm actionViewAllFilm = (ActionViewAllFilm) ctx;
-                actionViewAllFilm.overridePendingTransition(0, 0);
 
             }
         });

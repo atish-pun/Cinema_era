@@ -2,12 +2,17 @@ package com.example.cinemaera;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -44,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     MainAdapter mainAdapter;
     ProgressBar CustomFilmProgressBar;
     MovieSliderAdapter movieSliderAdapter;
+    LinearLayout NoInternetLinearView;
     SwipeRefreshLayout MainActivityRefresh;
     List<FilmCategoryName> filmCategoryNames = new ArrayList<>();
     List<Film> films = new ArrayList<>();
@@ -58,10 +64,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Movie_slider = findViewById(R.id.Movie_slider);
+        NoInternetLinearView = findViewById(R.id.NoInternetLinearView);
         MainActivityRefresh = findViewById(R.id.MainActivityRefresh);
         CustomFilmProgressBar = findViewById(R.id.CustomFilmProgressBar);
         FilmExtract();
+
+        if(!IsInternet()){
+            NoInternetLinearView.setVisibility(View.VISIBLE);
+            CustomFilmProgressBar.setVisibility(View.GONE);
+        }
+        else {
+            Log.d("MainActivity", "onCreate: Internet access");
+        }
         MainActivityRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -77,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent search = new Intent(MainActivity.this, Search_activity.class);
                 startActivity(search);
-                overridePendingTransition(0, 0);
             }
         });
 
@@ -106,6 +121,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private boolean IsInternet(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(MainActivity.this.CONNECTIVITY_SERVICE);
+        return connectivityManager.getActiveNetworkInfo()!=null && connectivityManager.getActiveNetworkInfo().isConnectedOrConnecting();
+    }
     private void setMain_recyclerView(List<FilmCategoryName> filmCategoryNames) {
         main_recyclerView = findViewById(R.id.recycle_view_main);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false);

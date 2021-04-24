@@ -2,6 +2,7 @@ package com.example.cinemaera;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -79,6 +80,7 @@ public class Film_gallery extends AppCompatActivity {
         setContentView(R.layout.activity_film_gallery);
         getSupportActionBar().hide();
         filmImg = findViewById(R.id.inner_Fimg);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         trailer_video = findViewById(R.id.trailer_video);
         filmTxt = findViewById(R.id.inner_Fname);
         seekBar = findViewById(R.id.seekBar);
@@ -457,11 +459,10 @@ public class Film_gallery extends AppCompatActivity {
                 try {
                     JSONObject object = new JSONObject(response);
                     if (object.getInt("status") == 200) {
-                        Toast.makeText(Film_gallery.this, object.getString("content"), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(Film_gallery.this, MainActivity.class);
+                        Intent intent = new Intent(Film_gallery.this, Movies.class);
+                        intent.putExtra("Full_movie",Trailer_videos);
+                        intent.putExtra("Film names",Film_name);
                         startActivity(intent);
-                        overridePendingTransition(0,0);
-                        finish();
                     }
                     else {
                         AlertDialog.Builder alert = new AlertDialog.Builder(Film_gallery.this);

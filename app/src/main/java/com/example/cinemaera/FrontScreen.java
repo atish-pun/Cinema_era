@@ -3,6 +3,7 @@ package com.example.cinemaera;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -15,6 +16,7 @@ public class FrontScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_front_screen);
         getSupportActionBar().hide();
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         ImageView img = findViewById(R.id.cinemasingle);
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_animation);
         img.setAnimation(animation);

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -80,8 +81,9 @@ public class ProfileUser extends AppCompatActivity {
         UploadProfilePhoto = findViewById(R.id.UploadProfilePhoto);
         StoreProfileImage = findViewById(R.id.StoreProfileImage);
         TotalReview =  findViewById(R.id.TotalReview);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         getSupportActionBar().setTitle("Account Profile");
-        emailText.setText("Email: " + Util.GetValue(getApplicationContext(), "Cinemapref_email"));
+        emailText.setText(Util.GetValue(getApplicationContext(), "Cinemapref_email"));
         nameText.setText("User name: "+ Util.GetValue(getApplicationContext(),"Cinemapref_name"));
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,3, RecyclerView.VERTICAL,false);
         ViewRecycler.setLayoutManager(gridLayoutManager);
