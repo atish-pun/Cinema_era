@@ -8,61 +8,70 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/cinema_icon_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Movies"
+            android:screenOrientation="portrait"
             android:parentActivityName=".Film_gallery"
             android:theme="@style/AppTheme.NoActionBarViewAllFilm"/>
         <activity
             android:name=".Profile_Update"
+            android:screenOrientation="portrait"
             android:parentActivityName=".ProfileUser"
             android:theme="@style/EditProfileTheme" />
         <activity
             android:name=".ProfileUser"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBarViewAllFilm" />
         <activity
             android:name=".AccountSignup"
+            android:screenOrientation="portrait"
             android:theme="@style/AccountTheme" />
         <activity
             android:name=".AccountLogin"
+            android:screenOrientation="portrait"
             android:theme="@style/AccountTheme" />
         <activity
             android:name=".ActionViewAllFilm"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBarViewAllFilm" />
         <activity
             android:name=".LoveViewAllFilm"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBarViewAllFilm" />
         <activity
             android:name=".HorrorViewAllFilm"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBarViewAllFilm" />
         <activity
             android:name=".FavouriteFilm"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBarViewAllFilm" />
         <activity android:name=".Film_gallery" />
         <activity
             android:name=".Search_activity"
+            android:screenOrientation="portrait"
             android:theme="@style/SearchView" />
         <activity
             android:name=".FrontScreen"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBarSplashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBarMain" />
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
 </manifest>

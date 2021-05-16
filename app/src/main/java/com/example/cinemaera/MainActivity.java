@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Movie_slider = findViewById(R.id.Movie_slider);
         NoInternetLinearView = findViewById(R.id.NoInternetLinearView);
         MainActivityRefresh = findViewById(R.id.MainActivityRefresh);
@@ -83,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
             public void onRefresh() {
                 FilmExtract();
                 MainActivityRefresh.setRefreshing(false);
-
             }
         });
 
@@ -93,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent search = new Intent(MainActivity.this, Search_activity.class);
                 startActivity(search);
+                overridePendingTransition(0, 0);
             }
         });
 

@@ -80,7 +80,6 @@ public class Film_gallery extends AppCompatActivity {
         setContentView(R.layout.activity_film_gallery);
         getSupportActionBar().hide();
         filmImg = findViewById(R.id.inner_Fimg);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         trailer_video = findViewById(R.id.trailer_video);
         filmTxt = findViewById(R.id.inner_Fname);
         seekBar = findViewById(R.id.seekBar);

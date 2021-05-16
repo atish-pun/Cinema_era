@@ -16,7 +16,6 @@ public class FrontScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_front_screen);
         getSupportActionBar().hide();
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         ImageView img = findViewById(R.id.cinemasingle);
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_animation);
         img.setAnimation(animation);
@@ -30,9 +29,6 @@ public class FrontScreen extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent intent = new Intent(FrontScreen.this, AccountLogin.class);
-                startActivity(intent);
-                finish();
             }
 
             @Override

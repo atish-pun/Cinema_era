@@ -108,8 +108,6 @@ public class AccountLogin extends AppCompatActivity {
                                     }
                                 } catch (JSONException e) {
                                     Toast.makeText(AccountLogin.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-
-
                                 }
                             }
                         }
@@ -132,68 +130,7 @@ public class AccountLogin extends AppCompatActivity {
                     Toast.makeText(AccountLogin.this, "Fields can't be empty!!", Toast.LENGTH_SHORT).show();
                 }
             }
-
-//                if( !str_emailL.equals("") && !str_passwordL.equals("")){
-//                    Handler handler = new Handler();
-//                    handler.post(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            //Creating array for parameters
-//                            String[] field = new String[2];
-//                            field[0] = "emailAddress";
-//                            field[1] = "Password";
-//
-//                            //Creating array for data
-//                            String[] data = new String[2];
-//                            data[0] = str_emailL;
-//                            data[1] = str_passwordL;
-//
-//                            PutData putData = new PutData(url,"POST",field,data);
-//                            if (putData.startPut()) {
-//                                if (putData.onComplete()) {
-//                                    String result = putData.getResult();
-//                                    if (result.equals("Login Success")) {
-//                                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-//                                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-//                                        startActivity(intent);
-//                                        overridePendingTransition(0,0);
-//                                        finish();
-//                                    }
-//                                    else{
-//                                        Toast.makeText(getApplicationContext(),result, Toast.LENGTH_SHORT).show();
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    });
-//
-//                } else{
-//                    Toast.makeText(getApplicationContext(), "All Field Required", Toast.LENGTH_SHORT).show();
-//                }
-
         });
-
-//        BottomNavigationView nav = findViewById(R.id.buttom_nav);
-//        nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                switch (item.getItemId()) {
-//                    case R.id.home_bar:
-//                        Intent intent = new Intent(AccountLogin.this,MainActivity.class);
-//                        startActivity(intent);
-//                        overridePendingTransition(0,0);
-//                        finish();
-//                        break;
-//                    case R.id.favourite_bar:
-//                        Intent intent1 = new Intent(AccountLogin.this,FavouriteFilm.class);
-//                        startActivity(intent1);
-//                        overridePendingTransition(0,0);
-//                        finish();
-//                        break;
-//                }
-//                return true;
-//            }
-//        });
     }
     }
 

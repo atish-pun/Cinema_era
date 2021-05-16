@@ -28,7 +28,6 @@ public class Profile_Update extends AppCompatActivity {
         setContentView(R.layout.activity_profile__update);
         getSupportActionBar().setTitle("Edit Profile");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         email = findViewById(R.id.email); email.setText(Util.SESSION_EMAIL);
         fullname = findViewById(R.id.fullname); fullname.setText(Util.SESSION_NAME);
 

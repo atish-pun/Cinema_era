@@ -81,7 +81,6 @@ public class ProfileUser extends AppCompatActivity {
         UploadProfilePhoto = findViewById(R.id.UploadProfilePhoto);
         StoreProfileImage = findViewById(R.id.StoreProfileImage);
         TotalReview =  findViewById(R.id.TotalReview);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         getSupportActionBar().setTitle("Account Profile");
         emailText.setText(Util.GetValue(getApplicationContext(), "Cinemapref_email"));
         nameText.setText("User name: "+ Util.GetValue(getApplicationContext(),"Cinemapref_name"));

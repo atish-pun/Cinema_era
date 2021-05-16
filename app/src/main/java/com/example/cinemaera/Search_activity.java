@@ -47,7 +47,6 @@ public class Search_activity extends AppCompatActivity {
         searchView = findViewById(R.id.search_view);
         listView = findViewById(R.id.SearchList);
         SearchBack = findViewById(R.id.SearchBack);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         searchAdapter = new SearchAdapter(this,search_Film);
         listView.setAdapter(searchAdapter);
 
@@ -58,17 +57,10 @@ public class Search_activity extends AppCompatActivity {
         SearchBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getParent().equals(MainActivity.class)){
                     Intent intent = new Intent(Search_activity.this,MainActivity.class);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
 
-                }
-                else {
-                    Intent intent = new Intent(Search_activity.this,FavouriteFilm.class);
-                    startActivity(intent);
-                    overridePendingTransition(0, 0);
-                }
             }
         });
 

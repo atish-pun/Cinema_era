@@ -2,6 +2,8 @@ package com.example.cinemaera;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,6 +32,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +85,11 @@ public class FavouriteFilm extends AppCompatActivity {
             case R.id.setting_bar:
 
             case R.id.share_bar:
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                String app = "Download this Cinema Era app through:-http://lalpun.com.np/=en";
+                intent.putExtra(Intent.EXTRA_SUBJECT,app);
+                startActivity(Intent.createChooser(intent,"ShareVia"));
 
             case R.id.feedback_bar:
 
