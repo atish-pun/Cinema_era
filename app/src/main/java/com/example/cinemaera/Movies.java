@@ -2,14 +2,22 @@ package com.example.cinemaera;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
+import android.app.ActionBar;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.transition.TransitionManager;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
@@ -18,44 +26,51 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 public class Movies extends AppCompatActivity {
-    VideoView trailer_video;
+    VideoView movies_video;
     TextView  startTime, endTime;
     Button innerTrailerPlay;
     SeekBar seekBar;
-    String Trailer_videos,film_name;
+    Boolean fullscreen = false;
+    String movies_path,film_name;
     LinearLayout VideoLinearView;
     ProgressBar MovieBarLoad;
+    ImageView FullScreen;
+    ConstraintLayout videoConstrant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("");
-        trailer_video = findViewById(R.id.trailer_video);
+        movies_video = findViewById(R.id.movies_video);
         startTime = findViewById(R.id.startTime);
         endTime = findViewById(R.id.endTime);
         seekBar = findViewById(R.id.seekBar);
+        innerTrailerPlay = findViewById(R.id.innerTrialerplay);
         MovieBarLoad = findViewById(R.id.MovieBarLoad);
-        VideoLinearView = findViewById(R.id.VideoLinearView);
-        Trailer_videos = getIntent().getStringExtra("Full_movie");
+//        VideoLinearView = findViewById(R.id.VideoLinearView);
+        videoConstrant = findViewById(R.id.videoConstrant);
+        FullScreen = findViewById(R.id.Fullscreen);
+        movies_path = getIntent().getStringExtra("Full_movie");
         film_name = getIntent().getStringExtra("Film names");
-        trailer_video.setVideoURI(Uri.parse(Trailer_videos));
+        movies_video.setVideoURI(Uri.parse(movies_path));
+        getSupportActionBar().setTitle(film_name);
         setHandler();
         InitSeekBar();
         MoviesStart();
-//        TrailerVideoCLick();
+        TrailerVideoCLick();
+        FullScreen();
     }
+
     public void setHandler(){
         final Handler moviehandler = new Handler();
         Runnable movierun = new Runnable() {
             @Override
             public void run() {
-                if (trailer_video.getCurrentPosition() > 0){
-                    int currentTime = trailer_video.getCurrentPosition();
+                if (movies_video.getCurrentPosition() > 0){
+                    int currentTime = movies_video.getCurrentPosition();
                     seekBar.setProgress(currentTime);
                     startTime.setText(convertIntoTime(currentTime));
-                    endTime.setText(convertIntoTime(trailer_video.getDuration()));
+                    endTime.setText(convertIntoTime(movies_video.getDuration()));
                 }
                 moviehandler.postDelayed(this,0);
             }
@@ -85,10 +100,10 @@ public class Movies extends AppCompatActivity {
                 switch (seekBar.getId()){
                     case R.id.seekBar:
                         if (fromUser){
-                            trailer_video.seekTo(progress);
-                            int currentTime = trailer_video.getCurrentPosition();
+                            movies_video.seekTo(progress);
+                            int currentTime = movies_video.getCurrentPosition();
                             startTime.setText(convertIntoTime(currentTime));
-                            endTime.setText(convertIntoTime(trailer_video.getDuration()));
+                            endTime.setText(convertIntoTime(movies_video.getDuration()));
                         }
                 }
             }
@@ -103,23 +118,23 @@ public class Movies extends AppCompatActivity {
         });
     }
     public void MoviesStart(){
-        trailer_video.start();
-        trailer_video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        movies_video.start();
+        movies_video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 MovieBarLoad.setVisibility(View.GONE);
-                seekBar.setMax(trailer_video.getDuration());
+                seekBar.setMax(movies_video.getDuration());
 
             }
         });
-        trailer_video.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        movies_video.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 innerTrailerPlay.setBackground(getDrawable(R.drawable.ic_play));
             }
         });
 
-      trailer_video.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+        movies_video.setOnErrorListener(new MediaPlayer.OnErrorListener() {
           @Override
           public boolean onError(MediaPlayer mp, int what, int extra) {
               MovieBarLoad.setVisibility(View.GONE);
@@ -134,41 +149,62 @@ public class Movies extends AppCompatActivity {
           }
       });
     }
-//    public void innerTrialerplay(View view) {
-//        if (trailer_video.isPlaying()) {
-//            trailer_video.pause();
-//            innerTrailerPlay.setBackground(getDrawable(R.drawable.ic_play));
-//        }
-//        else {
-//            trailer_video.start();
-//            seekBar.setMax(trailer_video.getDuration());
-//            innerTrailerPlay.setBackground(getDrawable(R.drawable.ic_pause));
-//        }
-//    }
 
     public void PausePlay(View view) {
-        if(trailer_video.isPlaying()){
-            trailer_video.pause();
+        if(movies_video.isPlaying()){
+            movies_video.pause();
+            innerTrailerPlay.setBackground(getDrawable(R.drawable.ic_play));
+
         }
         else {
-            trailer_video.start();
-            seekBar.setMax(trailer_video.getDuration());
+            movies_video.start();
+            seekBar.setMax(movies_video.getDuration());
+            innerTrailerPlay.setBackground(getDrawable(R.drawable.ic_pause));
+
         }
     }
 
-//    public void TrailerVideoCLick() {
-//        trailer_video.setOnClickListener(new View.OnClickListener() {
-//            boolean visible;
-//
-//            @Override
-//            public void onClick(View v) {
-//                visible = !visible;
-//                TransitionManager.beginDelayedTransition(VideoLinearView);
-//                innerTrailerPlay.setVisibility(visible ? View.INVISIBLE : View.VISIBLE);
-//                endTime.setVisibility(visible ? View.INVISIBLE : View.VISIBLE);
-//                startTime.setVisibility(visible ? View.INVISIBLE : View.VISIBLE);
-//                seekBar.setVisibility(visible ? View.INVISIBLE : View.VISIBLE);
-//            }
-//        });
-//    }
+    public void TrailerVideoCLick() {
+        movies_video.setOnClickListener(new View.OnClickListener() {
+            boolean visible;
+            @Override
+            public void onClick(View v) {
+                visible = !visible;
+                TransitionManager.beginDelayedTransition(videoConstrant);
+                endTime.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
+                startTime.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
+                seekBar.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
+                innerTrailerPlay.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
+                
+            }
+        });
+    }
+        public void FullScreen(){
+            FullScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(fullscreen){
+//                    FullScreen.setImageDrawable(ContextCompat.getDrawable(Movies.this,R.drawable.ic_email));
+                    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                    ConstraintLayout.LayoutParams params =(ConstraintLayout.LayoutParams)movies_video.getLayoutParams();
+                    params.width = params.MATCH_PARENT;
+                    params.height = params.MATCH_PARENT;
+                    movies_video.setLayoutParams(params);
+                    fullscreen = false;
+                }
+                else {
+                    getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//                    FullScreen.setImageDrawable(ContextCompat.getDrawable(Movies.this,R.drawable.ic_back));
+                    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN|View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY|View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                    ConstraintLayout.LayoutParams params =(ConstraintLayout.LayoutParams)movies_video.getLayoutParams();
+                    params.width = params.WRAP_CONTENT;
+                    params.height = params.WRAP_CONTENT;
+                    movies_video.setLayoutParams(params);
+                    fullscreen = true;
+                }
+            }
+        });
+    }
 }

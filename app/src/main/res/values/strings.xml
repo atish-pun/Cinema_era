@@ -7,9 +7,9 @@
     <string name="Image_url">https://cinemaera.lalpun.com.np/ERA/MoviesPoster/</string>
     <string name="Trailer_Video_url">https://cinemaera.lalpun.com.np/ERA/Trailer_vedios/</string>-->
 
-    <string name="server_api_url">https://192.168.100.129:8080/eraass/api/</string>
-    <string name="Image_url">https://192.168.100.129:8080/ERA/MoviesPoster/</string>
-    <string name="Trailer_Video_url">https://192.168.100.129:8080/ERA/Trailer_vedios/</string>
+    <string name="server_api_url">http://192.168.100.129:8080/ERA/api/</string>
+    <string name="Image_url">http://192.168.100.129:8080/ERA/MoviesPoster/</string>
+    <string name="Trailer_Video_url">http://192.168.100.129:8080/ERA/Trailer_vedios/</string>
 
 
     <!--    https://myjsonatish.000webhostapp.com/ERA/api/-->

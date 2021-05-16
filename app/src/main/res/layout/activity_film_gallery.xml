@@ -35,7 +35,7 @@
                                             <VideoView
                                                 android:id="@+id/trailer_video"
                                                 android:layout_width="match_parent"
-                                                android:layout_height="240dp"
+                                                android:layout_height="250dp"
                                                 android:layout_alignParentStart="true"
                                                 android:layout_alignParentEnd="true"
                                                 android:layout_marginStart="0dp"
@@ -69,14 +69,13 @@
                                         <Button
                                             android:id="@+id/innerTrialerplay"
                                             android:layout_width="43dp"
-                                            android:layout_height="33dp"
+                                            android:layout_height="31dp"
                                             android:gravity="center"
                                             android:onClick="innerTrialerplay"
                                             android:background="@drawable/ic_pause"
                                             app:layout_constraintBottom_toBottomOf="@+id/TrailerFilmProgressBar"
                                             app:layout_constraintEnd_toEndOf="parent"
                                             app:layout_constraintStart_toStartOf="@+id/TrailerFilmProgressBar"
-                                            app:layout_constraintTop_toTopOf="parent"
                                             app:layout_constraintVertical_bias="1" />
 
                                         <TextView
@@ -115,7 +114,7 @@
                                             android:onClick="Backtrailer"
                                             app:layout_constraintStart_toStartOf="@+id/TrailerFilmProgressBar"
                                             app:layout_constraintTop_toTopOf="@+id/TrailerFilmProgressBar"
-                                            app:srcCompat="@drawable/ic_crosstrailer" />
+                                            app:srcCompat="@drawable/ic_crosstrailer"/>
 
                                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -213,7 +212,7 @@
                                             android:fontFamily="serif"
                                             android:text="Film title"
                                             android:textColor="@color/film_detailsTXT"
-                                            android:textSize="17sp"
+                                            android:textSize="16sp"
                                             android:textStyle="bold"
                                             app:layout_constraintEnd_toEndOf="parent"
                                             app:layout_constraintHorizontal_bias="0.019"
@@ -221,22 +220,14 @@
                                             app:layout_constraintTop_toBottomOf="@+id/trailer_img"
                                             tools:ignore="MissingConstraints" />
 
-<!--                                        <ImageView-->
-<!--                                            android:id="@+id/FilmGallery_back"-->
-<!--                                            android:layout_width="40dp"-->
-<!--                                            android:layout_height="28dp"-->
-<!--                                            android:background="@drawable/film_back_background"-->
-<!--                                            android:src="@drawable/ic_film_gallery_back"-->
-<!--                                            app:layout_constraintStart_toStartOf="parent"-->
-<!--                                            app:layout_constraintTop_toTopOf="parent" />-->
-
-
                                         <LinearLayout
                                             android:layout_width="150dp"
-                                            android:layout_height="112dp"
+                                            android:layout_height="wrap_content"
                                             android:orientation="horizontal"
+                                            android:layout_marginTop="18dp"
                                             app:layout_constraintStart_toEndOf="@+id/card_inner"
-                                            app:layout_constraintTop_toBottomOf="@+id/inner_Fname">
+                                            app:layout_constraintTop_toBottomOf="@+id/trailer_img">
+
                                                 <TextView
                                                     android:id="@+id/price"
                                                     android:layout_width="wrap_content"
@@ -482,7 +473,7 @@
                                             android:fontFamily="serif"
                                             android:text="Reviews"
                                             android:textColor="@color/film_detailsTXT"
-                                            android:textSize="17.5sp"
+                                            android:textSize="16sp"
                                             android:textStyle="bold"
                                             app:layout_constraintStart_toStartOf="parent"
                                             app:layout_constraintTop_toBottomOf="@+id/OverviewTxt" />

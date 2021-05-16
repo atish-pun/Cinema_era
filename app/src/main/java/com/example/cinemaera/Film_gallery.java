@@ -67,7 +67,6 @@ public class Film_gallery extends AppCompatActivity {
     SeekBar seekBar;
     View TrailerBarLoad;
     float ratingValue;
-    Boolean fullscreen = false;
     String TotalRatings, Film_name,MoviePoster,Trailer_videos,Movie_id, Costs;
     ConstraintLayout videoConstraint;
     List<Film.ReviewInfo> reviewInfo = new ArrayList<>();
@@ -268,35 +267,6 @@ public class Film_gallery extends AppCompatActivity {
                 backTrailer.setVisibility(visible ? View.INVISIBLE : View.VISIBLE);
             }
         });
-
-
-//    public void FullScreen(){
-//        Fullscreen.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(fullscreen){
-//                    Fullscreen.setImageDrawable(ContextCompat.getDrawable(Film_gallery.this,R.drawable.ic_email));
-//                    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
-//                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-//                    ConstraintLayout.LayoutParams params =(ConstraintLayout.LayoutParams)trailer_video.getLayoutParams();
-//                    params.width = params.MATCH_PARENT;
-//                    params.height = params.MATCH_PARENT;
-//                    trailer_video.setLayoutParams(params);
-//                    fullscreen = false;
-//                }
-//                else {
-//                    Fullscreen.setImageDrawable(ContextCompat.getDrawable(Film_gallery.this,R.drawable.ic_back));
-//                    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN|View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY|View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-//                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-//                    ConstraintLayout.LayoutParams params =(ConstraintLayout.LayoutParams)trailer_video.getLayoutParams();
-//                    params.width = params.WRAP_CONTENT;
-//                    params.height = params.WRAP_CONTENT;
-//                    trailer_video.setLayoutParams(params);
-//                    fullscreen = true;
-//                }
-//            }
-//        });
-//    }
     }
 
         public void review_dialoge (View view){
