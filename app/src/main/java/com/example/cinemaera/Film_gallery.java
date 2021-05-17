@@ -117,6 +117,10 @@ public class Film_gallery extends AppCompatActivity {
         runtime.setText(getIntent().getStringExtra("Run time"));
         language.setText(getIntent().getStringExtra("Language"));
         overview.setText(getIntent().getStringExtra("Overview"));
+        endTime.setVisibility(View.INVISIBLE);
+        startTime.setVisibility(View.INVISIBLE);
+        seekBar.setVisibility(View.INVISIBLE);
+        innerTrailerPlay.setVisibility(View.INVISIBLE);
         linearLayoutManager = new LinearLayoutManager(Film_gallery.this,LinearLayoutManager.VERTICAL,false);
         setHandler();
         InitSeekBar();
@@ -132,8 +136,6 @@ public class Film_gallery extends AppCompatActivity {
                 FilmGalleryRefresh.setRefreshing(false);
             }
         });
-
-
     }
 
     public void setHandler(){
@@ -205,7 +207,10 @@ public class Film_gallery extends AppCompatActivity {
             public void onPrepared(MediaPlayer mp) {
                 TrailerBarLoad.setVisibility(View.GONE);
                 seekBar.setMax(trailer_video.getDuration());
-
+                endTime.setVisibility(View.VISIBLE);
+                startTime.setVisibility(View.VISIBLE);
+                seekBar.setVisibility(View.VISIBLE);
+                innerTrailerPlay.setVisibility(View.VISIBLE);
             }
         });
 
@@ -220,6 +225,10 @@ public class Film_gallery extends AppCompatActivity {
             @Override
             public boolean onError(MediaPlayer mp, int what, int extra) {
                 TrailerBarLoad.setVisibility(View.GONE);
+                endTime.setVisibility(View.INVISIBLE);
+                startTime.setVisibility(View.INVISIBLE);
+                seekBar.setVisibility(View.INVISIBLE);
+                innerTrailerPlay.setVisibility(View.INVISIBLE);
                 AlertDialog.Builder alert = new AlertDialog.Builder(Film_gallery.this,R.style.Alert);
                 alert.setTitle("Can't play Video");
                 alert.setMessage("Trailer video of "+Film_name+" isn't available!!");

@@ -132,8 +132,7 @@ public class MainActivity extends AppCompatActivity {
         main_recyclerView.setAdapter(mainAdapter);
 
     }
-
-    public void FilmExtract() {
+        public void FilmExtract() {
         String url = getString(R.string.server_api_url) + "home.php";
         RequestQueue queue = Volley.newRequestQueue(this);
         filmCategoryNames.clear();

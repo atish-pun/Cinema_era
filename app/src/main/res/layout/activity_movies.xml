@@ -8,89 +8,91 @@
     android:background="@color/colorPrimaryDark"
     android:layout_height="match_parent"
     tools:context=".Movies">
-        <RelativeLayout
-            android:id="@+id/TrailerFilmProgressBar"
+
+    <RelativeLayout
+        android:id="@+id/TrailerFilmProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <VideoView
+            android:id="@+id/movies_video"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="350dp"
+            android:layout_centerInParent="true" />
 
-            <VideoView
-                android:id="@+id/movies_video"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="0dp"
-                android:layout_marginEnd="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
-
-            <ProgressBar
-                android:id="@+id/MovieBarLoad"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:indeterminate="true"
-                android:layout_centerHorizontal="true"
-                android:layout_centerInParent="true"/>
-        </RelativeLayout>
+        <ProgressBar
+            android:id="@+id/MovieBarLoad"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:indeterminate="true" />
+    </RelativeLayout>
 
         <SeekBar
             android:id="@+id/seekBar"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:foregroundGravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             app:layout_constraintBottom_toBottomOf="@+id/TrailerFilmProgressBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/TrailerFilmProgressBar"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.88" />
+            app:layout_constraintVertical_bias="0.95" />
 
-        <Button
-            android:id="@+id/innerTrialerplay"
-            android:layout_width="43dp"
-            android:layout_height="31dp"
-            android:gravity="center"
-            android:onClick="PausePlay"
-            android:background="@drawable/ic_pause"
-            app:layout_constraintBottom_toBottomOf="@+id/TrailerFilmProgressBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/TrailerFilmProgressBar"
-            app:layout_constraintVertical_bias="1" />
+    <Button
+        android:id="@+id/innerTrialerplay"
+        android:layout_width="55dp"
+        android:layout_height="46dp"
+        android:background="@drawable/ic_pause"
+        android:onClick="PausePlay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:id="@+id/startTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00:00"
-            android:textColor="#FFFFFF"
-            android:gravity="left"
-            app:layout_constraintBottom_toBottomOf="@+id/TrailerFilmProgressBar"
-            app:layout_constraintEnd_toStartOf="@+id/seekBar"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.88" />
+    <TextView
+        android:id="@+id/startTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="00:00"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/TrailerFilmProgressBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
 
-        <TextView
-            android:id="@+id/endTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="00:00"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="@+id/TrailerFilmProgressBar"
-            app:layout_constraintHorizontal_bias="0.333"
-            app:layout_constraintStart_toEndOf="@+id/seekBar"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.88" />
+    <TextView
+        android:id="@+id/endTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_marginEnd="10dp"
+        android:text="00:00"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/TrailerFilmProgressBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
 
     <ImageView
         android:id="@+id/Fullscreen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_setting"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/TrailerFilmProgressBar"
-        app:layout_constraintStart_toEndOf="@+id/innerTrialerplay" />
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_full_screen"
+        app:layout_constraintBottom_toBottomOf="@+id/TrailerFilmProgressBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="7dp"
+        app:layout_constraintVertical_bias="0.9" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

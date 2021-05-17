@@ -1,5 +1,6 @@
 package com.example.cinemaera;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -8,11 +9,14 @@ import androidx.core.content.ContextCompat;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.transition.ChangeBounds;
 import android.transition.TransitionManager;
+import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -20,10 +24,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
+
+import org.jetbrains.annotations.NotNull;
 
 public class Movies extends AppCompatActivity {
     VideoView movies_video;
@@ -47,13 +54,17 @@ public class Movies extends AppCompatActivity {
         seekBar = findViewById(R.id.seekBar);
         innerTrailerPlay = findViewById(R.id.innerTrialerplay);
         MovieBarLoad = findViewById(R.id.MovieBarLoad);
-//        VideoLinearView = findViewById(R.id.VideoLinearView);
         videoConstrant = findViewById(R.id.videoConstrant);
         FullScreen = findViewById(R.id.Fullscreen);
         movies_path = getIntent().getStringExtra("Full_movie");
         film_name = getIntent().getStringExtra("Film names");
         movies_video.setVideoURI(Uri.parse(movies_path));
         getSupportActionBar().setTitle(film_name);
+        endTime.setVisibility(View.INVISIBLE);
+        startTime.setVisibility(View.INVISIBLE);
+        seekBar.setVisibility(View.INVISIBLE);
+        innerTrailerPlay.setVisibility(View.INVISIBLE);
+        FullScreen.setVisibility(View.INVISIBLE);
         setHandler();
         InitSeekBar();
         MoviesStart();
@@ -119,11 +130,17 @@ public class Movies extends AppCompatActivity {
     }
     public void MoviesStart(){
         movies_video.start();
+        seekBar.setMax(movies_video.getDuration());
         movies_video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 MovieBarLoad.setVisibility(View.GONE);
                 seekBar.setMax(movies_video.getDuration());
+                endTime.setVisibility(View.VISIBLE);
+                startTime.setVisibility(View.VISIBLE);
+                seekBar.setVisibility(View.VISIBLE);
+                innerTrailerPlay.setVisibility(View.VISIBLE);
+                FullScreen.setVisibility(View.VISIBLE);
 
             }
         });
@@ -175,36 +192,43 @@ public class Movies extends AppCompatActivity {
                 startTime.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
                 seekBar.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
                 innerTrailerPlay.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
+                FullScreen.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
                 
             }
         });
     }
-        public void FullScreen(){
+
+    public void FullScreen(){
             FullScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(fullscreen){
-//                    FullScreen.setImageDrawable(ContextCompat.getDrawable(Movies.this,R.drawable.ic_email));
-                    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+                    FullScreen.setImageDrawable(ContextCompat.getDrawable(Movies.this,R.drawable.ic_full_screen));
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) movies_video.getLayoutParams();
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                    ConstraintLayout.LayoutParams params =(ConstraintLayout.LayoutParams)movies_video.getLayoutParams();
-                    params.width = params.MATCH_PARENT;
-                    params.height = params.MATCH_PARENT;
                     movies_video.setLayoutParams(params);
                     fullscreen = false;
                 }
                 else {
-                    getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//                    FullScreen.setImageDrawable(ContextCompat.getDrawable(Movies.this,R.drawable.ic_back));
-                    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN|View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY|View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+                    FullScreen.setImageDrawable(ContextCompat.getDrawable(Movies.this,R.drawable.ic_full_screen_exit));
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) movies_video.getLayoutParams();
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                    ConstraintLayout.LayoutParams params =(ConstraintLayout.LayoutParams)movies_video.getLayoutParams();
-                    params.width = params.WRAP_CONTENT;
-                    params.height = params.WRAP_CONTENT;
+                    getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
                     movies_video.setLayoutParams(params);
                     fullscreen = true;
                 }
             }
         });
+    }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        setContentView(R.layout.activity_movies);
+        FullScreen();
     }
 }
