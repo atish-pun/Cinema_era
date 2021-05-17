@@ -48,6 +48,7 @@ class Movies_transaction_adpater extends RecyclerView.Adapter<Movies_transaction
                 gallery.putExtra("Film names",transactedMovies.get(position).getA_name());
                 gallery.putExtra("Price",transactedMovies.get(position).getPrice());
                 gallery.putExtra("Trailer video",transactedMovies.get(position).getTrailer_videos());
+                gallery.putExtra("Full movies",transactedMovies.get(position).getFull_movies());
                 gallery.putExtra("Cast",transactedMovies.get(position).getCast());
                 gallery.putExtra("Director",transactedMovies.get(position).getDirector());
                 gallery.putExtra("Release date",transactedMovies.get(position).getRelease_date());

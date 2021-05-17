@@ -69,6 +69,7 @@ class SearchAdapter extends BaseAdapter implements Filterable {
                 gallery.putExtra("Film names",DisplaySearchFilm.get(position).getFilm_name());
                 gallery.putExtra("Price",DisplaySearchFilm.get(position).getPrice());
                 gallery.putExtra("Trailer video",DisplaySearchFilm.get(position).getTrailer_videos());
+                gallery.putExtra("Full movies",DisplaySearchFilm.get(position).getFull_movies());
                 gallery.putExtra("Cast",DisplaySearchFilm.get(position).getCast());
                 gallery.putExtra("Director",DisplaySearchFilm.get(position).getDirector());
                 gallery.putExtra("Release date",DisplaySearchFilm.get(position).getDate());

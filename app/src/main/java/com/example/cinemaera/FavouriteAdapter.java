@@ -56,6 +56,7 @@ class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.ViewHolder>
                 gallery.putExtra("Film names",favourite.get(position).getA_name());
                 gallery.putExtra("Price",favourite.get(position).getPrice());
                 gallery.putExtra("Trailer video",favourite.get(position).getTrailer_videos());
+                gallery.putExtra("Full movies",favourite.get(position).getFull_movies());
                 gallery.putExtra("Cast",favourite.get(position).getCast());
                 gallery.putExtra("Director",favourite.get(position).getDirector());
                 gallery.putExtra("Release date",favourite.get(position).getRelease_date());
@@ -72,7 +73,7 @@ class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.ViewHolder>
          holder.DeleteFavourite.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(final View v) {
-                 String parameter = "remove-cart.php?id="+ favourite.get(position).getId() +"&otoken="+ Util.FAVOURITE_TOKEN +"&uid="+ Util.SESSION_USERID;
+                 String parameter = "FavouriteRemove.php?id="+ favourite.get(position).getId() +"&otoken="+ Util.FAVOURITE_TOKEN +"&uid="+ Util.SESSION_USERID;
                  String url = ctx.getString(R.string.server_api_url) + parameter;
                  RequestQueue queue = Volley.newRequestQueue(ctx);
                  StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -98,40 +99,6 @@ class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.ViewHolder>
                  });
                  stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                  queue.add(stringRequest);
-//                 final String MovieName;
-//                 MovieName = holder.film_name.getText().toString();
-//                 android.os.Handler handler = new Handler();
-//                 handler.post(new Runnable() {
-//                     @Override
-//                     public void run() {
-//                         String[] field = new String[1];
-//                         field[0] = "Movie_name";
-//
-//                         String[] data = new String[1];
-//                         data[0] = MovieName;
-//
-//                         PutData putData = new PutData("http://192.168.100.129:8080/ERA/DeleteFavouriteMovies.php", "POST", field, data);
-//                         if (putData.startPut()) {
-//                             if (putData.onComplete()) {
-//                                 String result = putData.getResult();
-//                                 if (result.equals("Successfully removed from Favourite")) {
-//                                     holder.favourite_layout.setVisibility(View.GONE);
-//                                     Intent favourite = new Intent(ctx, FavouriteFilm.class);
-//                                     ctx.startActivity(favourite);
-//                                     FavouriteFilm favouriteFilm = (FavouriteFilm) ctx;
-//                                     favouriteFilm.FavouriteIcon.setVisibility(View.INVISIBLE);
-//                                     favouriteFilm.FirstFavouriteText.setVisibility(View.INVISIBLE);
-//                                     favouriteFilm.SecondFavouriteText.setVisibility(View.INVISIBLE);
-//                                     favouriteFilm.overridePendingTransition(0,0);
-//                                     favouriteFilm.finish();
-//                                     Toast.makeText(ctx, MovieName + " removed from Favourite List", Toast.LENGTH_SHORT).show();
-//                                 } else {
-//                                     Toast.makeText(ctx, result, Toast.LENGTH_SHORT).show();
-//                                 }
-//                             }
-//                         }
-//                     }
-//                 });
              }
          });
     }

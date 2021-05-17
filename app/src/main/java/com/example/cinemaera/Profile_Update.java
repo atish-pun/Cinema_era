@@ -56,7 +56,7 @@ public class Profile_Update extends AppCompatActivity {
                 e.printStackTrace();
             }
         }, error -> {
-            Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Sever is in Maintenance!!", Toast.LENGTH_SHORT).show();
         });
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(stringRequest);

@@ -67,7 +67,7 @@ public class Film_gallery extends AppCompatActivity {
     SeekBar seekBar;
     View TrailerBarLoad;
     float ratingValue;
-    String TotalRatings, Film_name,MoviePoster,Trailer_videos,Movie_id, Costs;
+    String TotalRatings, Film_name,MoviePoster,Trailer_videos, Full_movies, Movie_id, Costs;
     ConstraintLayout videoConstraint;
     List<Film.ReviewInfo> reviewInfo = new ArrayList<>();
     LinearLayoutManager linearLayoutManager;
@@ -111,6 +111,7 @@ public class Film_gallery extends AppCompatActivity {
         Price.setText("Price: Rs " + Costs);
         Trailer_videos = getIntent().getStringExtra("Trailer video");
         trailer_video.setVideoURI(Uri.parse(Trailer_videos));
+        Full_movies = getIntent().getStringExtra("Full movies");
         cast.setText(getIntent().getStringExtra("Cast"));
         director.setText(getIntent().getStringExtra("Director"));
         releaseDate.setText(getIntent().getStringExtra("Release date"));
@@ -403,7 +404,7 @@ public class Film_gallery extends AppCompatActivity {
 
     public void FavouriteBtn(View view) {
         if(Util.FAVOURITE_TOKEN == null || Util.FAVOURITE_TOKEN.equals("")) Util.GenerateFavouriteToken(this);
-        String url = getString(R.string.server_api_url) + "add-to-cart.php?pid=" + Movie_id + "&otoken=" + Util.FAVOURITE_TOKEN + "&uid=" + Util.SESSION_USERID;
+        String url = getString(R.string.server_api_url) + "FavouriteAdd.php?pid=" + Movie_id + "&otoken=" + Util.FAVOURITE_TOKEN + "&uid=" + Util.SESSION_USERID;
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -438,7 +439,7 @@ public class Film_gallery extends AppCompatActivity {
                     JSONObject object = new JSONObject(response);
                     if (object.getInt("status") == 200) {
                         Intent intent = new Intent(Film_gallery.this, Movies.class);
-                        intent.putExtra("Full_movie",Trailer_videos);
+                        intent.putExtra("Full_movie",Full_movies);
                         intent.putExtra("Film names",Film_name);
                         startActivity(intent);
                     }
@@ -453,7 +454,6 @@ public class Film_gallery extends AppCompatActivity {
                         final ImageView cancel = view1.findViewById(R.id.cancel);
                         KhaltiButton Khalti = view1.findViewById(R.id.khalti_button);
                         paymentCost.setText("The Total cost: Rs "+ Costs);
-
                         alert.setView(view1);
 
                         final AlertDialog alertDialog = alert.create();

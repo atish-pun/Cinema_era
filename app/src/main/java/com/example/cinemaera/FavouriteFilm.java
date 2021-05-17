@@ -122,7 +122,7 @@ public class FavouriteFilm extends AppCompatActivity {
         });
     }
     public void ExtractFavouriteMovies(){
-        String url = getString(R.string.server_api_url) + "cart-list.php?otoken=" + Util.FAVOURITE_TOKEN + "&uid=" + Util.SESSION_USERID;
+        String url = getString(R.string.server_api_url) + "FavouriteList.php?otoken=" + Util.FAVOURITE_TOKEN + "&uid=" + Util.SESSION_USERID;
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -142,13 +142,15 @@ public class FavouriteFilm extends AppCompatActivity {
                             String Image_location = getString(R.string.Image_url) + A_poster;
                             String Trailer_videos = obj.getString("Trailer_videos");
                             String Trailer_video = getString(R.string.Trailer_Video_url) + Trailer_videos;
+                            String FMovies = obj.getString("Full_movies");
+                            String Full_movies = getString(R.string.Full_movie_url) + FMovies;
                             String Cast = obj.getString("Cast");
                             String Director = obj.getString("Director");
                             String Release_date = obj.getString("Release_date");
                             String Run_time = obj.getString("Run_time");
                             String Language = obj.getString("Language");
                             String Overview = obj.getString("Overview");
-                            Film.FavouriteInfo favouriteInfo = new Film.FavouriteInfo(id,movies_id,A_name,Price, Image_location,Trailer_video,Cast,Director,Release_date,Run_time,Language,Overview);
+                            Film.FavouriteInfo favouriteInfo = new Film.FavouriteInfo(id,movies_id,A_name,Price, Image_location,Trailer_video, Full_movies, Cast,Director,Release_date,Run_time,Language,Overview);
                             favourite.add(favouriteInfo);
                             favouriteAdapter = new FavouriteAdapter(FavouriteFilm.this, favourite);
                             favourite_recycle.setAdapter(favouriteAdapter);
@@ -168,7 +170,7 @@ public class FavouriteFilm extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(FavouriteFilm.this, error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(FavouriteFilm.this,"Sever is in Maintenance!!", Toast.LENGTH_SHORT).show();
             }
         });
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));

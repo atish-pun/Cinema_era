@@ -42,6 +42,7 @@ class MovieSliderAdapter extends SliderViewAdapter<MovieSliderAdapter.SliderView
                 gallery.putExtra("Film names",movieSlider.get(position).getFilm_name());
                 gallery.putExtra("Price",movieSlider.get(position).getPrice());
                 gallery.putExtra("Trailer video",movieSlider.get(position).getTrailer_videos());
+                gallery.putExtra("Full movies",movieSlider.get(position).getFull_movies());
                 gallery.putExtra("Cast",movieSlider.get(position).getCast());
                 gallery.putExtra("Director",movieSlider.get(position).getDirector());
                 gallery.putExtra("Release date",movieSlider.get(position).getDate());

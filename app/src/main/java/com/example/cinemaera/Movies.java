@@ -228,7 +228,5 @@ public class Movies extends AppCompatActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        setContentView(R.layout.activity_movies);
-        FullScreen();
     }
 }

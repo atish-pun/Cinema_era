@@ -262,13 +262,15 @@ public class ProfileUser extends AppCompatActivity {
                             String Image_location = getString(R.string.Image_url) + A_poster;
                             String Trailer_videos = obj.getString("Trailer_videos");
                             String Trailer_video = getString(R.string.Trailer_Video_url) + Trailer_videos;
+                            String FMovies = obj.getString("Full_movies");
+                            String Full_movies = getString(R.string.Full_movie_url) + FMovies;
                             String Cast = obj.getString("Cast");
                             String Director = obj.getString("Director");
                             String Release_date = obj.getString("Release_date");
                             String Run_time = obj.getString("Run_time");
                             String Language = obj.getString("Language");
                             String Overview = obj.getString("Overview");
-                            Film.TransactedMovieInfo transactedMovieInfo = new Film.TransactedMovieInfo(id,movies_id,A_name,Price, Image_location,Trailer_video,Cast,Director,Release_date,Run_time,Language,Overview);
+                            Film.TransactedMovieInfo transactedMovieInfo = new Film.TransactedMovieInfo(id,movies_id,A_name,Price, Image_location,Trailer_video, Full_movies,Cast,Director,Release_date,Run_time,Language,Overview);
                             transactedMovies.add(transactedMovieInfo);
                             Movies_transaction_adpater movies_transaction_adpater = new Movies_transaction_adpater(ProfileUser.this,transactedMovies);
                             ViewRecycler.setAdapter(movies_transaction_adpater);
@@ -282,7 +284,7 @@ public class ProfileUser extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(ProfileUser.this, error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileUser.this,"Sever is in Maintenance!!", Toast.LENGTH_SHORT).show();
             }
         });
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));

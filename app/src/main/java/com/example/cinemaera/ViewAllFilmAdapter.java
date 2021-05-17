@@ -48,6 +48,7 @@ class ViewAllFilmAdapter extends RecyclerView.Adapter<ViewAllFilmAdapter.ViewHol
                 gallery.putExtra("Film names",actionMoviesAll.get(position).getFilm_name());
                 gallery.putExtra("Price",actionMoviesAll.get(position).getPrice());
                 gallery.putExtra("Trailer video",actionMoviesAll.get(position).getTrailer_videos());
+                gallery.putExtra("Full movies",actionMoviesAll.get(position).getFull_movies());
                 gallery.putExtra("Cast",actionMoviesAll.get(position).getCast());
                 gallery.putExtra("Director",actionMoviesAll.get(position).getDirector());
                 gallery.putExtra("Release date",actionMoviesAll.get(position).getDate());

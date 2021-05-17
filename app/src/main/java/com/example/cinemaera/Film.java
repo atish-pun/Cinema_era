@@ -9,6 +9,7 @@ class Film {
     private String Price;
     private String film_name;
     private String trailer_videos;
+    private String full_movies;
     private String cast;
     private  String director;
     private String date;
@@ -16,12 +17,13 @@ class Film {
     private String language;
     private String overview;
 
-    public Film(String id, String film_image, String film_name, String Price, String trailer_videos, String cast, String director, String date, String time, String language, String overview) {
+    public Film(String id, String film_image, String film_name, String Price, String trailer_videos, String full_movies, String cast, String director, String date, String time, String language, String overview) {
         this.id = id;
         this.film_image = film_image;
         this.Price = Price;
         this.film_name = film_name;
         this.trailer_videos = trailer_videos;
+        this.full_movies = full_movies;
         this.cast = cast;
         this.director = director;
         this.date = date;
@@ -65,6 +67,14 @@ class Film {
 
     public void setTrailer_videos(String trailer_videos) {
         this.trailer_videos = trailer_videos;
+    }
+
+    public String getFull_movies() {
+        return full_movies;
+    }
+
+    public void setFull_movies(String full_movies) {
+        this.full_movies = full_movies;
     }
 
     public String getCast() {
@@ -116,15 +126,16 @@ class Film {
     }
 
     public static class FavouriteInfo {
-        public String id, movies_id, A_name, Price, A_poster, Trailer_videos, Cast, Director, Release_date, Run_time, Language, Overview;
+        public String id, movies_id, A_name, Price, A_poster, Trailer_videos,full_movies, Cast, Director, Release_date, Run_time, Language, Overview;
 
-        public FavouriteInfo(String id, String movies_id, String a_name, String Price, String a_poster, String trailer_videos, String cast, String director, String release_date, String run_time, String language, String overview) {
+        public FavouriteInfo(String id, String movies_id, String a_name, String Price, String a_poster, String trailer_videos,String full_movies, String cast, String director, String release_date, String run_time, String language, String overview) {
             this.id = id;
             this.movies_id = movies_id;
             this.A_name = a_name;
             this.Price = Price;
             this.A_poster = a_poster;
             this.Trailer_videos = trailer_videos;
+            this.full_movies = full_movies;
             this.Cast = cast;
             this.Director = director;
             this.Release_date = release_date;
@@ -181,6 +192,14 @@ class Film {
             Trailer_videos = trailer_videos;
         }
 
+        public String getFull_movies() {
+            return full_movies;
+        }
+
+        public void setFull_movies(String full_movies) {
+            this.full_movies = full_movies;
+        }
+
         public String getCast() {
             return Cast;
         }
@@ -231,15 +250,16 @@ class Film {
     }
 
     public static class TransactedMovieInfo {
-        public String id, movies_id, A_name, Price, A_poster, Trailer_videos, Cast, Director, Release_date, Run_time, Language, Overview;
+        public String id, movies_id, A_name, Price, A_poster, Trailer_videos, full_movies, Cast, Director, Release_date, Run_time, Language, Overview;
 
-        public TransactedMovieInfo(String id, String movies_id, String a_name, String Price, String a_poster, String trailer_videos, String cast, String director, String release_date, String run_time, String language, String overview) {
+        public TransactedMovieInfo(String id, String movies_id, String a_name, String Price, String a_poster, String trailer_videos, String full_movies, String cast, String director, String release_date, String run_time, String language, String overview) {
             this.id = id;
             this.movies_id = movies_id;
             this.A_name = a_name;
             this.Price = Price;
             this.A_poster = a_poster;
             this.Trailer_videos = trailer_videos;
+            this.full_movies = full_movies;
             this.Cast = cast;
             this.Director = director;
             this.Release_date = release_date;
@@ -294,6 +314,14 @@ class Film {
 
         public void setTrailer_videos(String trailer_videos) {
             Trailer_videos = trailer_videos;
+        }
+
+        public String getFull_movies() {
+            return full_movies;
+        }
+
+        public void setFull_movies(String full_movies) {
+            this.full_movies = full_movies;
         }
 
         public String getCast() {
@@ -387,28 +415,5 @@ class Film {
             RatedValue = ratedValue;
         }
     }
-    public static class Search{
-    String film_name, film_id;
-        public Search(String film_name, String film_id) {
-            this.film_name = film_name;
-            this.film_id = film_id;
 
-        }
-
-        public String getFilm_name() {
-            return film_name;
-        }
-
-        public void setFilm_name(String film_name) {
-            this.film_name = film_name;
-        }
-
-        public String getFilm_id() {
-            return film_id;
-        }
-
-        public void setFilm_id(String film_id) {
-            this.film_id = film_id;
-        }
-    }
 }

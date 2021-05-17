@@ -10,6 +10,7 @@
     <string name="server_api_url">http://192.168.100.129:8080/ERA/api/</string>
     <string name="Image_url">http://192.168.100.129:8080/ERA/MoviesPoster/</string>
     <string name="Trailer_Video_url">http://192.168.100.129:8080/ERA/Trailer_vedios/</string>
+    <string name="Full_movie_url">http://192.168.100.129:8080/ERA/Full_movies/</string>
 
 
     <!--    https://myjsonatish.000webhostapp.com/ERA/api/-->

@@ -114,7 +114,7 @@ public class AccountLogin extends AppCompatActivity {
                                 , new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(AccountLogin.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AccountLogin.this, "Sever is in Maintenance!!", Toast.LENGTH_SHORT).show();
                                 error.printStackTrace();
                             }
                         });

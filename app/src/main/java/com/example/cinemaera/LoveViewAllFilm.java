@@ -40,7 +40,7 @@ public class LoveViewAllFilm extends AppCompatActivity {
         ViewExtract();
     }
     public void ViewExtract() {
-        String url = getString(R.string.server_api_url) + "home.php";
+        String url = getString(R.string.server_api_url) + "mainMovies.php";
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -57,13 +57,15 @@ public class LoveViewAllFilm extends AppCompatActivity {
                         String Price = obj.getString("Price");
                         String Tvideos = obj.getString("trailer videos");
                         String Trailer_video = getString(R.string.Trailer_Video_url) + Tvideos;
+                        String FMovies = obj.getString("Full_movies");
+                        String Full_movies = getString(R.string.Full_movie_url) + FMovies;
                         String Cast = obj.getString("Cast");
                         String Director = obj.getString("Director");
                         String Release_date = obj.getString("Release_date");
                         String Run_time = obj.getString("Run_time");
                         String Language = obj.getString("Language");
                         String Overview = obj.getString("Overview");
-                        Film category1 = new Film(Fid, Image_location, Fname, Price, Trailer_video, Cast, Director, Release_date, Run_time, Language, Overview);
+                        Film category1 = new Film(Fid, Image_location, Fname, Price, Trailer_video, Full_movies, Cast, Director, Release_date, Run_time, Language, Overview);
                         viewFilms.add(category1);
                         ViewAllFilmAdapter viewAdapter = new ViewAllFilmAdapter(LoveViewAllFilm.this,viewFilms);
                         ViewRecycler.setAdapter(viewAdapter);
@@ -77,7 +79,7 @@ public class LoveViewAllFilm extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(LoveViewAllFilm.this, error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoveViewAllFilm.this, "Sever is in Maintenance!!", Toast.LENGTH_SHORT).show();
             }
         });
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
