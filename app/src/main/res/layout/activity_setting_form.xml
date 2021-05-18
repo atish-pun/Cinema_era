@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -55,29 +55,6 @@
             <TextView
                 android:id="@+id/privacy"
                 android:text="Privacy policy"
-                android:layout_marginStart="10dp"
-                android:textSize="14dp"
-                android:textColor="@color/film_detailsTXT"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/viewline"
-            android:layout_gravity="center" />
-        <LinearLayout
-            android:paddingTop="13dp"
-            android:paddingBottom="13dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:src="@drawable/ic_terms_of_use"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/terms"
-                android:text="Terms of use"
                 android:layout_marginStart="10dp"
                 android:textSize="14dp"
                 android:textColor="@color/film_detailsTXT"

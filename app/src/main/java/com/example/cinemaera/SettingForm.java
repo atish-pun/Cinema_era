@@ -12,7 +12,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class SettingForm extends AppCompatActivity {
-    TextView aboutApp, privacy, terms;
+    TextView aboutApp, privacy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,6 @@ public class SettingForm extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         aboutApp = findViewById(R.id.about);
         privacy = findViewById(R.id.privacy);
-        terms = findViewById(R.id.terms);
 
         aboutApp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,7 +30,6 @@ public class SettingForm extends AppCompatActivity {
                 View view1 = getLayoutInflater().inflate(R.layout.about_app, null);
                 final Button ok = view1.findViewById(R.id.cancel);
                 final TextView About = view1.findViewById(R.id.About);
-                About.setText(R.string.AboutApp);
                 alert.setView(view1);
                 final AlertDialog alertDialog = alert.create();
                 alertDialog.setCanceledOnTouchOutside(false);
@@ -54,28 +52,6 @@ public class SettingForm extends AppCompatActivity {
                 final Button ok = view1.findViewById(R.id.cancel);
                 final TextView PrivacyPolicies = view1.findViewById(R.id.PrivacyPolicies);
                 PrivacyPolicies.setText(R.string.PrivacyPolicy);
-                alert.setView(view1);
-                final AlertDialog alertDialog = alert.create();
-                alertDialog.setCanceledOnTouchOutside(false);
-                ok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        alertDialog.dismiss();
-                    }
-                });
-                alertDialog.show();
-
-            }
-        });
-
-        terms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(SettingForm.this);
-                View view1 = getLayoutInflater().inflate(R.layout.terms_to_use, null);
-                final Button ok = view1.findViewById(R.id.cancel);
-                final TextView Terms = view1.findViewById(R.id.Terms);
-                Terms.setText(R.string.TermsOfUse);
                 alert.setView(view1);
                 final AlertDialog alertDialog = alert.create();
                 alertDialog.setCanceledOnTouchOutside(false);
