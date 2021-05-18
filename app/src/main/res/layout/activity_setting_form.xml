@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingForm">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:paddingTop="13dp"
+            android:paddingBottom="13dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/ic_about_app"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/about"
+                android:layout_marginStart="10dp"
+                android:text="About App"
+                android:textSize="14dp"
+                android:textColor="@color/film_detailsTXT"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/viewline"
+            android:layout_gravity="center" />
+
+        <LinearLayout
+            android:paddingTop="13dp"
+            android:paddingBottom="13dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/ic_privacy_policy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/privacy"
+                android:text="Privacy policy"
+                android:layout_marginStart="10dp"
+                android:textSize="14dp"
+                android:textColor="@color/film_detailsTXT"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/viewline"
+            android:layout_gravity="center" />
+        <LinearLayout
+            android:paddingTop="13dp"
+            android:paddingBottom="13dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/ic_terms_of_use"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/terms"
+                android:text="Terms of use"
+                android:layout_marginStart="10dp"
+                android:textSize="14dp"
+                android:textColor="@color/film_detailsTXT"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/viewline"
+            android:layout_gravity="center" />
+
+        <LinearLayout
+            android:paddingTop="13dp"
+            android:paddingBottom="13dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <ImageView
+                android:src="@drawable/ic_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="Contact us"
+                android:layout_marginStart="10dp"
+                android:textSize="14dp"
+                android:textColor="@color/film_detailsTXT"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="13dp"
+                    android:fontFamily="@font/alegreya"
+                    android:text="Email : punatish16@gmail.com"
+                    android:layout_marginStart="33dp"
+                    android:textColor="@color/filmname"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="13dp"
+                    android:fontFamily="@font/alegreya"
+                    android:text="Mobile number : +9779815155630"
+                    android:layout_marginStart="33dp"
+                    android:textColor="@color/filmname"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

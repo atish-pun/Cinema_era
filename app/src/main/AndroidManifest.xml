@@ -6,18 +6,23 @@
         android:allowBackup="true"
         android:icon="@mipmap/cinema_icon"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/cinema_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
-        android:networkSecurityConfig="@xml/network_security_config">
-        <activity android:name=".Movies"
-            android:configChanges="orientation|screenSize"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".SettingForm"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".FavouriteFilm"
             android:theme="@style/AppTheme.NoActionBarViewAllFilm"/>
         <activity
+            android:name=".Movies"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBarViewAllFilm" />
+        <activity
             android:name=".Profile_Update"
-            android:screenOrientation="portrait"
             android:parentActivityName=".ProfileUser"
+            android:screenOrientation="portrait"
             android:theme="@style/EditProfileTheme" />
         <activity
             android:name=".ProfileUser"
@@ -33,25 +38,26 @@
             android:theme="@style/AccountTheme" />
         <activity
             android:name=".ActionViewAllFilm"
-            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBarViewAllFilm" />
         <activity
             android:name=".LoveViewAllFilm"
-            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBarViewAllFilm" />
         <activity
             android:name=".HorrorViewAllFilm"
-            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBarViewAllFilm" />
         <activity
             android:name=".FavouriteFilm"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBarViewAllFilm" />
-        <activity android:name=".Film_gallery"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Film_gallery"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Search_activity"
             android:screenOrientation="portrait"
@@ -62,6 +68,7 @@
             android:theme="@style/AppTheme.NoActionBarSplashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -69,10 +76,13 @@
             android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBarMain" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
 </manifest>

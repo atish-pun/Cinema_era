@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -57,9 +58,7 @@ public class Search_activity extends AppCompatActivity {
         SearchBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Intent intent = new Intent(Search_activity.this,MainActivity.class);
-                    startActivity(intent);
-                    overridePendingTransition(0, 0);
+                   finish();
 
             }
         });
@@ -172,7 +171,7 @@ public class Search_activity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Search_activity.this, "Sever is in Maintenance!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Search_activity.this, "Slow Internet Connection Detected!!", Toast.LENGTH_SHORT).show();
             }
         });
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));

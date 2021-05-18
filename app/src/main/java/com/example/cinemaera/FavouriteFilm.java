@@ -9,11 +9,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,6 +47,8 @@ public class FavouriteFilm extends AppCompatActivity {
     ImageView FavouriteIcon;
     TextView FirstFavouriteText, SecondFavouriteText;
     SwipeRefreshLayout swipeRefreshLayout;
+    float ratingValue;
+    String TotalRatings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,8 +87,13 @@ public class FavouriteFilm extends AppCompatActivity {
                 Intent search = new Intent(FavouriteFilm.this, Search_activity.class);
                 startActivity(search);
                 overridePendingTransition(0, 0);
+                break;
 
             case R.id.setting_bar:
+                Intent setting = new Intent(FavouriteFilm.this, SettingForm.class);
+                startActivity(setting);
+                overridePendingTransition(0, 0);
+                break;
 
             case R.id.share_bar:
                 Intent intent = new Intent(Intent.ACTION_SEND);
@@ -90,12 +101,95 @@ public class FavouriteFilm extends AppCompatActivity {
                 String app = "Download this Cinema Era app through:-http://lalpun.com.np/=en";
                 intent.putExtra(Intent.EXTRA_SUBJECT,app);
                 startActivity(Intent.createChooser(intent,"ShareVia"));
+                break;
 
             case R.id.feedback_bar:
-
+                FeedbackHelp();
             default:
         }
         return super.onOptionsItemSelected(item);
+    }
+    public void FeedbackHelp (){
+        AlertDialog.Builder alert = new AlertDialog.Builder(FavouriteFilm.this);
+        View view1 = getLayoutInflater().inflate(R.layout.feedback_help, null);
+        final EditText review_txt = view1.findViewById(R.id.review_type);
+        final Button cancel = view1.findViewById(R.id.cancel);
+        final Button submit = view1.findViewById(R.id.submit);
+        TextView userEmail = view1.findViewById(R.id.UserName);
+        final TextView ratevalue = view1.findViewById(R.id.ratevalue);
+        final RatingBar ratebar = view1.findViewById(R.id.review_ratingbar);
+        userEmail.setText("From : " + Util.SESSION_EMAIL);
+
+        alert.setView(view1);
+
+        final AlertDialog alertDialog = alert.create();
+        alertDialog.setCanceledOnTouchOutside(false);
+        ratebar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                ratingValue = ratebar.getRating();
+                if (ratingValue <= 1 && ratingValue > 0)
+                    ratevalue.setText(ratingValue + "");
+                else if (ratingValue <= 2 && ratingValue > 1)
+                    ratevalue.setText(ratingValue + "");
+                else if (ratingValue <= 3 && ratingValue > 2)
+                    ratevalue.setText(ratingValue + "");
+                else if (ratingValue <= 4 && ratingValue > 3)
+                    ratevalue.setText(ratingValue + "");
+                else if (ratingValue <= 5 && ratingValue > 4)
+                    ratevalue.setText(ratingValue + "");
+
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String ReviewOutput;
+                TotalRatings = ratevalue.getText().toString();
+                ReviewOutput = review_txt.getText().toString();
+                if (!TotalRatings.equals("") || !ReviewOutput.equals("")){
+                    String url = getString(R.string.server_api_url) + "FeedBack_and_help.php?email=" + Util.SESSION_EMAIL + "&reviews=" + ReviewOutput + "&ratedValue=" + TotalRatings;
+                    RequestQueue queue = Volley.newRequestQueue(FavouriteFilm.this);
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject object = new JSONObject(response);
+                                if (object.getInt("status") == 200) {
+                                    Toast.makeText(FavouriteFilm.this, object.getString("content"), Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(FavouriteFilm.this, "Slow Internet Connection Detected!!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                    queue.add(stringRequest);
+                    review_txt.setText("");
+                    ratebar.setRating(0);
+                    ratevalue.setText("");
+                    alertDialog.dismiss();
+
+                }
+                else {
+                    Toast.makeText(FavouriteFilm.this,"Please fill up at least one of the field and submit",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        alertDialog.show();
     }
 
     public void Navigation(){
@@ -170,7 +264,7 @@ public class FavouriteFilm extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(FavouriteFilm.this,"Sever is in Maintenance!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FavouriteFilm.this,"Slow Internet Connection Detected!!", Toast.LENGTH_SHORT).show();
             }
         });
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));

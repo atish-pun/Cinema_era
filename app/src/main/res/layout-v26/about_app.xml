@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="370dp"
+    android:layout_height="370dp"
+    android:layout_gravity="center"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/Texttop"
+        android:text="About Cinema Era"
+        android:fontFamily="serif"
+        android:textStyle="bold"
+        android:textSize="16dp"/>
+
+    <View
+        android:id="@+id/LineView"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/viewline"
+        android:layout_gravity="center" />
+    <ScrollView
+        android:id="@+id/scrollBar"
+        android:layout_width="match_parent"
+        android:scrollbarThumbVertical="@color/film_detailsTXT"
+        android:layout_height="270dp">
+
+        <TextView
+            android:id="@+id/About"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:textSize="13dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:justificationMode="inter_word"
+            android:lineSpacingExtra="3dp"
+            android:layout_width="match_parent"
+            android:textColor="@color/filmname"
+            android:layout_height="wrap_content"
+            android:text="@string/AboutApp"/>
+
+    </ScrollView>
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="80dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_height="30dp"
+            android:background="@drawable/account"
+            android:backgroundTint="#000000"
+            android:text="Ok"
+            android:layout_alignParentBottom="true"
+            android:textAllCaps="false"
+            android:textColor="@color/action_menu_color"
+            android:textSize="15sp" />
+</LinearLayout>

@@ -3,7 +3,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="title_activity_view_all__film">View_all_Film</string>
-<!--    <string name="server_api_url">https://cinemaera.lalpun.com.np/ERA/api/</string>
+    <!--    <string name="server_api_url">https://cinemaera.lalpun.com.np/ERA/api/</string>
     <string name="Image_url">https://cinemaera.lalpun.com.np/ERA/MoviesPoster/</string>
     <string name="Trailer_Video_url">https://cinemaera.lalpun.com.np/ERA/Trailer_vedios/</string>-->
 
@@ -11,11 +11,8 @@
     <string name="Image_url">http://192.168.100.129:8080/ERA/MoviesPoster/</string>
     <string name="Trailer_Video_url">http://192.168.100.129:8080/ERA/Trailer_vedios/</string>
     <string name="Full_movie_url">http://192.168.100.129:8080/ERA/Full_movies/</string>
-
-
-    <!--    https://myjsonatish.000webhostapp.com/ERA/api/-->
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
-  </resources>
+    <string name="AboutApp">Maple Media LLC (or, “Maple Media”) issues this Privacy Policy to inform you of our procedures and policies regarding the collection, disclosure, and use of personal information Maple Media receives or collects from users of our applications and/or website. The term “Services”, as used in this Privacy Policy, references both the Maple Media website (the “Site”) and all Maple Media applications, games and any other products or services offered by Maple Media (the “Application(s)”). This Privacy Policy applies to information that you provide to us (or permit third party sites to provide us) or that we collect through the Services. This Privacy Policy will be updated at dates in the future to be determined by Maple Media LLC. We will notify you of any material changes by posting the new Privacy Policy on the Services. Maple Media recommends that you consult this policy periodically for any changes.
+        By using our Services you are consenting to our Processing of your information as described in this Privacy Policy now and as revised in the future by Maple Media LLC. “Processing” means using cookies on a computer or using, reviewing, or otherwise interacting with information in any way, including, but not limited to, storing, deleting, collecting, using, combining and disclosing information and transferring it to US and other governments. If you do not agree to the terms of this Privacy Policy, please do not use the Services.</string>
+    <string name="PrivacyPolicy"></string>
+    <string name="TermsOfUse"></string>
+</resources>

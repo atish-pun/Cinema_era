@@ -2,6 +2,7 @@ package com.example.cinemaera;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,7 +23,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,7 +69,8 @@ public class ProfileUser extends AppCompatActivity {
     Button StoreProfileImage;
     ImageView profile_image, UploadProfilePhoto, ProfileUpdate;
     Bitmap bitmap;
-    String encodedImage;
+    float ratingValue;
+    String encodedImage, TotalRatings;
     List<Film.TransactedMovieInfo> transactedMovies = new ArrayList<>();
 
     @Override
@@ -203,14 +207,105 @@ public class ProfileUser extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.setting_bar:
-
+                Intent setting = new Intent(ProfileUser.this, SettingForm.class);
+                startActivity(setting);
+                overridePendingTransition(0, 0);
+                break;
             case R.id.share_bar:
-
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                String app = "Download this Cinema Era app through:-http://lalpun.com.np/=en";
+                intent.putExtra(Intent.EXTRA_SUBJECT,app);
+                startActivity(Intent.createChooser(intent,"ShareVia"));
+                break;
             case R.id.feedback_bar:
-
+                FeedbackHelp();
+                break;
             default:
         }
         return super.onOptionsItemSelected(item);
+    }
+    public void FeedbackHelp (){
+        AlertDialog.Builder alert = new AlertDialog.Builder(ProfileUser.this);
+        View view1 = getLayoutInflater().inflate(R.layout.feedback_help, null);
+        final EditText review_txt = view1.findViewById(R.id.review_type);
+        final Button cancel = view1.findViewById(R.id.cancel);
+        final Button submit = view1.findViewById(R.id.submit);
+        TextView userEmail = view1.findViewById(R.id.UserName);
+        final TextView ratevalue = view1.findViewById(R.id.ratevalue);
+        final RatingBar ratebar = view1.findViewById(R.id.review_ratingbar);
+        userEmail.setText("From : " + Util.SESSION_EMAIL);
+
+        alert.setView(view1);
+
+        final AlertDialog alertDialog = alert.create();
+        alertDialog.setCanceledOnTouchOutside(false);
+        ratebar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                ratingValue = ratebar.getRating();
+                if (ratingValue <= 1 && ratingValue > 0)
+                    ratevalue.setText(ratingValue + "");
+                else if (ratingValue <= 2 && ratingValue > 1)
+                    ratevalue.setText(ratingValue + "");
+                else if (ratingValue <= 3 && ratingValue > 2)
+                    ratevalue.setText(ratingValue + "");
+                else if (ratingValue <= 4 && ratingValue > 3)
+                    ratevalue.setText(ratingValue + "");
+                else if (ratingValue <= 5 && ratingValue > 4)
+                    ratevalue.setText(ratingValue + "");
+
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String ReviewOutput;
+                TotalRatings = ratevalue.getText().toString();
+                ReviewOutput = review_txt.getText().toString();
+                if (!TotalRatings.equals("") || !ReviewOutput.equals("")){
+                    String url = getString(R.string.server_api_url) + "FeedBack_and_help.php?email=" + Util.SESSION_EMAIL + "&reviews=" + ReviewOutput + "&ratedValue=" + TotalRatings;
+                    RequestQueue queue = Volley.newRequestQueue(ProfileUser.this);
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject object = new JSONObject(response);
+                                if (object.getInt("status") == 200) {
+                                    Toast.makeText(ProfileUser.this, object.getString("content"), Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(ProfileUser.this, "Slow Internet Connection Detected!!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                    queue.add(stringRequest);
+                    review_txt.setText("");
+                    ratebar.setRating(0);
+                    ratevalue.setText("");
+                    alertDialog.dismiss();
+
+                }
+                else {
+                    Toast.makeText(ProfileUser.this,"Please fill up at least one of the field and submit",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        alertDialog.show();
     }
 
     public void TotalReviews(){
@@ -284,7 +379,7 @@ public class ProfileUser extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(ProfileUser.this,"Sever is in Maintenance!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileUser.this,"Slow Internet Connection Detected!!", Toast.LENGTH_SHORT).show();
             }
         });
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));

@@ -341,7 +341,7 @@ public class Film_gallery extends AppCompatActivity {
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(Film_gallery.this, error.toString(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Film_gallery.this,"Slow Internet Connection Detected!!", Toast.LENGTH_SHORT).show();
                             }
                         });
                         stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
@@ -394,7 +394,7 @@ public class Film_gallery extends AppCompatActivity {
             new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Film_gallery.this, error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Film_gallery.this, "Slow Internet Connection Detected!!", Toast.LENGTH_SHORT).show();
             }
         });
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
@@ -421,7 +421,7 @@ public class Film_gallery extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Film_gallery.this, error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Film_gallery.this, "Slow Internet Connection Detected!!", Toast.LENGTH_SHORT).show();
             }
         });
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
@@ -502,7 +502,7 @@ public class Film_gallery extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Film_gallery.this, error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Film_gallery.this,"Slow Internet Connection Detected!!", Toast.LENGTH_SHORT).show();
             }
         });
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));

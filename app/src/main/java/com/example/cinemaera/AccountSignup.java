@@ -93,7 +93,7 @@ public class AccountSignup extends AppCompatActivity {
                                 }, new ErrorListener() {
                                     @Override
                                     public void onErrorResponse(VolleyError error) {
-                                        Toast.makeText(AccountSignup.this, "Sever is in Maintenance!!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AccountSignup.this, "Slow Internet Connection Detected!!", Toast.LENGTH_SHORT).show();
                                         error.printStackTrace();
                                     }
                                 }

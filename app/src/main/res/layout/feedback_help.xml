@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/Texttop"
+        android:text="Feedback and Help"
+        android:fontFamily="serif"
+        android:textStyle="bold"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/UserName"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/filmname"
+        android:textStyle="bold"
+        android:textSize="13dp"
+        android:text="From"/>
+
+    <View
+        android:id="@+id/LineView"
+        android:layout_width="200dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/viewline"
+        android:layout_gravity="center" />
+    <TextView
+        android:layout_marginTop="13dp"
+        android:textStyle="bold"
+        android:textSize="13dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:textColor="@color/filmname"
+        android:layout_height="wrap_content"
+        android:text="Choose your Rate for this app"/>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/ratevalue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="26dp"/>
+    <RatingBar
+        android:scaleX=".7"
+        android:scaleY=".7"
+        android:progressBackgroundTint="#566A6767"
+        android:layout_gravity="center"
+        android:id="@+id/review_ratingbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:layout_gravity="center"
+        android:id="@+id/review_type"
+        android:background="@drawable/ratingcornerradius"
+        android:layout_width="220dp"
+        android:textColor="@color/Texttop"
+        android:textColorHint="@color/filmname"
+        android:layout_height="100dp"
+        android:inputType="textMultiLine"
+        android:maxLines="4"
+        android:lines="4"
+        android:hint="Ask any question for help"
+        android:textSize="12dp"/>
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_marginBottom="15dp"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/cancel"
+            android:backgroundTint="#000000"
+            android:textColor="@color/action_menu_color"
+            android:background="@drawable/account"
+            android:textAllCaps="false"
+            android:layout_width="80dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="3dp"
+            android:textSize="15sp"
+            android:layout_height="30dp"
+            android:text="cancel"/>
+
+        <Button
+            android:id="@+id/submit"
+            android:textAllCaps="false"
+            android:layout_width="80dp"
+            android:textSize="15sp"
+            android:layout_marginLeft="20dp"
+            android:backgroundTint="#000000"
+            android:textColor="@color/action_menu_color"
+            android:background="@drawable/account"
+            android:layout_height="30dp"
+            android:text="submit" />
+
+    </LinearLayout>
+</LinearLayout>
