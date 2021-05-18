@@ -27,9 +27,8 @@ public class SettingForm extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(SettingForm.this);
-                View view1 = getLayoutInflater().inflate(R.layout.about_app, null);
+                View view1 = getLayoutInflater().inflate(R.layout.about_us, null);
                 final Button ok = view1.findViewById(R.id.cancel);
-                final TextView About = view1.findViewById(R.id.About);
                 alert.setView(view1);
                 final AlertDialog alertDialog = alert.create();
                 alertDialog.setCanceledOnTouchOutside(false);

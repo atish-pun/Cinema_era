@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="370dp"
-    android:layout_height="370dp"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical">
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
+        android:layout_height="35dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/cinemasingleicon"/>
 
@@ -20,7 +20,7 @@
         android:text="Cinema Era"
         android:fontFamily="serif"
         android:textStyle="bold"
-        android:textSize="15dp"/>
+        android:textSize="16dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,8 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:textColor="@color/film_detailsTXT"
-        android:text="Version 1.0"
-        android:fontFamily="serif"
+        android:text="Version 1.0.0"
+        android:fontFamily="@font/alegreya"
         android:textSize="14dp"/>
 
     <TextView
@@ -38,22 +38,22 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:textColor="@color/film_detailsTXT"
-        android:text="Movies Total\n\t\t\t\t\t\t5+"
-        android:fontFamily="serif"
+        android:text="Total Movies\n\t\t\t\t5+"
+        android:fontFamily="@font/alegreya"
         android:textSize="14dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="14dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:textColor="@color/film_detailsTXT"
         android:justificationMode="inter_word"
         android:lineSpacingExtra="3dp"
         android:text="Cinema Era is the movie streaming mobile app which aim is to provide lots of quality movies in affordable price "
-        android:fontFamily="serif"
-        android:textSize="14dp"/>
+        android:fontFamily="@font/alegreya"
+        android:textSize="13dp"/>
 
     <Button
         android:id="@+id/cancel"
