@@ -509,6 +509,7 @@ public class Film_gallery extends AppCompatActivity {
         queue.add(stringRequest);
 
     }
+
     public void Khalti_Verification(String token, Double amount) {
         RequestQueue queue = Volley.newRequestQueue(Film_gallery.this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://khalti.com/api/v2/payment/verify/", new Response.Listener<String>() {

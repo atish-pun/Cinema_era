@@ -29,6 +29,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -122,20 +123,34 @@ public class ProfileUser extends AppCompatActivity {
         StoreProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = getString(R.string.server_api_url) + "profile_image?upload=" + encodedImage;
+                String url = getString(R.string.server_api_url) + "Profile_image_upload.php";
                 RequestQueue queue = Volley.newRequestQueue(ProfileUser.this);
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url, response -> {
                     try {
                         JSONObject obj = new JSONObject(response);
-
-                            Toast.makeText(ProfileUser.this, response.toString(), Toast.LENGTH_SHORT).show();
+                        if (obj.getInt("status") == 200) {
+                            Toast.makeText(ProfileUser.this, obj.getString("content"), Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(ProfileUser.this,obj.getString("content") , Toast.LENGTH_SHORT).show();
+                        }
                     }
                     catch (JSONException e) {
-                        e.printStackTrace();
+                        Toast.makeText(ProfileUser.this, "Currently Unable to upload Image!", Toast.LENGTH_SHORT).show();
                     }
                 }, error -> {
-                    Toast.makeText(ProfileUser.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                });
+                    Toast.makeText(ProfileUser.this, "Please Select the Profile Image!", Toast.LENGTH_SHORT).show();
+
+                }) {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> payload = new HashMap<String, String>();
+                        payload.put("img", encodedImage);
+                        payload.put("uid", Util.SESSION_USERID);
+                        payload.put("emailAddress", Util.SESSION_EMAIL);
+                        return payload;
+                    };
+                };
                 stringRequest.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                 queue.add(stringRequest);
             }
@@ -180,7 +195,6 @@ public class ProfileUser extends AppCompatActivity {
                 InputStream inputStream = getContentResolver().openInputStream(profilePath);
                 bitmap = BitmapFactory.decodeStream(inputStream);
                 profile_image.setImageBitmap(bitmap);
-
                 imageSave(bitmap);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
