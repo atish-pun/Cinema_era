@@ -3,14 +3,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="title_activity_view_all__film">View_all_Film</string>
-    <!--    <string name="server_api_url">https://cinemaera.lalpun.com.np/ERA/api/</string>
-    <string name="Image_url">https://cinemaera.lalpun.com.np/ERA/MoviesPoster/</string>
-    <string name="Trailer_Video_url">https://cinemaera.lalpun.com.np/ERA/Trailer_vedios/</string>-->
+    <string name="server_api_url">http://cinemaera.lalpun.com.np/ERA/api/</string>
+    <string name="Image_url">http://cinemaera.lalpun.com.np/ERA/MoviesPoster/</string>
+    <string name="Trailer_Video_url">http://cinemaera.lalpun.com.np/ERA/Trailer_vedios/</string>
+    <string name="Full_movie_url">http://cinemaera.lalpun.com.np/ERA/Full_movies/</string>
 
-    <string name="server_api_url">http://192.168.100.129:8080/ERA/api/</string>
-    <string name="Image_url">http://192.168.100.129:8080/ERA/MoviesPoster/</string>
-    <string name="Trailer_Video_url">http://192.168.100.129:8080/ERA/Trailer_vedios/</string>
-    <string name="Full_movie_url">http://192.168.100.129:8080/ERA/Full_movies/</string>
+<!--    <string name="server_api_url">http://192.168.100.129:8888/ERA/api/</string>-->
+<!--    <string name="Image_url">http://192.168.100.129:8888/ERA/MoviesPoster/</string>-->
+<!--    <string name="Trailer_Video_url">http://192.168.100.129:8888/ERA/Trailer_vedios/</string>-->
+<!--    <string name="Full_movie_url">http://192.168.100.129:8888/ERA/Full_movies/</string>-->
     <string name="PrivacyPolicy">This Privacy Policy governs the manner in which "Cinema Era" collects, uses, maintains and discloses information collected from users (each user) of "Cinema Era" Mobile application. This
         privacy policy applies to the Apps and all products and services offered by "Cinema Era" \n\nBy using this App you accept this policy. If you do not agree with it, please do not use our this App. If you choose to use
         my service, then you agree to the collection and use of information in relation to this policy. The personal information that i collect is used for providing and improving the service. I will not use or share your information with anyone except as described in this Privacy Policy.

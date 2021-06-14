@@ -203,11 +203,12 @@ public class ProfileUser extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void imageSave(Bitmap bitmap) {
+    private String imageSave(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
         byte[] imageBytes = stream.toByteArray();
         encodedImage = android.util.Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
     }
 
     @Override
